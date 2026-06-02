@@ -35,7 +35,7 @@ const statusStyles: Record<LearningStatus, string> = {
     "bg-accent-teal/10 text-accent-teal border-accent-teal/30",
   "in-progress":
     "bg-accent-indigo/10 text-accent-indigo border-accent-indigo/30",
-  planned: "bg-white/5 text-muted-foreground border-white/10",
+  planned: "bg-card text-muted-foreground border-border",
 };
 
 const statusLabel: Record<LearningStatus, string> = {

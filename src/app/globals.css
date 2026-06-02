@@ -6,11 +6,11 @@
 
 :root {
   /* Surfaces */
-  --background: 0 0% 3.92%;
-  --surface: 0 0% 9.02%;
-  --surface-elevated: 0 0% 13.33%;
+  --background: 0 0% 0%;
+  --surface: 0 0% 6.67%;
+  --surface-elevated: 0 0% 8.63%;
   --border: 0 0% 14.9%;
-  --border-strong: 0 0% 21.18%;
+  --border-strong: 0 0% 25.1%;
 
   /* Text */
   --foreground: 0 0% 98.04%;
@@ -18,10 +18,10 @@
   --subtle-foreground: 0 0% 45.1%;
 
   /* Brand accents */
-  --primary: 213 94% 68%;
-  --accent-teal: 199 89% 48%;
+  --primary: 0 0% 100%;
+  --accent-teal: 213 96% 78%;
   --accent-indigo: 213 94% 68%;
-  --accent-purple: 239 84% 67%;
+  --accent-purple: 217 91% 60%;
 
   /* Semantic */
   --ring: 213 94% 68%;
@@ -31,6 +31,8 @@
   --color-background: hsl(var(--background));
   --color-surface: hsl(var(--surface));
   --color-surface-elevated: hsl(var(--surface-elevated));
+  --color-card: hsl(var(--surface));
+  --color-border: hsl(var(--border));
   --color-border-soft: hsl(var(--border));
   --color-border-strong: hsl(var(--border-strong));
 

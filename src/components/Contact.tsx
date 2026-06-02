@@ -68,7 +68,7 @@ export function Contact() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className={cn(
                   "group block rounded-2xl",
-                  "bg-white/5 backdrop-blur-md border border-white/10",
+                  "bg-card backdrop-blur-md border border-border",
                   "shadow-xl shadow-black/20",
                   "transition-colors duration-300 hover:border-accent-teal/50",
                 )}

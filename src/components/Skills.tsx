@@ -75,7 +75,7 @@ const levelStyles: Record<Skill["level"], string> = {
   Proficient:
     "bg-accent-indigo/10 text-foreground/90 border-accent-indigo/30",
   Learning:
-    "bg-white/5 text-muted-foreground border-white/10",
+    "bg-card text-muted-foreground border-border",
 };
 
 interface SkillBadgeProps {

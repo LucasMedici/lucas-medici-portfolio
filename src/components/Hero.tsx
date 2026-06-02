@@ -46,7 +46,7 @@ export function Hero() {
             className={cn(
               "inline-flex items-center gap-2 self-start px-3 py-1 rounded-full",
               "text-xs font-medium tracking-widest uppercase",
-              "bg-white/5 backdrop-blur-md border border-white/10",
+              "bg-card backdrop-blur-md border border-border",
               "text-muted-foreground",
             )}
           >
@@ -98,7 +98,7 @@ export function Hero() {
               className={cn(
                 "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
                 "text-sm font-medium text-foreground",
-                "bg-white/5 backdrop-blur-md border border-white/10",
+                "bg-card backdrop-blur-md border border-border",
                 "hover:border-accent-teal/60 transition-colors duration-300",
               )}
             >

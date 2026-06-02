@@ -33,8 +33,8 @@ export function GlassCard({
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={cn(
         "relative rounded-2xl",
-        "bg-white/5 backdrop-blur-md",
-        "border border-white/10",
+        "bg-card backdrop-blur-md",
+        "border border-border",
         "shadow-xl shadow-black/20",
         "transition-colors duration-300",
         interactive && "hover:border-accent-teal/50",

@@ -87,7 +87,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           {project.stack.map((tech) => (
             <li
               key={tech}
-              className="px-2.5 py-1 rounded-full text-[11px] font-medium font-mono tracking-wide bg-white/5 border border-white/10 text-muted-foreground"
+              className="px-2.5 py-1 rounded-full text-[11px] font-medium font-mono tracking-wide bg-card border border-border text-muted-foreground"
             >
               {tech}
             </li>
@@ -95,7 +95,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </ul>
 
         {project.links.length > 0 ? (
-          <footer className="mt-auto flex flex-wrap items-center gap-3 pt-2 border-t border-white/5">
+          <footer className="mt-auto flex flex-wrap items-center gap-3 pt-2 border-t border-border">
             {project.links.map((link) => (
               <ProjectLinkButton key={link.href} link={link} />
             ))}
