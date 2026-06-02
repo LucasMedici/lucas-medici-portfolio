@@ -51,7 +51,7 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
         className={cn(
           "absolute -left-[34px] md:-left-[46px] top-2",
           "size-4 rounded-full",
-          "bg-gradient-to-br from-teal-400 to-indigo-500",
+          "bg-gradient-to-br from-accent-teal to-accent-indigo",
           "ring-4 ring-background shadow-[0_0_18px_hsl(var(--accent-indigo)/0.6)]",
         )}
       />
