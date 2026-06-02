@@ -6,24 +6,25 @@
 
 :root {
   /* Surfaces */
-  --background: 222 47% 4%;
-  --surface: 222 47% 7%;
-  --surface-elevated: 222 40% 10%;
-  --border: 220 15% 18%;
-  --border-strong: 220 14% 26%;
+  --background: 0 0% 3.92%;
+  --surface: 0 0% 9.02%;
+  --surface-elevated: 0 0% 13.33%;
+  --border: 0 0% 14.9%;
+  --border-strong: 0 0% 21.18%;
 
   /* Text */
-  --foreground: 210 40% 98%;
-  --muted-foreground: 215 18% 70%;
-  --subtle-foreground: 215 14% 55%;
+  --foreground: 0 0% 98.04%;
+  --muted-foreground: 0 0% 63.92%;
+  --subtle-foreground: 0 0% 45.1%;
 
   /* Brand accents */
-  --accent-teal: 174 72% 56%;
-  --accent-indigo: 245 75% 65%;
-  --accent-purple: 270 75% 70%;
+  --primary: 213 94% 68%;
+  --accent-teal: 199 89% 48%;
+  --accent-indigo: 213 94% 68%;
+  --accent-purple: 239 84% 67%;
 
   /* Semantic */
-  --ring: 174 72% 56%;
+  --ring: 213 94% 68%;
 }
 
 @theme inline {
@@ -37,6 +38,7 @@
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-subtle-foreground: hsl(var(--subtle-foreground));
 
+  --color-primary: hsl(var(--primary));
   --color-accent-teal: hsl(var(--accent-teal));
   --color-accent-indigo: hsl(var(--accent-indigo));
   --color-accent-purple: hsl(var(--accent-purple));

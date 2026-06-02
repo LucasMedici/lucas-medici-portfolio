@@ -83,8 +83,8 @@ export function Hero() {
               className={cn(
                 "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
                 "text-sm font-medium text-background",
-                "bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500",
-                "shadow-lg shadow-indigo-500/20",
+                "bg-gradient-to-r from-accent-teal via-accent-indigo to-accent-purple",
+                "shadow-lg shadow-accent-indigo/20",
               )}
             >
               View projects
