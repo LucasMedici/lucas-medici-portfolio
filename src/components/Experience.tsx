@@ -22,7 +22,7 @@ export function ExperienceSection() {
           description="A snapshot of teams I&apos;ve been part of and the kind of work I gravitate toward."
         />
 
-        <ol className="mt-14 relative border-l border-white/10 pl-6 md:pl-10 space-y-10">
+        <ol className="mt-14 relative border-l border-border pl-6 md:pl-10 space-y-10">
           {experiences.map((entry, index) => (
             <TimelineEntry key={entry.id} entry={entry} index={index} />
           ))}
@@ -102,7 +102,7 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
                 className={cn(
                   "px-2.5 py-1 rounded-full",
                   "text-[11px] font-medium font-mono tracking-wide",
-                  "bg-white/5 border border-white/10 text-muted-foreground",
+                  "bg-card border border-border text-muted-foreground",
                 )}
               >
                 {tech}

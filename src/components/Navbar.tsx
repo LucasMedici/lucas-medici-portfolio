@@ -29,7 +29,7 @@ export function Navbar() {
         "fixed inset-x-0 top-0 z-50",
         "transition-all duration-300",
         scrolled
-          ? "border-b border-white/10 bg-background/70 backdrop-blur-xl"
+          ? "border-b border-border bg-background/70 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -66,7 +66,7 @@ export function Navbar() {
           className={cn(
             "hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full",
             "text-sm font-medium text-foreground",
-            "bg-white/5 backdrop-blur-md border border-white/10",
+            "bg-card backdrop-blur-md border border-border",
             "transition-colors duration-300 hover:border-accent-teal/60",
           )}
         >
@@ -82,7 +82,7 @@ export function Navbar() {
           className={cn(
             "md:hidden inline-flex items-center justify-center",
             "size-10 rounded-full",
-            "bg-white/5 backdrop-blur-md border border-white/10",
+            "bg-card backdrop-blur-md border border-border",
             "text-foreground",
           )}
         >
@@ -96,7 +96,7 @@ export function Navbar() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="md:hidden border-t border-white/10 bg-background/90 backdrop-blur-xl"
+          className="md:hidden border-t border-border bg-background/90 backdrop-blur-xl"
         >
           <ul className="flex flex-col px-6 py-4 gap-3">
             {navLinks.map((link) => (
