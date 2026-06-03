@@ -51,14 +51,14 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
         className={cn(
           "absolute -left-[34px] md:-left-[46px] top-2",
           "size-4 rounded-full",
-          "bg-gradient-to-br from-accent-teal to-accent-indigo",
-          "ring-4 ring-background shadow-[0_0_18px_hsl(var(--accent-indigo)/0.6)]",
+          "bg-border-strong",
+          "ring-4 ring-background",
         )}
       />
       <GlassCard className="p-6">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div className="flex items-center gap-2">
-            <Briefcase size={20} className="text-accent-teal" aria-hidden />
+            <Briefcase size={20} className="text-foreground" aria-hidden />
             <h3 className="text-lg font-semibold text-foreground">
               {entry.role}{" "}
               <span className="text-muted-foreground font-normal">
@@ -86,7 +86,7 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
               <li key={highlight} className="flex gap-2">
                 <span
                   aria-hidden
-                  className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-accent-teal/80"
+                  className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-muted-foreground/50"
                 />
                 {highlight}
               </li>

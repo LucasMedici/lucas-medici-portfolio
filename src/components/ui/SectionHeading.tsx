@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
-import { GradientText } from "@/components/ui/GradientText";
 
 interface SectionHeadingProps {
   readonly eyebrow: string;
@@ -44,12 +43,12 @@ export function SectionHeading({
       >
         <span
           aria-hidden
-          className="size-1.5 rounded-full bg-accent-teal shadow-[0_0_12px_hsl(var(--accent-teal))]"
+          className="size-1.5 rounded-full bg-muted-foreground"
         />
         {eyebrow}
       </span>
       <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
-        <GradientText>{title}</GradientText>
+        {title}
       </h2>
       {description ? (
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">

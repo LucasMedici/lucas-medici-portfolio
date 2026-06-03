@@ -4,7 +4,6 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-import { GradientText } from "@/components/ui/GradientText";
 import { navLinks } from "@/data/navigation";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/cn";
@@ -41,7 +40,7 @@ export function Navbar() {
           href="#top"
           className="text-sm font-semibold tracking-tight text-foreground"
         >
-          <GradientText>{profile.name}</GradientText>
+          {profile.name}
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -67,7 +66,7 @@ export function Navbar() {
             "hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full",
             "text-sm font-medium text-foreground",
             "bg-card backdrop-blur-md border border-border",
-            "transition-colors duration-300 hover:border-accent-teal/60",
+            "transition-colors duration-300 hover:border-accent/50",
           )}
         >
           Get in touch
@@ -114,7 +113,7 @@ export function Navbar() {
               <a
                 href="#contact"
                 onClick={closeMobile}
-                className="block py-2 text-base font-medium text-accent-teal"
+                className="block py-2 text-base font-medium text-foreground"
               >
                 Get in touch →
               </a>

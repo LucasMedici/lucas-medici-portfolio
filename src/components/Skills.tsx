@@ -71,9 +71,9 @@ export function Skills() {
 
 const levelStyles: Record<Skill["level"], string> = {
   Advanced:
-    "bg-accent-teal/10 text-accent-teal border-accent-teal/30",
+    "bg-surface-elevated text-foreground border-border-strong",
   Proficient:
-    "bg-accent-indigo/10 text-foreground/90 border-accent-indigo/30",
+    "bg-card text-foreground/80 border-border-strong",
   Learning:
     "bg-card text-muted-foreground border-border",
 };

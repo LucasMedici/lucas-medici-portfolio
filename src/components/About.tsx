@@ -54,7 +54,7 @@ export function About() {
                 className="p-6 flex flex-col gap-4"
               >
                 <div
-                  className="inline-flex size-11 items-center justify-center rounded-xl bg-accent-indigo/10 text-accent-indigo border border-accent-indigo/20"
+                  className="inline-flex size-11 items-center justify-center rounded-xl bg-surface-elevated text-foreground border border-border"
                   aria-hidden
                 >
                   <Icon size={20} />

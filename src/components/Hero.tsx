@@ -10,7 +10,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { GradientText } from "@/components/ui/GradientText";
+import Image from "next/image";
+
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/cn";
 
@@ -34,12 +35,12 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="relative isolate overflow-hidden"
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-10 px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 pt-32 pb-20 md:grid-cols-12 md:pt-40 md:pb-28 items-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex w-full flex-col gap-8"
+          className="flex w-full flex-col gap-8 md:col-span-7"
         >
           <motion.span
             variants={itemVariants}
@@ -50,7 +51,7 @@ export function Hero() {
               "text-muted-foreground",
             )}
           >
-            <Sparkles size={14} className="text-accent-teal" />
+            <Sparkles size={14} className="text-muted-foreground" />
             {profile.availability}
           </motion.span>
 
@@ -59,7 +60,7 @@ export function Hero() {
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] text-foreground"
           >
-            Hi, I&apos;m <GradientText>{profile.name}</GradientText>.
+            Hi, I&apos;m {profile.name}.
             <br />
             <span className="text-foreground/90">{profile.tagline}</span>
           </motion.h1>
@@ -83,8 +84,8 @@ export function Hero() {
               className={cn(
                 "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
                 "text-sm font-medium text-background",
-                "bg-gradient-to-r from-accent-teal via-accent-indigo to-accent-purple",
-                "shadow-lg shadow-accent-indigo/20",
+                "bg-accent",
+                "shadow-lg shadow-accent/20",
               )}
             >
               View projects
@@ -99,7 +100,7 @@ export function Hero() {
                 "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
                 "text-sm font-medium text-foreground",
                 "bg-card backdrop-blur-md border border-border",
-                "hover:border-accent-teal/60 transition-colors duration-300",
+                "hover:border-accent/50 transition-colors duration-300",
               )}
             >
               Contact me
@@ -140,6 +141,34 @@ export function Hero() {
               {profile.socials.email.handle}
             </a>
           </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="relative flex justify-center md:justify-end md:col-span-5 w-full"
+        >
+          {/* Decorative Glow */}
+          <div className="absolute -inset-1.5 rounded-3xl bg-accent opacity-10 blur-2xl transition duration-1000" />
+          
+          {/* Glassmorphic Image Frame */}
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-3 backdrop-blur-md shadow-2xl">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="relative aspect-square w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 overflow-hidden rounded-2xl bg-muted"
+            >
+              <Image
+                src={profile.avatarUrl}
+                alt={profile.name}
+                fill
+                priority
+                className="object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500"
+                sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
+              />
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
