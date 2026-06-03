@@ -32,9 +32,9 @@ const kindIcon: Record<LearningKind, IconComponent> = {
 
 const statusStyles: Record<LearningStatus, string> = {
   completed:
-    "bg-accent-teal/10 text-accent-teal border-accent-teal/30",
+    "bg-surface-elevated text-foreground border-border-strong",
   "in-progress":
-    "bg-accent-indigo/10 text-accent-indigo border-accent-indigo/30",
+    "bg-card text-foreground/80 border-border-strong",
   planned: "bg-card text-muted-foreground border-border",
 };
 
@@ -84,7 +84,7 @@ function LearningCard({ item, index }: LearningCardProps) {
     >
       <GlassCard className="h-full p-6 flex gap-4">
         <div
-          className="size-11 shrink-0 inline-flex items-center justify-center rounded-xl bg-accent-purple/10 text-accent-purple border border-accent-purple/30"
+          className="size-11 shrink-0 inline-flex items-center justify-center rounded-xl bg-surface-elevated text-foreground border border-border"
           aria-hidden
         >
           <Icon size={20} />

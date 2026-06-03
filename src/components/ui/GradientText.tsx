@@ -20,8 +20,7 @@ export function GradientText({
   return (
     <Component
       className={cn(
-        "bg-gradient-to-r from-accent-teal via-accent-indigo to-accent-purple",
-        "bg-clip-text text-transparent",
+        "text-foreground",
         className,
       )}
     >

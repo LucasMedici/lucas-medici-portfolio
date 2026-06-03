@@ -70,12 +70,12 @@ export function Contact() {
                   "group block rounded-2xl",
                   "bg-card backdrop-blur-md border border-border",
                   "shadow-xl shadow-black/20",
-                  "transition-colors duration-300 hover:border-accent-teal/50",
+                  "transition-colors duration-300 hover:border-accent/40",
                 )}
               >
                 <div className="p-6 flex items-center gap-4">
                   <div
-                    className="size-11 inline-flex items-center justify-center rounded-xl bg-accent-teal/10 text-accent-teal border border-accent-teal/30"
+                    className="size-11 inline-flex items-center justify-center rounded-xl bg-surface-elevated text-foreground border border-border"
                     aria-hidden
                   >
                     <Icon size={20} />
@@ -84,7 +84,7 @@ export function Contact() {
                     <span className="text-xs font-mono uppercase tracking-widest text-subtle-foreground">
                       {tile.link.label}
                     </span>
-                    <span className="text-sm font-medium text-foreground group-hover:text-accent-teal transition-colors duration-200">
+                    <span className="text-sm font-medium text-foreground group-hover:text-foreground transition-colors duration-200">
                       {tile.link.handle}
                     </span>
                   </div>
@@ -98,7 +98,7 @@ export function Contact() {
           interactive={false}
           className="mt-10 p-8 md:p-10 flex flex-col items-center text-center gap-5"
         >
-          <Send size={24} className="text-accent-indigo" aria-hidden />
+          <Send size={24} className="text-foreground" aria-hidden />
           <h3 className="text-2xl font-semibold tracking-tight text-foreground">
             Have a project in mind?
           </h3>
@@ -106,7 +106,7 @@ export function Contact() {
             Drop me a line at{" "}
             <a
               href={profile.socials.email.href}
-              className="font-medium text-foreground underline underline-offset-4 decoration-accent-teal/60 hover:decoration-accent-teal"
+              className="font-medium text-foreground underline underline-offset-4 decoration-accent/60 hover:decoration-accent"
             >
               {profile.email}
             </a>{" "}
@@ -120,8 +120,8 @@ export function Contact() {
             className={cn(
               "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
               "text-sm font-medium text-background",
-              "bg-gradient-to-r from-accent-teal via-accent-indigo to-accent-purple",
-              "shadow-lg shadow-accent-indigo/20",
+              "bg-accent",
+              "shadow-lg shadow-accent/20",
             )}
           >
             <Mail size={16} aria-hidden />

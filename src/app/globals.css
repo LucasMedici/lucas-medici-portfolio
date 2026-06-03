@@ -2,6 +2,8 @@
 
 /* -------------------------------------------------------------------------- */
 /* Premium dark palette (HSL based) — single source of truth for theming.     */
+/*                                                                            */
+/* Accent: #60A5FA  ≈  hsl(217, 91%, 68%)                                    */
 /* -------------------------------------------------------------------------- */
 
 :root {
@@ -17,14 +19,15 @@
   --muted-foreground: 0 0% 63.92%;
   --subtle-foreground: 0 0% 45.1%;
 
-  /* Brand accents */
+  /* Brand accent — single blue used sparingly */
   --primary: 0 0% 100%;
-  --accent-teal: 213 96% 78%;
-  --accent-indigo: 213 94% 68%;
-  --accent-purple: 217 91% 60%;
+  --accent: 217 91% 68%;
+  --accent-teal: 217 91% 68%;
+  --accent-indigo: 217 91% 68%;
+  --accent-purple: 217 91% 68%;
 
   /* Semantic */
-  --ring: 213 94% 68%;
+  --ring: 217 91% 68%;
 }
 
 @theme inline {
@@ -41,6 +44,7 @@
   --color-subtle-foreground: hsl(var(--subtle-foreground));
 
   --color-primary: hsl(var(--primary));
+  --color-accent: hsl(var(--accent));
   --color-accent-teal: hsl(var(--accent-teal));
   --color-accent-indigo: hsl(var(--accent-indigo));
   --color-accent-purple: hsl(var(--accent-purple));
@@ -75,24 +79,19 @@
     background-image:
       radial-gradient(
         circle at 15% 8%,
-        hsl(var(--accent-indigo) / 0.18) 0%,
+        hsl(var(--accent) / 0.06) 0%,
         transparent 45%
       ),
       radial-gradient(
         circle at 85% 0%,
-        hsl(var(--accent-purple) / 0.14) 0%,
+        hsl(var(--accent) / 0.04) 0%,
         transparent 50%
-      ),
-      radial-gradient(
-        circle at 50% 100%,
-        hsl(var(--accent-teal) / 0.12) 0%,
-        transparent 55%
       );
     background-attachment: fixed;
   }
 
   ::selection {
-    background-color: hsl(var(--accent-indigo) / 0.45);
+    background-color: hsl(var(--accent) / 0.35);
     color: hsl(var(--foreground));
   }
 
@@ -116,7 +115,7 @@
     border: 2px solid hsl(var(--background));
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--accent-indigo) / 0.8);
+    background: hsl(var(--accent) / 0.6);
   }
 }
 

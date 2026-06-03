@@ -56,7 +56,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
           {project.featured ? (
             <span
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider bg-accent-teal/10 text-accent-teal border border-accent-teal/30"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider bg-surface-elevated text-foreground border border-border-strong"
               aria-label="Featured project"
             >
               <Star size={12} aria-hidden />
@@ -75,7 +75,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               <li key={highlight} className="flex gap-2">
                 <span
                   aria-hidden
-                  className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-accent-indigo/80"
+                  className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-muted-foreground/50"
                 />
                 {highlight}
               </li>
@@ -120,7 +120,7 @@ function ProjectLinkButton({ link }: ProjectLinkButtonProps) {
       className={cn(
         "inline-flex items-center gap-1.5",
         "text-xs font-medium text-muted-foreground",
-        "hover:text-accent-teal transition-colors duration-200",
+        "hover:text-foreground transition-colors duration-200",
       )}
     >
       <Icon size={14} aria-hidden />

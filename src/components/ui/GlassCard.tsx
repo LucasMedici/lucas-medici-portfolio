@@ -37,7 +37,7 @@ export function GlassCard({
         "border border-border",
         "shadow-xl shadow-black/20",
         "transition-colors duration-300",
-        interactive && "hover:border-accent-teal/50",
+        interactive && "hover:border-accent/40",
         className,
       )}
       {...rest}

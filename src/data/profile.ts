@@ -19,6 +19,7 @@ export interface Profile {
   readonly location: string;
   readonly email: string;
   readonly availability: string;
+  readonly avatarUrl: string;
   readonly resumeUrl?: string;
   readonly socials: {
     readonly github: SocialLink;
@@ -39,6 +40,7 @@ export const profile: Profile = {
   location: "Brazil",
   email: "lucasrpmedici@gmail.com",
   availability: "Open to new opportunities",
+  avatarUrl: "/avatar.png",
   socials: {
     github: {
       label: "GitHub",
