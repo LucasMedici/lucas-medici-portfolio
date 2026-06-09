@@ -39,7 +39,7 @@ export const profile: Profile = {
     "iteratively with the people around me.",
   location: "Brazil",
   email: "lucasrpmedici@gmail.com",
-  availability: "Open to new opportunities",
+  availability: "Welcome",
   avatarUrl: "/avatar.png",
   socials: {
     github: {
