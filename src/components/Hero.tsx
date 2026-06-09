@@ -58,7 +58,7 @@ export function Hero() {
           <motion.h1
             id="hero-title"
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] text-foreground"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-foreground"
           >
             Hi, I&apos;m {profile.name}.
             <br />
@@ -150,7 +150,7 @@ export function Hero() {
           className="relative flex justify-center md:justify-end md:col-span-5 w-full"
         >
           {/* Decorative Glow */}
-          <div className="absolute -inset-1.5 rounded-3xl bg-accent opacity-10 blur-2xl transition duration-1000" />
+          <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent-indigo/20 via-accent/10 to-accent-teal/20 blur-2xl transition duration-1000" />
           
           {/* Glassmorphic Image Frame */}
           <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-3 backdrop-blur-md shadow-2xl">

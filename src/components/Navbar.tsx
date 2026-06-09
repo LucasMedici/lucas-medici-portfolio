@@ -2,16 +2,72 @@
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { navLinks } from "@/data/navigation";
 import { profile } from "@/data/profile";
+import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/lib/useLocale";
+
+const navHrefs = ["#about", "#experience", "#projects", "#learning", "#skills", "#contact"] as const;
+
+type Locale = "en" | "pt-br";
+
+function LanguageToggle() {
+  const [locale, setLocale] = useState<Locale>("en");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("locale") as Locale | null;
+    if (saved) setLocale(saved);
+  }, []);
+
+  const switchTo = (l: Locale) => {
+    setLocale(l);
+    localStorage.setItem("locale", l);
+    window.dispatchEvent(new CustomEvent("locale-change", { detail: l }));
+  };
+
+  return (
+    <div className="inline-flex items-center rounded-full border border-border bg-card backdrop-blur-md overflow-hidden">
+      <button
+        type="button"
+        onClick={() => switchTo("en")}
+        className={cn(
+          "px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all duration-200",
+          locale === "en"
+            ? "bg-accent/15 text-foreground"
+            : "text-muted-foreground hover:text-foreground",
+        )}
+      >
+        EN
+      </button>
+      <span className="w-px h-4 bg-border" />
+      <button
+        type="button"
+        onClick={() => switchTo("pt-br")}
+        className={cn(
+          "px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all duration-200",
+          locale === "pt-br"
+            ? "bg-accent/15 text-foreground"
+            : "text-muted-foreground hover:text-foreground",
+        )}
+      >
+        PT
+      </button>
+    </div>
+  );
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const { scrollY } = useScroll();
+  const locale = useLocale();
+  const labels = t(locale).nav;
+  const navItems = navHrefs.map((href) => ({
+    href,
+    label: labels[href.slice(1) as keyof typeof labels],
+  }));
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 24);
@@ -38,13 +94,13 @@ export function Navbar() {
       >
         <a
           href="#top"
-          className="text-sm font-semibold tracking-tight text-foreground"
+          className="text-2xl font-bold tracking-tight text-foreground"
         >
           {profile.name}
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {navItems.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -60,33 +116,28 @@ export function Navbar() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className={cn(
-            "hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full",
-            "text-sm font-medium text-foreground",
-            "bg-card backdrop-blur-md border border-border",
-            "transition-colors duration-300 hover:border-accent/50",
-          )}
-        >
-          Get in touch
-        </a>
+        <div className="hidden md:flex items-center">
+          <LanguageToggle />
+        </div>
 
-        <button
-          type="button"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-nav"
-          onClick={() => setMobileOpen((prev) => !prev)}
-          className={cn(
-            "md:hidden inline-flex items-center justify-center",
-            "size-10 rounded-full",
-            "bg-card backdrop-blur-md border border-border",
-            "text-foreground",
-          )}
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <LanguageToggle />
+          <button
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className={cn(
+              "inline-flex items-center justify-center",
+              "size-10 rounded-full",
+              "bg-card backdrop-blur-md border border-border",
+              "text-foreground",
+            )}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       {mobileOpen ? (
@@ -98,7 +149,7 @@ export function Navbar() {
           className="md:hidden border-t border-border bg-background/90 backdrop-blur-xl"
         >
           <ul className="flex flex-col px-6 py-4 gap-3">
-            {navLinks.map((link) => (
+            {navItems.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
@@ -109,15 +160,6 @@ export function Navbar() {
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                href="#contact"
-                onClick={closeMobile}
-                className="block py-2 text-base font-medium text-foreground"
-              >
-                Get in touch →
-              </a>
-            </li>
           </ul>
         </motion.div>
       ) : null}

@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Github, Star } from "lucide-react";
+import { ArrowUpRight, Code, ExternalLink, Github, Star } from "lucide-react";
+import Image from "next/image";
 
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -46,7 +47,25 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className="h-full"
     >
-      <GlassCard className="h-full p-6 flex flex-col gap-5">
+      <GlassCard className="h-full overflow-hidden flex flex-col">
+        {/* Thumbnail */}
+        <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-accent/10 via-accent-indigo/5 to-accent-teal/10">
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={`${project.name} preview`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30">
+              <Code size={40} />
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-5 p-6 flex-1">
         <header className="flex items-start justify-between gap-3">
           <div className="flex flex-col gap-1">
             <h3 className="text-lg font-semibold text-foreground">
@@ -101,6 +120,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             ))}
           </footer>
         ) : null}
+        </div>
       </GlassCard>
     </motion.div>
   );

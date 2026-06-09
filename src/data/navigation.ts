@@ -10,8 +10,8 @@ export interface NavLink {
 export const navLinks: readonly NavLink[] = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#learning", label: "Learning" },
+  { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
 ];

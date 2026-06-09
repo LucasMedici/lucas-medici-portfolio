@@ -9,8 +9,7 @@ export function Footer() {
     <footer className="border-t border-border bg-background/60 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row">
         <p className="text-xs text-subtle-foreground">
-          © {year} {profile.name}. Built with Next.js, Tailwind CSS &amp; Framer
-          Motion.
+          © {year} {profile.name}.
         </p>
         <ul className="flex items-center gap-5">
           <li>

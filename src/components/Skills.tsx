@@ -1,26 +1,63 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  SiTypescript,
+  SiJavascript,
+  SiPython,
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiFramer,
+  SiNodedotjs,
+  SiPostgresql,
+  SiGraphql,
+  SiAmazonaws,
+  SiDocker,
+  SiVercel,
+  SiGithubactions,
+  SiGit,
+  SiEslint,
+  SiVitest,
+  SiLinux,
+} from "react-icons/si";
+import { Database, Network } from "lucide-react";
 
-import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { skillGroups, type Skill } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
+import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/lib/useLocale";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06 },
-  },
-} as const;
+const iconMap: Record<string, React.ReactNode> = {
+  TypeScript: <SiTypescript size={28} />,
+  JavaScript: <SiJavascript size={28} />,
+  Python: <SiPython size={28} />,
+  SQL: <Database size={28} />,
+  React: <SiReact size={28} />,
+  "Next.js": <SiNextdotjs size={28} />,
+  "Tailwind CSS": <SiTailwindcss size={28} />,
+  "Framer Motion": <SiFramer size={28} />,
+  "Node.js": <SiNodedotjs size={28} />,
+  "REST APIs": <Network size={28} />,
+  PostgreSQL: <SiPostgresql size={28} />,
+  GraphQL: <SiGraphql size={28} />,
+  AWS: <SiAmazonaws size={28} />,
+  Docker: <SiDocker size={28} />,
+  Vercel: <SiVercel size={28} />,
+  "GitHub Actions": <SiGithubactions size={28} />,
+  Git: <SiGit size={28} />,
+  ESLint: <SiEslint size={28} />,
+  "Vitest / Jest": <SiVitest size={28} />,
+  Linux: <SiLinux size={28} />,
+};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-} as const;
+const allSkills = skillGroups.flatMap((g) => g.items);
 
 export function Skills() {
+  const locale = useLocale();
+  const texts = t(locale);
+
   return (
     <section
       id="skills"
@@ -29,74 +66,43 @@ export function Skills() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
-          eyebrow="Skills"
-          title={<span id="skills-title">The tools I work with</span>}
-          description="A curated set of technologies I rely on to ship and maintain quality software."
+          eyebrow={texts.skills.title}
+          title={<span id="skills-title">{texts.skills.title}</span>}
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {skillGroups.map((group) => (
-            <GlassCard
-              key={group.category}
-              interactive={false}
-              className="p-6"
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.04 } } }}
+          className="mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+        >
+          {allSkills.map((skill) => (
+            <motion.div
+              key={skill.name}
+              variants={{
+                hidden: { opacity: 0, scale: 0.9 },
+                visible: { opacity: 1, scale: 1 },
+              }}
+              whileHover={{ y: -4, scale: 1.04 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className={cn(
+                "flex flex-col items-center justify-center gap-3 p-5 aspect-square rounded-2xl",
+                "border border-border bg-card/50 backdrop-blur-md",
+                "cursor-default transition-colors duration-200",
+                "hover:border-accent/40 hover:bg-surface-elevated/80",
+              )}
             >
-              <header className="flex flex-col gap-1">
-                <h3 className="text-base font-semibold text-foreground">
-                  {group.category}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {group.description}
-                </p>
-              </header>
-
-              <motion.ul
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                className="mt-5 flex flex-wrap gap-2"
-              >
-                {group.items.map((skill) => (
-                  <SkillBadge key={skill.name} skill={skill} />
-                ))}
-              </motion.ul>
-            </GlassCard>
+              <span className="text-muted-foreground/80">
+                {iconMap[skill.name]}
+              </span>
+              <span className="text-xs font-medium text-foreground text-center leading-tight">
+                {skill.name}
+              </span>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
-  );
-}
-
-const levelStyles: Record<Skill["level"], string> = {
-  Advanced:
-    "bg-surface-elevated text-foreground border-border-strong",
-  Proficient:
-    "bg-card text-foreground/80 border-border-strong",
-  Learning:
-    "bg-card text-muted-foreground border-border",
-};
-
-interface SkillBadgeProps {
-  readonly skill: Skill;
-}
-
-function SkillBadge({ skill }: SkillBadgeProps) {
-  return (
-    <motion.li
-      variants={itemVariants}
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={cn(
-        "px-3 py-1.5 rounded-full",
-        "text-xs font-medium tracking-wide",
-        "border backdrop-blur-md",
-        levelStyles[skill.level],
-      )}
-    >
-      <span>{skill.name}</span>
-      <span className="ml-1.5 text-[10px] opacity-70">· {skill.level}</span>
-    </motion.li>
   );
 }

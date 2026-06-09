@@ -22,9 +22,9 @@ export default function HomePage() {
         <Hero />
         <About />
         <ExperienceSection />
-        <Skills />
         <Projects />
         <Learning />
+        <Skills />
         <Contact />
       </main>
       <Footer />

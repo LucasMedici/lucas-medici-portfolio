@@ -13,6 +13,7 @@ export interface Project {
   readonly name: string;
   readonly tagline: string;
   readonly description: string;
+  readonly image?: string;
   readonly stack: readonly string[];
   readonly highlights: readonly string[];
   readonly featured: boolean;
