@@ -13,7 +13,9 @@ import {
 import Image from "next/image";
 
 import { profile } from "@/data/profile";
+import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/lib/useLocale";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,18 +31,26 @@ const itemVariants = {
 } as const;
 
 export function Hero() {
+  const locale = useLocale();
+  const texts = t(locale).hero;
+  const taglineLines = texts.tagline
+    .split(". ")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => (line.endsWith(".") ? line : `${line}.`));
+
   return (
     <section
       id="top"
       aria-labelledby="hero-title"
       className="relative isolate overflow-hidden"
     >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 pt-32 pb-20 md:grid-cols-12 md:pt-40 md:pb-28 items-center">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-6 pt-24 pb-16 sm:gap-10 md:grid-cols-12 md:gap-12 md:pt-40 md:pb-28 items-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex w-full flex-col gap-8 md:col-span-7"
+          className="order-2 flex w-full flex-col gap-6 md:order-1 md:col-span-7 md:gap-8"
         >
           <motion.span
             variants={itemVariants}
@@ -52,29 +62,36 @@ export function Hero() {
             )}
           >
             <Sparkles size={14} className="text-muted-foreground" />
-            {profile.availability}
+            {texts.availability}
           </motion.span>
 
           <motion.h1
             id="hero-title"
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-foreground"
+            className="text-[1.75rem] leading-[1.15] font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl md:leading-[1.1]"
           >
-            Hi, I&apos;m {profile.name}.
-            <br />
-            <span className="text-foreground/90">{profile.tagline}</span>
+            {texts.greeting}
+            <br className="hidden md:block" />
+            <span className="mt-3 block text-foreground/90 md:mt-0 md:inline">
+              <span className="flex flex-col gap-0.5 md:hidden">
+                {taglineLines.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </span>
+              <span className="hidden md:inline">{texts.tagline}</span>
+            </span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="max-w-2xl text-base md:text-lg leading-relaxed text-muted-foreground"
+            className="max-w-2xl text-[0.9375rem] leading-relaxed text-muted-foreground sm:text-base md:text-lg"
           >
-            {profile.summary}
+            {texts.summary}
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-3"
+            className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <motion.a
               whileTap={{ scale: 0.95 }}
@@ -82,13 +99,13 @@ export function Hero() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               href="#projects"
               className={cn(
-                "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
+                "inline-flex w-full items-center justify-center gap-2 px-5 py-3 rounded-full sm:w-auto sm:py-2.5",
                 "text-sm font-medium text-background",
                 "bg-accent",
                 "shadow-lg shadow-accent/20",
               )}
             >
-              View projects
+              {texts.viewProjects}
               <ArrowRight size={16} />
             </motion.a>
             <motion.a
@@ -97,48 +114,48 @@ export function Hero() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               href="#contact"
               className={cn(
-                "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
+                "inline-flex w-full items-center justify-center gap-2 px-5 py-3 rounded-full sm:w-auto sm:py-2.5",
                 "text-sm font-medium text-foreground",
                 "bg-card backdrop-blur-md border border-border",
                 "hover:border-accent/50 transition-colors duration-300",
               )}
             >
-              Contact me
+              {texts.contactMe}
             </motion.a>
           </motion.div>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground"
+            className="grid grid-cols-1 gap-3 text-sm text-muted-foreground min-[420px]:grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3"
           >
-            <span className="inline-flex items-center gap-2">
-              <MapPin size={16} aria-hidden />
+            <span className="inline-flex min-w-0 items-center gap-2">
+              <MapPin size={16} className="shrink-0" aria-hidden />
               {profile.location}
             </span>
             <a
               href={profile.socials.github.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-foreground transition-colors duration-200"
+              className="inline-flex min-w-0 items-center gap-2 hover:text-foreground transition-colors duration-200"
             >
-              <Github size={16} aria-hidden />
-              {profile.socials.github.handle}
+              <Github size={16} className="shrink-0" aria-hidden />
+              <span className="truncate">{profile.socials.github.handle}</span>
             </a>
             <a
               href={profile.socials.linkedin.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-foreground transition-colors duration-200"
+              className="inline-flex min-w-0 items-center gap-2 hover:text-foreground transition-colors duration-200"
             >
-              <Linkedin size={16} aria-hidden />
-              {profile.socials.linkedin.handle}
+              <Linkedin size={16} className="shrink-0" aria-hidden />
+              <span className="truncate">{profile.socials.linkedin.handle}</span>
             </a>
             <a
               href={profile.socials.email.href}
-              className="inline-flex items-center gap-2 hover:text-foreground transition-colors duration-200"
+              className="inline-flex min-w-0 items-center gap-2 hover:text-foreground transition-colors duration-200 min-[420px]:col-span-2 sm:col-span-1"
             >
-              <Mail size={16} aria-hidden />
-              {profile.socials.email.handle}
+              <Mail size={16} className="shrink-0" aria-hidden />
+              <span className="truncate">{profile.socials.email.handle}</span>
             </a>
           </motion.div>
         </motion.div>
@@ -147,17 +164,17 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="relative flex justify-center md:justify-end md:col-span-5 w-full"
+          className="relative order-1 flex w-full justify-center md:order-2 md:col-span-5 md:justify-end"
         >
           {/* Decorative Glow */}
           <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent-indigo/20 via-accent/10 to-accent-teal/20 blur-2xl transition duration-1000" />
           
           {/* Glassmorphic Image Frame */}
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-3 backdrop-blur-md shadow-2xl">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-2.5 backdrop-blur-md shadow-2xl sm:p-3">
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="relative aspect-square w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 overflow-hidden rounded-2xl bg-muted"
+              className="relative aspect-square h-44 w-44 overflow-hidden rounded-2xl bg-muted sm:h-64 sm:w-64 md:h-80 md:w-80"
             >
               <Image
                 src={profile.avatarUrl}
@@ -165,7 +182,7 @@ export function Hero() {
                 fill
                 priority
                 className="object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500"
-                sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
+                sizes="(max-width: 640px) 176px, (max-width: 768px) 256px, 320px"
               />
             </motion.div>
           </div>
