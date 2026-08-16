@@ -31,12 +31,11 @@ export interface Profile {
 export const profile: Profile = {
   name: "Lucas Medici",
   headline: "Software Engineer",
-  tagline: "Building reliable products with thoughtful engineering.",
+  tagline: "Designing systems. Building solutions. Shipping software.",
   summary:
-    "I am a software engineer focused on crafting performant web applications, " +
-    "scalable backends, and developer experiences that feel polished. I enjoy " +
-    "translating ambiguous problems into clean, well-typed code and shipping " +
-    "iteratively with the people around me.",
+    "I'm a Software Engineer who builds end-to-end software systems and digital " +
+    "products, from understanding requirements and defining architecture to " +
+    "implementing, integrating, and delivering software to production.",
   location: "Brazil",
   email: "lucasrpmedici@gmail.com",
   availability: "Welcome",
