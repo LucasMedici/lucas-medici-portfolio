@@ -11,14 +11,15 @@ const translations = {
       contact: "Contact",
     },
     hero: {
-      headline: "Software Engineer",
-      tagline: "Building reliable products with thoughtful engineering.",
+      greeting: "Hi, I'm Lucas.",
+      tagline: "Designing systems. Building solutions. Shipping software.",
       summary:
-        "I am a software engineer focused on crafting performant web applications, " +
-        "scalable backends, and developer experiences that feel polished. I enjoy " +
-        "translating ambiguous problems into clean, well-typed code and shipping " +
-        "iteratively with the people around me.",
+        "I'm a Software Engineer who builds end-to-end software systems and digital " +
+        "products, from understanding requirements and defining architecture to " +
+        "implementing, integrating, and delivering software to production.",
       availability: "Welcome",
+      viewProjects: "View projects",
+      contactMe: "Contact me",
     },
     about: {
       title: "About Me",
@@ -54,14 +55,15 @@ const translations = {
       contact: "Contato",
     },
     hero: {
-      headline: "Engenheiro de Software",
-      tagline: "Construindo produtos confiáveis com engenharia cuidadosa.",
+      greeting: "Olá, sou Lucas.",
+      tagline: "Projeto sistemas. Construo soluções. Entrego software.",
       summary:
-        "Sou um engenheiro de software focado em criar aplicações web performáticas, " +
-        "backends escaláveis e experiências de desenvolvedor polidas. Gosto de " +
-        "transformar problemas ambíguos em código limpo e bem tipado, entregando " +
-        "iterativamente com as pessoas ao meu redor.",
-      availability: "Aberto a novas oportunidades",
+        "Sou Engenheiro de Software e construo sistemas e produtos digitais de ponta " +
+        "a ponta, desde o entendimento de requisitos e definição da arquitetura até a " +
+        "implementação, integração e entrega em produção.",
+      availability: "Bem-vindo",
+      viewProjects: "Ver projetos",
+      contactMe: "Entrar em contato",
     },
     about: {
       title: "Sobre Mim",
