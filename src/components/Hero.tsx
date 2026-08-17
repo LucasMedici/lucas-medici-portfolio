@@ -181,7 +181,7 @@ export function Hero() {
                 alt={profile.name}
                 fill
                 priority
-                className="object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500"
+                className="object-cover transition-all duration-500"
                 sizes="(max-width: 640px) 176px, (max-width: 768px) 256px, 320px"
               />
             </motion.div>
