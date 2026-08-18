@@ -22,7 +22,14 @@ const translations = {
       contactMe: "Contact me",
     },
     about: {
-      title: "About Me",
+      eyebrow: "About",
+      title: "A bit about me",
+      paragraphs: [
+        "My interest in technology started early, developing Minecraft plugins and small games in Unity and Construct 2. It was through building and creating that I discovered my passion for programming, and since then, building software stopped being just a way to learn and became one of my main ways of turning ideas into something real.",
+        "Today, as a Software Engineer, I work on building systems and digital products, taking part in different stages of development from understanding a need and thinking through the architecture to implementing, integrating, and shipping a solution to production.",
+        "What I enjoy most at work are problems that require understanding the context before jumping into code, thinking through the best approach, making technical decisions, and arriving at simple solutions, even when the problem isn't.",
+        "Outside of code, I'm passionate about football. I enjoy following what's happening across the football world and playing it myself. I also enjoy games and technology in general, and every now and then, I turn an idea that sparks my curiosity into a small project.",
+      ],
     },
     experience: {
       title: "Experience",
@@ -66,7 +73,14 @@ const translations = {
       contactMe: "Entrar em contato",
     },
     about: {
+      eyebrow: "Sobre",
       title: "Sobre Mim",
+      paragraphs: [
+        "Meu interesse por tecnologia começou cedo, desenvolvendo plugins para Minecraft e pequenos jogos em Unity e Construct 2. Foi desenvolvendo e criando que descobri o gosto por programação, e desde então, construir software deixou de ser apenas uma forma de aprender e passou a ser uma das minhas principais formas de transformar ideias em algo real.",
+        "Hoje, como Engenheiro de Software, trabalho na construção de sistemas e produtos digitais, participando de diferentes etapas do desenvolvimento desde entender uma necessidade e pensar na arquitetura até implementar, integrar e colocar uma solução em produção.",
+        "O que mais gosto no trabalho são os problemas que exigem entender o contexto antes de sair escrevendo código, pensar na melhor abordagem, tomar decisões técnicas e chegar a soluções simples, mesmo quando o problema não é.",
+        "Fora do código, sou apaixonado por futebol, gosto de acompanhar o que rola pelo mundo todo e também de jogar. Curto games e tecnologia em geral, e de vez em quando transformo alguma ideia que surge por curiosidade em um pequeno projeto.",
+      ],
     },
     experience: {
       title: "Experiência",
