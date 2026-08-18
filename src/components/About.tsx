@@ -1,37 +1,13 @@
-import { Code2, Compass, Layers } from "lucide-react";
+"use client";
 
-import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { profile } from "@/data/profile";
-
-interface Pillar {
-  readonly icon: typeof Code2;
-  readonly title: string;
-  readonly description: string;
-}
-
-const pillars: readonly Pillar[] = [
-  {
-    icon: Code2,
-    title: "Type-safe by default",
-    description:
-      "Strict TypeScript and well-modeled data make refactors predictable and bugs scarce.",
-  },
-  {
-    icon: Layers,
-    title: "Pragmatic architecture",
-    description:
-      "I favor simple designs that scale gracefully — clear boundaries over premature abstractions.",
-  },
-  {
-    icon: Compass,
-    title: "Continuous learning",
-    description:
-      "I stay curious about new tools, deepen fundamentals, and share what I learn with my team.",
-  },
-];
+import { t } from "@/data/translations";
+import { useLocale } from "@/lib/useLocale";
 
 export function About() {
+  const locale = useLocale();
+  const texts = t(locale).about;
+
   return (
     <section
       id="about"
@@ -40,34 +16,19 @@ export function About() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
-          eyebrow="About"
-          title={<span id="about-title">A bit about me</span>}
-          description={profile.summary}
+          eyebrow={texts.eyebrow}
+          title={<span id="about-title">{texts.title}</span>}
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <GlassCard
-                key={pillar.title}
-                className="p-6 flex flex-col gap-4"
-              >
-                <div
-                  className="inline-flex size-11 items-center justify-center rounded-xl bg-surface-elevated text-foreground border border-border"
-                  aria-hidden
-                >
-                  <Icon size={20} />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {pillar.description}
-                </p>
-              </GlassCard>
-            );
-          })}
+        <div className="mt-10 flex max-w-3xl flex-col gap-6">
+          {texts.paragraphs.map((paragraph) => (
+            <p
+              key={paragraph.slice(0, 32)}
+              className="text-base leading-relaxed text-muted-foreground md:text-lg"
+            >
+              {paragraph}
+            </p>
+          ))}
         </div>
       </div>
     </section>
