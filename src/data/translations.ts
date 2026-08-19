@@ -32,7 +32,43 @@ const translations = {
       ],
     },
     experience: {
-      title: "Experience",
+      eyebrow: "Experience",
+      title: "Where I've worked",
+      description:
+        "A look at my professional experience, the systems I've built, and the projects I've helped lead.",
+      entries: [
+        {
+          id: "nexus-geoengenharia",
+          company: "Nexus GeoEngenharia",
+          role: "Lead Developer & Project Manager",
+          location: "Brazil",
+          period: "Jun 2024 — Present",
+          summary:
+            "I joined the company as an intern and now I lead the development of backend systems " +
+            "and web applications, working on API architecture, business rule modeling, " +
+            "integrations, and technical decisions. I also manage two strategic projects focused on " +
+            "reducing water losses for some Brazilian cities.",
+          highlights: [
+            "Led the migration of a legacy Visual Basic system to a modern web platform for water network mapping, with interactive maps, advanced search, reports, and geolocated documents.",
+            "Architected and led development of a work order management system with REST APIs, status flows, business rules, and data persistence.",
+            "Contributed to an IoT monitoring platform involving sensors, Python services, Linux infrastructure, and automatic anomaly detection.",
+            "Work directly with stakeholders on requirements gathering.",
+          ],
+          stack: [
+            "Next.js",
+            "Node.js",
+            "Java",
+            "Spring Boot",
+            "Python",
+            "TypeScript",
+            "PostgreSQL",
+            "AWS",
+            "Linux",
+            "Docker",
+            "Git",
+          ],
+        },
+      ],
     },
     skills: {
       title: "Technologies & Tools",
@@ -83,7 +119,43 @@ const translations = {
       ],
     },
     experience: {
-      title: "Experiência",
+      eyebrow: "Experiência",
+      title: "Experiência Profissional",
+      description:
+      "Um pouco da minha experiência profissional, dos sistemas que construí e dos projetos que ajudei a liderar.",
+      entries: [
+        {
+          id: "nexus-geoengenharia",
+          company: "Nexus GeoEngenharia",
+          role: "Desenvolvedor Líder & Gestor de Projetos",
+          location: "Brasil",
+          period: "2024 — Presente",
+          summary:
+            "Comecei atuando como estagiário e hoje lidero o desenvolvimento de sistemas backend e web " +
+            "da empresa, atuando na arquitetura de APIs, modelagem de regras de negócio, " +
+            "integrações e decisões técnicas. Também atuo como gestor de dois projetos " +
+            "estratégicos voltados à redução de perdas de água para cidades brasileiras.",
+          highlights: [
+            "Liderei a migração de um sistema legado em Visual Basic para uma plataforma web moderna de mapeamento de redes de água, com mapas interativos, busca avançada, relatórios e documentos geolocalizados.",
+            "Arquitetei e liderei o desenvolvimento de um sistema de gestão de ordens de serviço, com APIs REST, fluxos de status, regras de negócio e persistência de dados.",
+            "Participei do desenvolvimento de uma plataforma de monitoramento IoT, envolvendo sensores, serviços em Python, infraestrutura Linux e detecção automática de anomalias.",
+            "Atuo diretamente com stakeholders no levantamento de requisitos.",
+          ],
+          stack: [
+            "Next.js",
+            "Node.js",
+            "Java",
+            "Spring Boot",
+            "Python",
+            "TypeScript",
+            "PostgreSQL",
+            "AWS",
+            "Linux",
+            "Docker",
+            "Git",
+          ],
+        },
+      ],
     },
     skills: {
       title: "Tecnologias & Ferramentas",

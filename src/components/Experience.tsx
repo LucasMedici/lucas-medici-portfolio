@@ -5,10 +5,15 @@ import { Briefcase, MapPin } from "lucide-react";
 
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { experiences, type Experience } from "@/data/experiences";
+import type { Experience } from "@/data/experiences";
+import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/lib/useLocale";
 
 export function ExperienceSection() {
+  const locale = useLocale();
+  const texts = t(locale).experience;
+
   return (
     <section
       id="experience"
@@ -17,13 +22,13 @@ export function ExperienceSection() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
-          eyebrow="Experience"
-          title={<span id="experience-title">Where I&apos;ve worked</span>}
-          description="A snapshot of teams I&apos;ve been part of and the kind of work I gravitate toward."
+          eyebrow={texts.eyebrow}
+          title={<span id="experience-title">{texts.title}</span>}
+          description={texts.description}
         />
 
-        <ol className="mt-14 relative border-l border-border pl-6 md:pl-10 space-y-10">
-          {experiences.map((entry, index) => (
+        <ol className="relative mt-14 space-y-10 border-l border-border pl-6 md:pl-10">
+          {texts.entries.map((entry, index) => (
             <TimelineEntry key={entry.id} entry={entry} index={index} />
           ))}
         </ol>
@@ -49,7 +54,7 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
       <span
         aria-hidden
         className={cn(
-          "absolute -left-[34px] md:-left-[46px] top-2",
+          "absolute -left-[34px] top-2 md:-left-[46px]",
           "size-4 rounded-full",
           "bg-border-strong",
           "ring-4 ring-background",
@@ -61,7 +66,7 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
             <Briefcase size={20} className="text-foreground" aria-hidden />
             <h3 className="text-lg font-semibold text-foreground">
               {entry.role}{" "}
-              <span className="text-muted-foreground font-normal">
+              <span className="font-normal text-muted-foreground">
                 · {entry.company}
               </span>
             </h3>
@@ -71,10 +76,12 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
           </span>
         </div>
 
-        <p className="mt-1 inline-flex items-center gap-1.5 text-xs text-subtle-foreground">
-          <MapPin size={14} aria-hidden />
-          {entry.location}
-        </p>
+        {entry.location ? (
+          <p className="mt-1 inline-flex items-center gap-1.5 text-xs text-subtle-foreground">
+            <MapPin size={14} aria-hidden />
+            {entry.location}
+          </p>
+        ) : null}
 
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
           {entry.summary}
@@ -100,9 +107,9 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
               <li
                 key={tech}
                 className={cn(
-                  "px-2.5 py-1 rounded-full",
+                  "rounded-full px-2.5 py-1",
                   "text-[11px] font-medium font-mono tracking-wide",
-                  "bg-card border border-border text-muted-foreground",
+                  "border border-border bg-card text-muted-foreground",
                 )}
               >
                 {tech}
