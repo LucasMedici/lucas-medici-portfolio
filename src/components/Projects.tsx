@@ -17,12 +17,14 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects, type Project, type ProjectLink } from "@/data/projects";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/lib/useLocale";
+import { t } from "@/data/translations";
 
-const SLIDE_PADDING = "pr-6";
-const PEEK = 0.5;
-const SLIDE_GAP_PX = 24;
+const SLIDE_PADDING = "pr-4 md:pr-6";
+const SLIDE_GAP_PX = 16;
 
 function usePerView() {
+  const [isMobile, setIsMobile] = useState(false);
   const [perView, setPerView] = useState(1);
 
   useEffect(() => {
@@ -30,8 +32,9 @@ function usePerView() {
     const xl = window.matchMedia("(min-width: 80rem)");
 
     const update = () => {
-      if (xl.matches) setPerView(3);
-      else if (md.matches) setPerView(2);
+      setIsMobile(!md.matches);
+      if (xl.matches) setPerView(2.5);
+      else if (md.matches) setPerView(1.8);
       else setPerView(1);
     };
 
@@ -44,17 +47,20 @@ function usePerView() {
     };
   }, []);
 
-  return perView;
+  return { perView, isMobile };
 }
 
 export function Projects() {
-  const perView = usePerView();
+  const locale = useLocale();
+  const tr = t(locale).projects;
+  const { perView, isMobile } = usePerView();
   const reducedMotion = useReducedMotion();
   const viewportRef = useRef<HTMLDivElement>(null);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [index, setIndex] = useState(0);
 
-  const maxIndex = Math.max(0, projects.length - perView);
+  const peek = isMobile ? 0.08 : 0.4;
+  const maxIndex = Math.max(0, projects.length - (isMobile ? 1 : perView));
 
   useEffect(() => {
     const el = viewportRef.current;
@@ -71,7 +77,7 @@ export function Projects() {
   const clampedIndex = Math.min(index, maxIndex);
 
   const slideWidth =
-    viewportWidth > 0 ? viewportWidth / (perView + PEEK) : 0;
+    viewportWidth > 0 ? viewportWidth / (perView + peek) : 0;
   const x = -clampedIndex * slideWidth;
   const showControls = maxIndex > 0;
 
@@ -84,10 +90,10 @@ export function Projects() {
   const prev = () => goTo(clampedIndex - 1);
   const next = () => goTo(clampedIndex + 1);
 
-  const fade = PEEK * slideWidth + SLIDE_GAP_PX;
+  const fade = peek * slideWidth + SLIDE_GAP_PX;
 
   const maskImage =
-    hasPrev || hasNext
+    !isMobile && (hasPrev || hasNext)
       ? `linear-gradient(to right, ${
           hasPrev
             ? `transparent 0, black ${fade}px`
@@ -101,19 +107,19 @@ export function Projects() {
     <section
       id="projects"
       aria-labelledby="projects-title"
-      className="relative scroll-mt-24 px-6 py-20 md:py-28"
+      className="relative scroll-mt-24 px-4 sm:px-6 py-20 md:py-28 overflow-hidden"
     >
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
-          eyebrow="Projects"
-          title={<span id="projects-title">Selected work</span>}
-          description="Projects that reflect how I think, build, and ship — from quick experiments to production-ready systems."
+          eyebrow={tr.eyebrow}
+          title={<span id="projects-title">{tr.title}</span>}
+          description={tr.description}
         />
 
         <div className="relative mt-12">
           <div
             ref={viewportRef}
-            className="overflow-hidden pt-3"
+            className="overflow-hidden py-4 -my-4 -mx-4 px-4 sm:mx-0 sm:px-0"
             style={{
               WebkitMaskImage: maskImage,
               maskImage,
@@ -165,7 +171,7 @@ export function Projects() {
                 onClick={prev}
                 disabled={!hasPrev}
                 label="Previous projects"
-                className="absolute left-0 top-1/2 -translate-y-1/2"
+                className="hidden md:inline-flex absolute -left-4 top-1/2 -translate-y-1/2"
               >
                 <ChevronLeft size={20} aria-hidden />
               </CarouselButton>
@@ -174,10 +180,28 @@ export function Projects() {
                 onClick={next}
                 disabled={!hasNext}
                 label="Next projects"
-                className="absolute right-0 top-1/2 -translate-y-1/2"
+                className="hidden md:inline-flex absolute -right-4 top-1/2 -translate-y-1/2"
               >
                 <ChevronRight size={20} aria-hidden />
               </CarouselButton>
+
+              {/* Mobile pagination indicators */}
+              <div className="flex md:hidden items-center justify-center gap-2 mt-6">
+                {projects.map((project, idx) => (
+                  <button
+                    key={project.id}
+                    type="button"
+                    onClick={() => goTo(idx)}
+                    aria-label={`Go to project ${idx + 1}`}
+                    className={cn(
+                      "h-1.5 rounded-full transition-all duration-300",
+                      clampedIndex === idx
+                        ? "w-6 bg-accent"
+                        : "w-1.5 bg-muted-foreground/30",
+                    )}
+                  />
+                ))}
+              </div>
             </>
           ) : null}
         </div>
@@ -228,6 +252,10 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, index }: ProjectCardProps) {
+  const locale = useLocale();
+  const content = project[locale] ?? project.en;
+  const isPt = locale === "pt-br";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -242,7 +270,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           {project.image ? (
             <Image
               src={project.image}
-              alt={`${project.name} preview`}
+              alt={`${content.name} preview`}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
@@ -254,32 +282,32 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           )}
         </div>
 
-        <div className="flex flex-col gap-5 p-6 flex-1">
+        <div className="flex flex-col gap-4 sm:gap-5 p-4 sm:p-6 flex-1">
           <header className="flex items-start justify-between gap-3">
             <div className="flex flex-col gap-1">
               <h3 className="text-lg font-semibold text-foreground">
-                {project.name}
+                {content.name}
               </h3>
-              <p className="text-sm text-muted-foreground">{project.tagline}</p>
+              <p className="text-sm text-muted-foreground">{content.tagline}</p>
             </div>
             {project.featured ? (
               <span
                 className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider bg-surface-elevated text-foreground border border-border-strong"
-                aria-label="Featured project"
+                aria-label={isPt ? "Projeto em destaque" : "Featured project"}
               >
                 <Star size={12} aria-hidden />
-                Featured
+                {isPt ? "Destaque" : "Featured"}
               </span>
             ) : null}
           </header>
 
           <p className="text-sm leading-relaxed text-muted-foreground">
-            {project.description}
+            {content.description}
           </p>
 
-          {project.highlights.length > 0 ? (
+          {content.highlights.length > 0 ? (
             <ul className="space-y-1.5 text-sm text-muted-foreground">
-              {project.highlights.map((highlight) => (
+              {content.highlights.map((highlight) => (
                 <li key={highlight} className="flex gap-2">
                   <span
                     aria-hidden

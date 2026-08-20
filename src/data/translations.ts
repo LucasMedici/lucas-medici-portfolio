@@ -74,7 +74,10 @@ const translations = {
       title: "Technologies & Tools",
     },
     projects: {
-      title: "Projects",
+      eyebrow: "Projects",
+      title: "Featured Projects",
+      description:
+        "Some of the projects I've built to explore ideas, solve problems, and put software into practice.",
     },
     learning: {
       title: "Learning",
@@ -161,7 +164,10 @@ const translations = {
       title: "Tecnologias & Ferramentas",
     },
     projects: {
-      title: "Projetos",
+      eyebrow: "Projetos",
+      title: "Projetos em destaque",
+      description:
+        "Alguns dos projetos que construí para explorar ideias, resolver problemas e colocar coisas em prática.",
     },
     learning: {
       title: "Aprendizado",

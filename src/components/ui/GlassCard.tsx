@@ -27,7 +27,7 @@ export function GlassCard({
     <motion.div
       whileHover={
         interactive
-          ? { y: -6, scale: 1.01 }
+          ? { y: -4 }
           : undefined
       }
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
