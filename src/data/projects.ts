@@ -89,4 +89,53 @@ export const projects: readonly Project[] = [
       },
     ],
   },
+  {
+    id: "project-four",
+    name: "Side Project",
+    tagline: "A small tool that scratches a personal itch.",
+    description:
+      "Describe a product you built solo or with a small crew. Cover the " +
+      "core problem, the target audience and what makes it stand out.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    highlights: [
+      "Explain the main feature and how it works.",
+      "Share the tech choices that made development fast.",
+      "Describe what you learned about product and distribution.",
+    ],
+    featured: false,
+    links: [
+      {
+        type: "live",
+        label: "Live demo",
+        href: "https://github.com/LucasMedici",
+      },
+      {
+        type: "repo",
+        label: "Source",
+        href: "https://github.com/LucasMedici",
+      },
+    ],
+  },
+  {
+    id: "project-five",
+    name: "Product Engineering",
+    tagline: "An end-to-end system shipped to real users.",
+    description:
+      "Showcase a larger system you built or led. Walk through the API " +
+      "design, data model and the operational concerns you accounted for.",
+    stack: ["React", "Node.js", "PostgreSQL", "Docker"],
+    highlights: [
+      "Describe the system architecture at a high level.",
+      "Quantify scale, reliability or performance wins.",
+      "Detail a hard bug or incident you resolved.",
+    ],
+    featured: false,
+    links: [
+      {
+        type: "case-study",
+        label: "Case study",
+        href: "https://github.com/LucasMedici",
+      },
+    ],
+  },
 ];
