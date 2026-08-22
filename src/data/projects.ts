@@ -108,7 +108,7 @@ export const projects: readonly Project[] = [
   {
     id: "project-three",
     stack: ["TypeScript", "Node.js"],
-    featured: false,
+    featured: true,
     links: [
       {
         type: "repo",
@@ -143,7 +143,7 @@ export const projects: readonly Project[] = [
     id: "streaming-videos-platform",
     image: "/streamly_home.png",
     stack: ["Java 21", "Spring Boot", "Spring Security", "RabbitMQ", "FFmpeg", "Supabase Storage", "Thymeleaf"],
-    featured: false,
+    featured: true,
     links: [
       {
         type: "repo",
@@ -177,36 +177,76 @@ export const projects: readonly Project[] = [
     },
   },
   {
-    id: "project-five",
-    stack: ["React", "Node.js", "PostgreSQL", "Docker"],
-    featured: false,
+    id: "daily-bot",
+    image: "/daily_bot.png",
+    stack: ["React", "Node.js", "TypeScript", "Python", "MySQL"],
+    featured: true,
     links: [
       {
-        type: "case-study",
-        label: "Case study",
-        href: "https://github.com/LucasMedici",
+        type: "repo",
+        label: "Source",
+        href: "https://github.com/LucasMedici/API-2DSM-DailyBot/tree/main",
       },
     ],
     en: {
-      name: "Product Engineering",
-      tagline: "An end-to-end system shipped to real users.",
+      name: "Official Gazette Automation",
+      tagline: "Automating process identification and member notifications.",
       description:
-        "Showcase a larger system you built or led. Walk through the API design, data model and the operational concerns you accounted for.",
+        "Team project focused on automating the process of reading the Official Gazette of the State of São Paulo and identifying publications related to registered members. The solution collects and processes the documents, matches publications against the member database, and makes the relevant information available for tracking and notifications.",
       highlights: [
-        "Describe the system architecture at a high level.",
-        "Quantify scale, reliability or performance wins.",
-        "Detail a hard bug or incident you resolved.",
+        "Automated collection and processing of Official Gazette documents.",
+        "Identification of publications related to registered members.",
+        "Data matching between published content and the member database.",
+        "Generation of information for process tracking and member notifications."
       ],
     },
     "pt-br": {
-      name: "Engenharia de Produto",
-      tagline: "Um sistema completo entregue para usuários reais.",
+      name: "Automação do Diário Oficial",
+      tagline: "Automação da identificação de processos e notificações de associados.",
       description:
-        "Apresente um sistema maior que você construiu ou liderou. Detalhe o design de APIs, modelo de dados e pontos operacionais considerados.",
+        "Projeto desenvolvido em equipe para automatizar a leitura do Diário Oficial do Estado de São Paulo e identificar publicações relacionadas aos professores associados. A solução realiza a coleta e processamento dos arquivos, cruza as publicações com a base de associados e disponibiliza as informações para acompanhamento e notificação dos envolvidos.",
       highlights: [
-        "Descreva a arquitetura do sistema em alto nível.",
-        "Quantifique ganhos de escala, confiabilidade ou performance.",
-        "Detalhe um bug complexo ou incidente resolvido.",
+        "Automação da coleta e processamento dos arquivos do Diário Oficial.",
+        "Identificação de publicações relacionadas aos associados.",
+        "Cruzamento dos dados publicados com a base de associados.",
+        "Geração de informações para acompanhamento dos processos e notificações.",
+      ],
+    },
+  },
+  {
+    id: "controle-de-pragas",
+    image: "/controle_pragas.png",
+    stack: ["React Native", "JavaScript", "Nest.JS", "Firebase", "Python", "Yolo V8"],
+    featured: true,
+    links: [
+      {
+        type: "repo",
+        label: "Source",
+        href: "https://github.com/AgroVision-Fatec",
+      },
+    ],
+    en: {
+      name: "AI-Powered Pest Monitoring",
+      tagline: "AI-powered detection and monitoring of agricultural pests.",
+      description:
+        "Team project focused on developing a mobile application to monitor pests in agricultural traps using images and artificial intelligence. The application allows users to register trap locations, capture and synchronize images, and process them to quantify pests, with the results presented through dashboards for field monitoring.",
+      highlights: [
+        "Computer vision model for detecting and quantifying pests in images.",
+        "Mobile application for trap registration, image capture, and GPS-based location tracking.",
+        "Mapping of agricultural traps and management of geographic coordinates.",
+        "Dashboards for visualizing monitoring data and key indicators."
+      ],
+    },
+    "pt-br": {
+      name: "Monitoramento de Pragas com IA",
+      tagline: "Detecção e monitoramento de pragas agrícolas com inteligência artificial.",
+      description:
+        "Projeto desenvolvido em equipe para criar uma aplicação mobile capaz de monitorar pragas em armadilhas agrícolas por meio de imagens e inteligência artificial. O aplicativo permite registrar a localização das armadilhas, capturar e sincronizar imagens e processá-las para quantificar as pragas, disponibilizando os resultados em dashboards para acompanhamento do campo.",
+      highlights: [
+        "Modelo de visão computacional para detecção e quantificação de pragas em imagens.",
+        "Aplicação mobile para registro de armadilhas, captura de imagens e localização via GPS.",
+        "Mapeamento das armadilhas e gerenciamento de coordenadas geográficas",
+        "Dashboards para visualização dos dados e indicadores de monitoramento.",
       ],
     },
   },
