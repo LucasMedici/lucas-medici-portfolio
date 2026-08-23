@@ -283,22 +283,22 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         <div className="flex flex-col gap-4 sm:gap-5 p-4 sm:p-6 flex-1">
-          <header className="flex items-start justify-between gap-3">
-            <div className="flex flex-col gap-1">
+          <header className="flex flex-col gap-2">
+            <div className="flex items-start justify-between gap-3">
               <h3 className="text-lg font-semibold text-foreground">
                 {content.name}
               </h3>
-              <p className="text-sm text-muted-foreground">{content.tagline}</p>
+              {project.featured ? (
+                <span
+                  className="inline-flex shrink-0 items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider bg-surface-elevated text-foreground border border-border-strong"
+                  aria-label={isPt ? "Projeto em destaque" : "Featured project"}
+                >
+                  <Star size={12} aria-hidden />
+                  {isPt ? "Destaque" : "Featured"}
+                </span>
+              ) : null}
             </div>
-            {project.featured ? (
-              <span
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wider bg-surface-elevated text-foreground border border-border-strong"
-                aria-label={isPt ? "Projeto em destaque" : "Featured project"}
-              >
-                <Star size={12} aria-hidden />
-                {isPt ? "Destaque" : "Featured"}
-              </span>
-            ) : null}
+            <p className="text-sm text-muted-foreground">{content.tagline}</p>
           </header>
 
           <p className="text-sm leading-relaxed text-muted-foreground">
