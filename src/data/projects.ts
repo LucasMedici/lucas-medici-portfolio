@@ -47,7 +47,7 @@ export const projects: readonly Project[] = [
       name: "Finance Assistant",
       tagline: "Personal finance, as simple as a conversation.",
       description:
-        "A mobile finance assistant that turns expense tracking into a simple chat experience. Built to work even without an internet connection, the app processes expenses, stores financial data, and generates spending reports through a custom backend.",
+        "A mobile assistant that simplifies expense tracking through a conversational interface. Operates offline-first, processing expenses and generating financial reports via a dedicated backend.",
       highlights: [
         "Chat-based expense tracking with a familiar, conversational interface.",
         "Offline message queue with automatic synchronization when the connection is restored.",
@@ -59,49 +59,12 @@ export const projects: readonly Project[] = [
       name: "Assistente Financeiro",
       tagline: "Finanças pessoais, de forma simples como uma conversa.",
       description:
-        "Um assistente financeiro mobile que transforma o registro de gastos em uma experiência simples e conversacional. O aplicativo funciona mesmo sem conexão com a internet, processando despesas, armazenando dados financeiros e gerando relatórios por meio de um backend próprio.",
+        "Assistente mobile para controle de gastos conversacional e offline-first. Processa despesas, armazena dados financeiros e gera relatórios através de um backend próprio.",
       highlights: [
         "Registro de despesas através de uma interface de chat simples e familiar.",
         "Fila de mensagens offline com sincronização automática ao restabelecer a conexão.",
         "Autenticação com JWT, persistência em PostgreSQL e API REST documentada com Swagger/OpenAPI.",
         "Geração de relatórios financeiros com divisão dos gastos por categoria.",
-      ],
-    },
-  },
-  {
-    id: "estacoes-meteorologicas",
-    image: "/estacoes_meteorologicas2.png",
-    stack: ["TypeScript", "React", "C", "Arduino", "Python", "MongoDB"],
-    featured: true,
-    links: [
-      {
-        type: "repo",
-        label: "Source",
-        href: "https://bitbucket.org/neocode2023/workspace/repositories/",
-      },
-    ],
-    en: {
-      name: "Weather Stations",
-      tagline: "Environmental monitoring and meteorological data analysis.",
-      description:
-        "Team project focused on building low-cost weather stations and a platform for collecting, processing, and visualizing data. The system monitors parameters such as temperature, humidity, pressure, wind speed and direction, and rainfall, providing dashboards, reports, and alerts. I served as the team's Scrum Master and also contributed to the development of the dashboard and alert APIs.",
-      highlights: [
-        "Collection and processing of data from weather stations.",
-        "Dashboards for visualizing parameters, events, and station history.",
-        "Alert system based on configurable meteorological parameters.",
-        "Data processing pipeline between non-relational and relational databases.",
-      ],
-    },
-    "pt-br": {
-      name: "Estações Meteorológicas",
-      tagline: "Monitoramento ambiental e análise de dados meteorológicos.",
-      description:
-        "Projeto desenvolvido em equipe para criar estações meteorológicas de baixo custo e uma plataforma para coleta, processamento e visualização de dados. O sistema monitora parâmetros como temperatura, umidade, pressão, velocidade e direção do vento e índice pluviométrico, disponibilizando dashboards, relatórios e alertas. Atuei como Scrum Master da equipe e também contribuí no desenvolvimento do dashboard e das APIs de alertas.",
-      highlights: [
-        "Coleta e processamento de dados provenientes das estações meteorológicas.",
-        "Dashboards para visualização de parâmetros, eventos e histórico das estações.",
-        "Sistema de alertas baseado em parâmetros meteorológicos configuráveis.",
-        "Pipeline de processamento entre bancos não relacional e relacional.",
       ],
     },
   },
@@ -155,11 +118,11 @@ export const projects: readonly Project[] = [
       name: "Video Streaming Platform",
       tagline: "Video platform focused on backend, security, and asynchronous processing.",
       description:
-        "Personal project built to deepen my knowledge of Java and Spring Boot by developing a video platform inspired by modern streaming services. The application supports user registration and authentication, video playback, and content management for administrators, using asynchronous processing, HLS transcoding, and media storage.",
+        "Video platform built with Java 21 and Spring Boot, featuring async RabbitMQ processing, HLS transcoding with FFmpeg, and Supabase storage.",
       highlights: [
-        "Authentication and authorization with Spring Security and JWT, with role-based access control.",
-        "Asynchronous video processing using RabbitMQ.",
-        "HLS video transcoding and thumbnail generation with FFmpeg and FFprobe.",
+        "Authentication and authorization with Spring Security and JWT.",
+        "Asynchronous video processing with RabbitMQ.",
+        "HLS transcoding and thumbnail generation via FFmpeg.",
         "Media storage and delivery using Supabase Storage.",
       ],
     },
@@ -167,49 +130,12 @@ export const projects: readonly Project[] = [
       name: "Plataforma de Streaming de Vídeos",
       tagline: "Plataforma de vídeo com foco em backend, segurança e processamento assíncrono.",
       description:
-        "Projeto pessoal desenvolvido para aprofundar conhecimentos em Java e Spring Boot, construindo uma plataforma de vídeos inspirada em serviços de streaming. A aplicação permite o cadastro e autenticação de usuários, reprodução de vídeos e gerenciamento de conteúdo por administradores, utilizando processamento assíncrono, transcodificação para HLS e armazenamento de mídia.",
+        "Plataforma de vídeos em Java 21 e Spring Boot com processamento assíncrono via RabbitMQ, transcodificação HLS com FFmpeg e armazenamento no Supabase.",
       highlights: [
-        "Autenticação e autorização com Spring Security e JWT, com controle de acesso por perfil.",
+        "Autenticação e autorização com Spring Security e JWT.",
         "Processamento assíncrono de vídeos utilizando RabbitMQ.",
-        "Transcodificação de vídeos para HLS e geração de thumbnails com FFmpeg e FFprobe.",
+        "Transcodificação para HLS e geração de thumbnails com FFmpeg.",
         "Armazenamento e entrega de mídia utilizando Supabase Storage.",
-      ],
-    },
-  },
-  {
-    id: "daily-bot",
-    image: "/daily_bot.png",
-    stack: ["React", "Node.js", "TypeScript", "Python", "MySQL"],
-    featured: true,
-    links: [
-      {
-        type: "repo",
-        label: "Source",
-        href: "https://github.com/LucasMedici/API-2DSM-DailyBot/tree/main",
-      },
-    ],
-    en: {
-      name: "Official Gazette Automation",
-      tagline: "Automating process identification and member notifications.",
-      description:
-        "Team project focused on automating the process of reading the Official Gazette of the State of São Paulo and identifying publications related to registered members. The solution collects and processes the documents, matches publications against the member database, and makes the relevant information available for tracking and notifications.",
-      highlights: [
-        "Automated collection and processing of Official Gazette documents.",
-        "Identification of publications related to registered members.",
-        "Data matching between published content and the member database.",
-        "Generation of information for process tracking and member notifications."
-      ],
-    },
-    "pt-br": {
-      name: "Automação do Diário Oficial",
-      tagline: "Automação da identificação de processos e notificações de associados.",
-      description:
-        "Projeto desenvolvido em equipe para automatizar a leitura do Diário Oficial do Estado de São Paulo e identificar publicações relacionadas aos professores associados. A solução realiza a coleta e processamento dos arquivos, cruza as publicações com a base de associados e disponibiliza as informações para acompanhamento e notificação dos envolvidos.",
-      highlights: [
-        "Automação da coleta e processamento dos arquivos do Diário Oficial.",
-        "Identificação de publicações relacionadas aos associados.",
-        "Cruzamento dos dados publicados com a base de associados.",
-        "Geração de informações para acompanhamento dos processos e notificações.",
       ],
     },
   },
@@ -229,24 +155,98 @@ export const projects: readonly Project[] = [
       name: "AI-Powered Pest Monitoring",
       tagline: "AI-powered detection and monitoring of agricultural pests.",
       description:
-        "Team project focused on developing a mobile application to monitor pests in agricultural traps using images and artificial intelligence. The application allows users to register trap locations, capture and synchronize images, and process them to quantify pests, with the results presented through dashboards for field monitoring.",
+        "Team project creating a mobile app to monitor pests in agricultural traps using YOLO computer vision, GPS geolocation, offline sync, and real-time analytical dashboards.",
       highlights: [
         "Computer vision model for detecting and quantifying pests in images.",
         "Mobile application for trap registration, image capture, and GPS-based location tracking.",
         "Mapping of agricultural traps and management of geographic coordinates.",
-        "Dashboards for visualizing monitoring data and key indicators."
+        "Dashboards for visualizing monitoring data and key indicators.",
       ],
     },
     "pt-br": {
       name: "Monitoramento de Pragas com IA",
       tagline: "Detecção e monitoramento de pragas agrícolas com inteligência artificial.",
       description:
-        "Projeto desenvolvido em equipe para criar uma aplicação mobile capaz de monitorar pragas em armadilhas agrícolas por meio de imagens e inteligência artificial. O aplicativo permite registrar a localização das armadilhas, capturar e sincronizar imagens e processá-las para quantificar as pragas, disponibilizando os resultados em dashboards para acompanhamento do campo.",
+        "Projeto em equipe para monitoramento de pragas agrícolas em armadilhas com visão computacional (YOLO), geolocalização via GPS no app mobile e dashboards de análise.",
       highlights: [
         "Modelo de visão computacional para detecção e quantificação de pragas em imagens.",
         "Aplicação mobile para registro de armadilhas, captura de imagens e localização via GPS.",
-        "Mapeamento das armadilhas e gerenciamento de coordenadas geográficas",
+        "Mapeamento das armadilhas e gerenciamento de coordenadas geográficas.",
         "Dashboards para visualização dos dados e indicadores de monitoramento.",
+      ],
+    },
+  },
+  {
+    id: "estacoes-meteorologicas",
+    image: "/estacoes_meteorologicas2.png",
+    stack: ["TypeScript", "React", "C", "Arduino", "Python", "MongoDB"],
+    featured: true,
+    links: [
+      {
+        type: "repo",
+        label: "Source",
+        href: "https://bitbucket.org/neocode2023/workspace/repositories/",
+      },
+    ],
+    en: {
+      name: "Weather Stations",
+      tagline: "Environmental monitoring and meteorological data analysis.",
+      description:
+        "Team project building low-cost weather stations and a web platform for climate data collection and analysis. Acted as Scrum Master while contributing to dashboard and alert API development.",
+      highlights: [
+        "Collection and processing of data: temperature, humidity, pressure, wind speed/direction, and rainfall.",
+        "Dashboards for visualizing climate metrics, events, and station history.",
+        "Alert system based on configurable meteorological parameters.",
+        "Data processing pipeline between non-relational and relational databases.",
+      ],
+    },
+    "pt-br": {
+      name: "Estações Meteorológicas",
+      tagline: "Monitoramento ambiental e análise de dados meteorológicos.",
+      description:
+        "Projeto em equipe para criação de estações meteorológicas de baixo custo e plataforma para coleta e análise climática. Atuei como Scrum Master e no desenvolvimento de dashboards e APIs de alerta.",
+      highlights: [
+        "Coleta e processamento de dados: temperatura, umidade, pressão, velocidade/direção do vento e índice pluviométrico.",
+        "Dashboards para visualização de métricas climáticas, eventos e histórico.",
+        "Sistema de alertas baseado em parâmetros meteorológicos configuráveis.",
+        "Pipeline de processamento entre bancos não relacional e relacional.",
+      ],
+    },
+  },
+  {
+    id: "daily-bot",
+    image: "/daily_bot.png",
+    stack: ["React", "Node.js", "TypeScript", "Python", "MySQL"],
+    featured: true,
+    links: [
+      {
+        type: "repo",
+        label: "Source",
+        href: "https://github.com/LucasMedici/API-2DSM-DailyBot/tree/main",
+      },
+    ],
+    en: {
+      name: "Official Gazette Automation",
+      tagline: "Automating process identification and member notifications.",
+      description:
+        "Team project automating the ingestion of the Official Gazette of São Paulo. The system extracts texts, matches publications against member databases, and triggers notifications.",
+      highlights: [
+        "Automated collection and processing of Official Gazette documents.",
+        "Identification of publications related to registered members.",
+        "Data matching between published content and the member database.",
+        "Generation of information for process tracking and member notifications.",
+      ],
+    },
+    "pt-br": {
+      name: "Automação do Diário Oficial",
+      tagline: "Automação da identificação de processos e notificações de associados.",
+      description:
+        "Projeto em equipe para automação da leitura do Diário Oficial do Estado de SP. O sistema processa publicações, cruza com a base de associados e gera dados para acompanhamento e notificações.",
+      highlights: [
+        "Automação da coleta e processamento dos arquivos do Diário Oficial.",
+        "Identificação de publicações relacionadas aos associados.",
+        "Cruzamento dos dados publicados com a base de associados.",
+        "Geração de informações para acompanhamento dos processos e notificações.",
       ],
     },
   },
