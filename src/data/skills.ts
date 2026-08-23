@@ -1,19 +1,19 @@
 /**
  * Technical skills grouped by category.
  *
- * Each skill renders as an animated badge in the Skills section.
+ * Each skill renders in groups with small subtitles in the Skills section.
  */
 
 export type SkillCategory =
-  | "Languages"
-  | "Frontend"
-  | "Backend"
-  | "Infrastructure"
-  | "Tooling";
+  | "Linguagens"
+  | "Backend & APIs"
+  | "Frontend & Mobile"
+  | "Databases & ORM"
+  | "Cloud & Infrastructure"
+  | "Messaging & AI";
 
 export interface Skill {
   readonly name: string;
-  readonly level: "Learning" | "Proficient" | "Advanced";
 }
 
 export interface SkillGroup {
@@ -24,53 +24,71 @@ export interface SkillGroup {
 
 export const skillGroups: readonly SkillGroup[] = [
   {
-    category: "Languages",
-    description: "Day-to-day languages I reach for to solve problems.",
+    category: "Linguagens",
+    description: "Core programming languages",
     items: [
-      { name: "TypeScript", level: "Advanced" },
-      { name: "JavaScript", level: "Advanced" },
-      { name: "Python", level: "Proficient" },
-      { name: "SQL", level: "Proficient" },
+      { name: "Java" },
+      { name: "TypeScript" },
+      { name: "JavaScript" },
+      { name: "Python" },
+      { name: "SQL" },
+      { name: "C" },
     ],
   },
   {
-    category: "Frontend",
-    description: "Building responsive, accessible interfaces with modern React.",
+    category: "Backend & APIs",
+    description: "Frameworks, server-side development and API design",
     items: [
-      { name: "React", level: "Advanced" },
-      { name: "Next.js", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Advanced" },
-      { name: "Framer Motion", level: "Proficient" },
+      { name: "Spring Boot" },
+      { name: "Node.js" },
+      { name: "Express" },
+      { name: "NestJS" },
+      { name: "REST APIs" },
+      { name: "Swagger / OpenAPI" },
     ],
   },
   {
-    category: "Backend",
-    description: "API design, data modeling and service-oriented architectures.",
+    category: "Frontend & Mobile",
+    description: "Interfaces, web and mobile development",
     items: [
-      { name: "Node.js", level: "Advanced" },
-      { name: "REST APIs", level: "Advanced" },
-      { name: "PostgreSQL", level: "Proficient" },
-      { name: "GraphQL", level: "Learning" },
+      { name: "React" },
+      { name: "Next.js" },
+      { name: "React Native" },
+      { name: "Tailwind CSS" },
     ],
   },
   {
-    category: "Infrastructure",
-    description: "Shipping and operating software on the cloud with confidence.",
+    category: "Databases & ORM",
+    description: "Data persistence, databases and ORMs",
     items: [
-      { name: "AWS", level: "Proficient" },
-      { name: "Docker", level: "Proficient" },
-      { name: "Vercel", level: "Advanced" },
-      { name: "GitHub Actions", level: "Proficient" },
+      { name: "PostgreSQL" },
+      { name: "MySQL" },
+      { name: "MongoDB" },
+      { name: "Prisma" },
+      { name: "JPA / Hibernate" },
     ],
   },
   {
-    category: "Tooling",
-    description: "Engineering hygiene, testing and developer experience.",
+    category: "Cloud & Infrastructure",
+    description: "Cloud platforms, containerization and tooling",
     items: [
-      { name: "Git", level: "Advanced" },
-      { name: "ESLint", level: "Advanced" },
-      { name: "Vitest / Jest", level: "Proficient" },
-      { name: "Linux", level: "Proficient" },
+      { name: "AWS" },
+      { name: "Docker" },
+      { name: "Linux" },
+      { name: "Supabase" },
+      { name: "Vercel" },
+      { name: "GitHub Actions" },
+    ],
+  },
+  {
+    category: "Messaging & AI",
+    description: "Message brokers, artificial intelligence and media processing",
+    items: [
+      { name: "RabbitMQ" },
+      { name: "YOLO" },
+      { name: "LLM APIs" },
+      { name: "AI Agents" },
+      { name: "FFmpeg" },
     ],
   },
 ];
