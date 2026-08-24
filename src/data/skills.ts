@@ -5,12 +5,13 @@
  */
 
 export type SkillCategory =
-  | "Linguagens"
-  | "Backend & APIs"
-  | "Frontend & Mobile"
-  | "Databases & ORM"
-  | "Cloud & Infrastructure"
-  | "Messaging & AI";
+  | "LANGUAGES"
+  | "BACKEND & APIs"
+  | "FRONTEND & MOBILE"
+  | "DATABASES & ORM"
+  | "AI & MACHINE LEARNING"
+  | "CLOUD & INFRASTRUCTURE"
+  | "MESSAGING & MEDIA PROCESSING";
 
 export interface Skill {
   readonly name: string;
@@ -24,7 +25,7 @@ export interface SkillGroup {
 
 export const skillGroups: readonly SkillGroup[] = [
   {
-    category: "Linguagens",
+    category: "LANGUAGES",
     description: "Core programming languages",
     items: [
       { name: "Java" },
@@ -32,23 +33,21 @@ export const skillGroups: readonly SkillGroup[] = [
       { name: "JavaScript" },
       { name: "Python" },
       { name: "SQL" },
-      { name: "C" },
     ],
   },
   {
-    category: "Backend & APIs",
+    category: "BACKEND & APIs",
     description: "Frameworks, server-side development and API design",
     items: [
       { name: "Spring Boot" },
       { name: "Node.js" },
       { name: "Express" },
       { name: "NestJS" },
-      { name: "REST APIs" },
       { name: "Swagger / OpenAPI" },
     ],
   },
   {
-    category: "Frontend & Mobile",
+    category: "FRONTEND & MOBILE",
     description: "Interfaces, web and mobile development",
     items: [
       { name: "React" },
@@ -58,7 +57,7 @@ export const skillGroups: readonly SkillGroup[] = [
     ],
   },
   {
-    category: "Databases & ORM",
+    category: "DATABASES & ORM",
     description: "Data persistence, databases and ORMs",
     items: [
       { name: "PostgreSQL" },
@@ -69,7 +68,16 @@ export const skillGroups: readonly SkillGroup[] = [
     ],
   },
   {
-    category: "Cloud & Infrastructure",
+    category: "AI & MACHINE LEARNING",
+    description: "Artificial intelligence and computer vision",
+    items: [
+      { name: "LLM APIs" },
+      { name: "AI Agents" },
+      { name: "YOLO" },
+    ],
+  },
+  {
+    category: "CLOUD & INFRASTRUCTURE",
     description: "Cloud platforms, containerization and tooling",
     items: [
       { name: "AWS" },
@@ -81,13 +89,10 @@ export const skillGroups: readonly SkillGroup[] = [
     ],
   },
   {
-    category: "Messaging & AI",
-    description: "Message brokers, artificial intelligence and media processing",
+    category: "MESSAGING & MEDIA PROCESSING",
+    description: "Message brokers and media processing",
     items: [
       { name: "RabbitMQ" },
-      { name: "YOLO" },
-      { name: "LLM APIs" },
-      { name: "AI Agents" },
       { name: "FFmpeg" },
     ],
   },
