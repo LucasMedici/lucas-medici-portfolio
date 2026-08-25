@@ -68,7 +68,7 @@ export const projects: readonly Project[] = [
       ],
     },
   },
-  {
+/*   {
     id: "project-three",
     stack: ["TypeScript", "Node.js"],
     featured: true,
@@ -101,7 +101,7 @@ export const projects: readonly Project[] = [
         "Compartilhe o que você aprendeu no caminho.",
       ],
     },
-  },
+  }, */
   {
     id: "streaming-videos-platform",
     image: "/streamly_home.png",
