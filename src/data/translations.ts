@@ -87,6 +87,7 @@ const translations = {
         completed: "Completed",
         "in-progress": "In progress",
         planned: "Planned",
+        graduated: "Graduated in",
       },
     },
     contact: {
@@ -189,6 +190,7 @@ const translations = {
         completed: "Concluído",
         "in-progress": "Em andamento",
         planned: "Planejado",
+        graduated: "Graduado em",
       },
     },
     contact: {

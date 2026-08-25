@@ -12,7 +12,7 @@ export type LearningKind =
   | "shield"
   | "sparkles";
 
-export type LearningStatus = "in-progress" | "completed" | "planned";
+export type LearningStatus = "in-progress" | "completed" | "planned" | "graduated";
 
 export interface LearningItemLocalized {
   readonly title: string;
@@ -33,7 +33,7 @@ export const learningItems: readonly LearningItem[] = [
   {
     id: "multiplatform-software-development",
     kind: "degree",
-    status: "completed",
+    status: "graduated",
     en: {
       title: "Multiplatform Software Development",
       provider: "FATEC SÃO JOSÉ DOS CAMPOS",
@@ -62,7 +62,7 @@ export const learningItems: readonly LearningItem[] = [
     },
     "pt-br": {
       title: "Design Patterns",
-      provider: "FATEC",
+      provider: "FATEC SÃO JOSÉ DOS CAMPOS",
       period: "240H",
       description:
         "Aprofundamento em arquitetura de software através dos padrões de projeto clássicos e sua aplicação prática.",

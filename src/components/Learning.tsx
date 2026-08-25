@@ -39,6 +39,8 @@ const kindIcon: Record<LearningKind, IconComponent> = {
 };
 
 const statusStyles: Record<LearningStatus, string> = {
+  graduated:
+    "bg-surface-elevated text-foreground border-border-strong",
   completed:
     "bg-surface-elevated text-foreground border-border-strong",
   "in-progress":
@@ -99,13 +101,13 @@ function LearningCard({ item, index }: LearningCardProps) {
           <Icon size={20} />
         </div>
         <div className="flex flex-col gap-2 min-w-0">
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <h3 className="text-base font-semibold text-foreground truncate">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-base font-semibold text-foreground">
               {content.title}
             </h3>
             <span
               className={cn(
-                "inline-flex items-center px-2 py-0.5 rounded-full",
+                "shrink-0 whitespace-nowrap inline-flex items-center px-2 py-0.5 rounded-full mt-0.5",
                 "text-[10px] font-medium uppercase tracking-wider border",
                 statusStyles[item.status],
               )}
