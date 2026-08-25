@@ -68,5 +68,3 @@ This portfolio serves as a central place to present:
 - 📧 lucasrpmedici@gmail.com
 
 ---
-
-⭐ Feel free to explore the code and check out the projects showcased in the portfolio.
