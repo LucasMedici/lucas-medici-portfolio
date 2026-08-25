@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteTitle = `${profile.name} — ${profile.headline}`;
+const siteTitle = `${profile.name}`;
 const siteDescription = profile.summary;
 
 export const metadata: Metadata = {
