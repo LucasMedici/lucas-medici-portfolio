@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
@@ -77,6 +78,7 @@ export default function RootLayout({
     >
       <body className="relative min-h-full bg-background text-foreground font-sans selection:bg-accent-indigo/40">
         {children}
+        <Analytics />
       </body>
     </html>
   );
