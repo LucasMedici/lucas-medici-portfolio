@@ -7,7 +7,9 @@ import type { ComponentType } from "react";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { profile, type SocialLink } from "@/data/profile";
+import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/lib/useLocale";
 
 type IconComponent = ComponentType<{ size?: number; className?: string }>;
 
@@ -40,6 +42,9 @@ const socialTiles: readonly SocialTile[] = [
 ];
 
 export function Contact() {
+  const locale = useLocale();
+  const tr = t(locale).contact;
+
   return (
     <section
       id="contact"
@@ -49,9 +54,9 @@ export function Contact() {
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
           align="center"
-          eyebrow="Contact"
-          title={<span id="contact-title">Let&apos;s build something</span>}
-          description="The fastest ways to reach me. I&apos;m always glad to discuss interesting problems."
+          eyebrow={tr.eyebrow}
+          title={<span id="contact-title">{tr.title}</span>}
+          description={tr.description}
         />
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -100,17 +105,17 @@ export function Contact() {
         >
           <Send size={24} className="text-foreground" aria-hidden />
           <h3 className="text-2xl font-semibold tracking-tight text-foreground">
-            Have a project in mind?
+            {tr.cardTitle}
           </h3>
           <p className="max-w-2xl text-sm md:text-base leading-relaxed text-muted-foreground">
-            Drop me a line at{" "}
+            {tr.cardDescriptionPrefix}
             <a
               href={profile.socials.email.href}
               className="font-medium text-foreground underline underline-offset-4 decoration-accent/60 hover:decoration-accent"
             >
               {profile.email}
-            </a>{" "}
-            and I will get back to you as soon as possible.
+            </a>
+            {tr.cardDescriptionSuffix}
           </p>
           <motion.a
             whileHover={{ y: -2 }}
@@ -125,7 +130,7 @@ export function Contact() {
             )}
           >
             <Mail size={16} aria-hidden />
-            Send an email
+            {tr.sendEmail}
           </motion.a>
         </GlassCard>
       </div>

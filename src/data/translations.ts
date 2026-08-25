@@ -42,7 +42,7 @@ const translations = {
           company: "Nexus GeoEngenharia",
           role: "Lead Developer & Project Manager",
           location: "Brazil",
-          period: "Jun 2024 — Present",
+          period: "2024 — Present",
           summary:
             "I joined the company as an intern and now I lead the development of backend systems " +
             "and web applications, working on API architecture, business rule modeling, " +
@@ -80,12 +80,23 @@ const translations = {
         "Some of the projects I've built to explore ideas, solve problems, and put software into practice.",
     },
     learning: {
-      title: "Learning",
+      eyebrow: "Learning",
+      title: "Continuous Learning",
+      description: "Education and certifications that support my technical skills.",
+      status: {
+        completed: "Completed",
+        "in-progress": "In progress",
+        planned: "Planned",
+      },
     },
     contact: {
-      title: "Contact",
-      subtitle: "Let's connect",
-      description: "Feel free to reach out if you'd like to collaborate or just chat.",
+      eyebrow: "Contact",
+      title: "Let's build something",
+      description: "The fastest ways to reach me. I'm always glad to discuss interesting problems.",
+      cardTitle: "Have a project in mind?",
+      cardDescriptionPrefix: "Drop me a line at ",
+      cardDescriptionSuffix: " and I'll get back to you as soon as possible.",
+      sendEmail: "Send an email",
     },
     footer: {
       rights: "All rights reserved.",
@@ -170,12 +181,24 @@ const translations = {
         "Alguns dos projetos que construí para explorar ideias, resolver problemas e colocar coisas em prática.",
     },
     learning: {
-      title: "Aprendizado",
+      eyebrow: "Aprendizado",
+      title: "Formação e Certificações",
+      description:
+        "Base acadêmica e certificações que sustentam as competências técnicas apresentadas.",
+      status: {
+        completed: "Concluído",
+        "in-progress": "Em andamento",
+        planned: "Planejado",
+      },
     },
     contact: {
-      title: "Contato",
-      subtitle: "Vamos conversar",
-      description: "Fique à vontade para entrar em contato se quiser colaborar ou apenas conversar.",
+      eyebrow: "Contato",
+      title: "Quer construir algo?",
+      description: "As formas mais rápidas de me encontrar. Estou sempre disposto a bater um papo.",
+      cardTitle: "Tem um projeto em mente?",
+      cardDescriptionPrefix: "Me manda uma mensagem em ",
+      cardDescriptionSuffix: " e eu retorno o mais rápido possível.",
+      sendEmail: "Enviar um e-mail",
     },
     footer: {
       rights: "Todos os direitos reservados.",

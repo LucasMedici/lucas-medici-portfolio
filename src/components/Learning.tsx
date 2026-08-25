@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import {
   Award,
   BookOpen,
+  Code,
   GraduationCap,
   Mic,
   PlayCircle,
+  Shield,
+  Sparkles,
 } from "lucide-react";
 import type { ComponentType } from "react";
 
@@ -18,7 +21,9 @@ import {
   type LearningKind,
   type LearningStatus,
 } from "@/data/learning";
+import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/lib/useLocale";
 
 type IconComponent = ComponentType<{ size?: number; className?: string }>;
 
@@ -28,6 +33,9 @@ const kindIcon: Record<LearningKind, IconComponent> = {
   book: BookOpen,
   talk: Mic,
   degree: GraduationCap,
+  code: Code,
+  shield: Shield,
+  sparkles: Sparkles,
 };
 
 const statusStyles: Record<LearningStatus, string> = {
@@ -38,13 +46,10 @@ const statusStyles: Record<LearningStatus, string> = {
   planned: "bg-card text-muted-foreground border-border",
 };
 
-const statusLabel: Record<LearningStatus, string> = {
-  completed: "Completed",
-  "in-progress": "In progress",
-  planned: "Planned",
-};
-
 export function Learning() {
+  const locale = useLocale();
+  const tr = t(locale).learning;
+
   return (
     <section
       id="learning"
@@ -53,9 +58,9 @@ export function Learning() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
-          eyebrow="Learning"
-          title={<span id="learning-title">Always sharpening the saw</span>}
-          description="Books, courses and certifications I&apos;m exploring to keep growing as an engineer."
+          eyebrow={tr.eyebrow}
+          title={<span id="learning-title">{tr.title}</span>}
+          description={tr.description}
         />
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -74,7 +79,11 @@ interface LearningCardProps {
 }
 
 function LearningCard({ item, index }: LearningCardProps) {
+  const locale = useLocale();
+  const tr = t(locale).learning;
+  const content = item[locale] ?? item.en;
   const Icon = kindIcon[item.kind];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -92,7 +101,7 @@ function LearningCard({ item, index }: LearningCardProps) {
         <div className="flex flex-col gap-2 min-w-0">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h3 className="text-base font-semibold text-foreground truncate">
-              {item.title}
+              {content.title}
             </h3>
             <span
               className={cn(
@@ -101,14 +110,14 @@ function LearningCard({ item, index }: LearningCardProps) {
                 statusStyles[item.status],
               )}
             >
-              {statusLabel[item.status]}
+              {tr.status[item.status]}
             </span>
           </div>
           <p className="text-xs text-subtle-foreground font-mono uppercase tracking-widest">
-            {item.provider} · {item.period}
+            {content.provider} · {content.period}
           </p>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            {item.description}
+            {content.description}
           </p>
         </div>
       </GlassCard>
