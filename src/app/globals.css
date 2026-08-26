@@ -120,6 +120,10 @@
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--accent) / 0.6);
   }
+
+  p {
+    text-align: justify;
+  }
 }
 
 /* Respect users who prefer reduced motion. */
