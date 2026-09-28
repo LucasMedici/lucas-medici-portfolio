@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Briefcase, MapPin } from "lucide-react";
 
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -27,7 +27,7 @@ export function ExperienceSection() {
           description={texts.description}
         />
 
-        <ol className="relative mt-14 space-y-10 border-l border-border pl-6 md:pl-10">
+        <ol className="relative mt-10 space-y-6 border-l border-border pl-5 md:mt-14 md:space-y-10 md:pl-10">
           {texts.entries.map((entry, index) => (
             <TimelineEntry key={entry.id} entry={entry} index={index} />
           ))}
@@ -44,7 +44,7 @@ interface TimelineEntryProps {
 
 function TimelineEntry({ entry, index }: TimelineEntryProps) {
   return (
-    <motion.li
+    <m.li
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -54,20 +54,25 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
       <span
         aria-hidden
         className={cn(
-          "absolute -left-[34px] top-2 md:-left-[46px]",
-          "size-4 rounded-full",
+          "absolute -left-[26px] top-2 md:-left-[46px]",
+          "size-3 rounded-full md:size-4",
           "bg-border-strong",
           "ring-4 ring-background",
         )}
       />
-      <GlassCard className="p-6">
+      <GlassCard className="p-4 sm:p-6">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div className="flex items-center gap-2">
-            <Briefcase size={20} className="text-foreground" aria-hidden />
-            <h3 className="text-lg font-semibold text-foreground">
+            <Briefcase
+              size={20}
+              className="hidden shrink-0 text-foreground sm:block"
+              aria-hidden
+            />
+            <h3 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
               {entry.role}{" "}
-              <span className="font-normal text-muted-foreground">
-                · {entry.company}
+              <span className="mt-0.5 block text-sm font-normal text-muted-foreground sm:mt-0 sm:inline sm:text-lg">
+                <span className="hidden sm:inline">· </span>
+                {entry.company}
               </span>
             </h3>
           </div>
@@ -83,12 +88,12 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
           </p>
         ) : null}
 
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:mt-4">
           {entry.summary}
         </p>
 
         {entry.highlights.length > 0 ? (
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+          <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground sm:mt-4 sm:space-y-2">
             {entry.highlights.map((highlight) => (
               <li key={highlight} className="flex gap-2">
                 <span
@@ -102,13 +107,13 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
         ) : null}
 
         {entry.stack.length > 0 ? (
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <ul className="mt-4 flex flex-wrap gap-1.5 sm:mt-5 sm:gap-2">
             {entry.stack.map((tech) => (
               <li
                 key={tech}
                 className={cn(
-                  "rounded-full px-2.5 py-1",
-                  "text-[11px] font-medium font-mono tracking-wide",
+                  "rounded-full px-2 py-0.5 sm:px-2.5 sm:py-1",
+                  "text-[10px] font-medium font-mono tracking-wide sm:text-[11px]",
                   "border border-border bg-card text-muted-foreground",
                 )}
               >
@@ -118,6 +123,6 @@ function TimelineEntry({ entry, index }: TimelineEntryProps) {
           </ul>
         ) : null}
       </GlassCard>
-    </motion.li>
+    </m.li>
   );
 }

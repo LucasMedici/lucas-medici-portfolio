@@ -53,6 +53,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /* Base layer                                                                 */
 /* -------------------------------------------------------------------------- */
@@ -74,6 +88,12 @@
     color: hsl(var(--foreground));
     font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
       "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* Page-wide ambient glow. Lives on its own fixed layer (see layout.tsx)
+     instead of `background-attachment: fixed` on body, which forces
+     repaints on every scroll frame on desktop browsers. */
+  .page-backdrop {
     background-image:
       radial-gradient(
         ellipse 80% 50% at 10% 0%,
@@ -90,7 +110,6 @@
         hsl(var(--accent-purple) / 0.06) 0%,
         transparent 50%
       );
-    background-attachment: fixed;
   }
 
   ::selection {

@@ -1,18 +1,17 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
   Code,
   ExternalLink,
   Github,
   Star,
 } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 
+import CMSSliderPro from "@/components/ui/CMSSliderPro";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects, type Project, type ProjectLink } from "@/data/projects";
@@ -20,12 +19,9 @@ import { cn } from "@/lib/cn";
 import { useLocale } from "@/lib/useLocale";
 import { t } from "@/data/translations";
 
-const SLIDE_PADDING = "pr-4 md:pr-6";
-const SLIDE_GAP_PX = 16;
-
-function usePerView() {
+function useSliderLayout() {
   const [isMobile, setIsMobile] = useState(false);
-  const [perView, setPerView] = useState(1);
+  const [itemsPerView, setItemsPerView] = useState(1);
 
   useEffect(() => {
     const md = window.matchMedia("(min-width: 48rem)");
@@ -33,9 +29,7 @@ function usePerView() {
 
     const update = () => {
       setIsMobile(!md.matches);
-      if (xl.matches) setPerView(2.5);
-      else if (md.matches) setPerView(1.8);
-      else setPerView(1);
+      setItemsPerView(xl.matches ? 3 : md.matches ? 2 : 1);
     };
 
     update();
@@ -47,61 +41,21 @@ function usePerView() {
     };
   }, []);
 
-  return { perView, isMobile };
+  return { isMobile, itemsPerView };
 }
 
 export function Projects() {
   const locale = useLocale();
   const tr = t(locale).projects;
-  const { perView, isMobile } = usePerView();
-  const reducedMotion = useReducedMotion();
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const [viewportWidth, setViewportWidth] = useState(0);
-  const [index, setIndex] = useState(0);
+  const { isMobile, itemsPerView } = useSliderLayout();
 
-  const peek = isMobile ? 0.08 : 0.4;
-  const maxIndex = Math.max(0, projects.length - (isMobile ? 1 : perView));
-
-  useEffect(() => {
-    const el = viewportRef.current;
-    if (!el) return;
-
-    const update = () => setViewportWidth(el.offsetWidth);
-    update();
-
-    const observer = new ResizeObserver(update);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const clampedIndex = Math.min(index, maxIndex);
-
-  const slideWidth =
-    viewportWidth > 0 ? viewportWidth / (perView + peek) : 0;
-  const x = -clampedIndex * slideWidth;
-  const showControls = maxIndex > 0;
-
-  const hasPrev = clampedIndex > 0;
-  const hasNext = clampedIndex < maxIndex;
-
-  const goTo = (target: number) =>
-    setIndex(Math.max(0, Math.min(target, maxIndex)));
-
-  const prev = () => goTo(clampedIndex - 1);
-  const next = () => goTo(clampedIndex + 1);
-
-  const fade = peek * slideWidth + SLIDE_GAP_PX;
-
-  const maskImage =
-    !isMobile && (hasPrev || hasNext)
-      ? `linear-gradient(to right, ${
-          hasPrev
-            ? `transparent 0, black ${fade}px`
-            : "black 0"
-        }, black calc(100% - ${hasNext ? fade : 0}px), ${
-          hasNext ? "transparent 100%)" : "black 100%)"
-        }`
-      : undefined;
+  const cards = (
+    <div className="flex w-full">
+      {projects.map((project, projectIndex) => (
+        <ProjectCard key={project.id} project={project} index={projectIndex} />
+      ))}
+    </div>
+  );
 
   return (
     <section
@@ -116,133 +70,43 @@ export function Projects() {
           description={tr.description}
         />
 
-        <div className="relative mt-12">
-          <div
-            ref={viewportRef}
-            className="overflow-hidden py-4 -my-4 -mx-4 px-4 sm:mx-0 sm:px-0"
-            style={{
-              WebkitMaskImage: maskImage,
-              maskImage,
+        <div className="mt-12">
+          <CMSSliderPro
+            layout={{ items: itemsPerView, gap: isMobile ? 16 : 24 }}
+            playback={{ loop: true }}
+            navigation={{ draggable: true, keyboard: true }}
+            appear={{ type: "None" }}
+            arrows={{
+              show: !isMobile,
+              type: "Split",
+              variant: "Both",
+              size: 44,
+              radius: 999,
+              fill: "var(--color-foreground)",
+              backdrop: "color-mix(in srgb, var(--color-surface) 80%, transparent)",
+              borderColor: "var(--color-border-strong)",
+              inset: -16,
+              shadow: true,
+              shadowColor: "rgba(0,0,0,0.3)",
+              shadowBlur: 15,
             }}
-          >
-            <motion.div
-              className="flex"
-              animate={{ x }}
-              transition={
-                reducedMotion
-                  ? { duration: 0 }
-                  : { type: "spring", stiffness: 300, damping: 34 }
-              }
-              drag={reducedMotion ? false : "x"}
-              dragConstraints={{ left: -maxIndex * slideWidth, right: 0 }}
-              dragElastic={0.05}
-              onDragEnd={(_, info) => {
-                const threshold = Math.max(48, slideWidth * 0.15);
-                if (info.offset.x <= -threshold) next();
-                else if (info.offset.x >= threshold) prev();
-              }}
-              style={{ touchAction: "pan-y" }}
-            >
-              {projects.map((project, projectIndex) => {
-                const inWindow =
-                  projectIndex >= clampedIndex &&
-                  projectIndex <= clampedIndex + perView;
-
-                return (
-                  <div
-                    key={project.id}
-                    className={cn(
-                      "min-w-0 shrink-0",
-                      projectIndex < projects.length - 1 && SLIDE_PADDING,
-                    )}
-                    style={{ width: slideWidth }}
-                    inert={inWindow ? undefined : true}
-                  >
-                    <ProjectCard project={project} index={projectIndex} />
-                  </div>
-                );
-              })}
-            </motion.div>
-          </div>
-
-          {showControls ? (
-            <>
-              <CarouselButton
-                onClick={prev}
-                disabled={!hasPrev}
-                label="Previous projects"
-                className="hidden md:inline-flex absolute -left-4 top-1/2 -translate-y-1/2"
-              >
-                <ChevronLeft size={20} aria-hidden />
-              </CarouselButton>
-
-              <CarouselButton
-                onClick={next}
-                disabled={!hasNext}
-                label="Next projects"
-                className="hidden md:inline-flex absolute -right-4 top-1/2 -translate-y-1/2"
-              >
-                <ChevronRight size={20} aria-hidden />
-              </CarouselButton>
-
-              {/* Mobile pagination indicators */}
-              <div className="flex md:hidden items-center justify-center gap-2 mt-6">
-                {projects.map((project, idx) => (
-                  <button
-                    key={project.id}
-                    type="button"
-                    onClick={() => goTo(idx)}
-                    aria-label={`Go to project ${idx + 1}`}
-                    className={cn(
-                      "h-1.5 rounded-full transition-all duration-300",
-                      clampedIndex === idx
-                        ? "w-6 bg-accent"
-                        : "w-1.5 bg-muted-foreground/30",
-                    )}
-                  />
-                ))}
-              </div>
-            </>
-          ) : null}
+            dots={{
+              type: isMobile ? "Dots" : "None",
+              alignment: "Bottom Center",
+              size: 6,
+              gap: 8,
+              activeFill: "var(--color-accent)",
+              fill: "color-mix(in srgb, var(--color-muted-foreground) 30%, transparent)",
+              opacity: 1,
+              backdrop: "transparent",
+              blur: 0,
+              inset: 24,
+            }}
+            content={cards}
+          />
         </div>
       </div>
     </section>
-  );
-}
-
-interface CarouselButtonProps {
-  readonly onClick: () => void;
-  readonly disabled: boolean;
-  readonly label: string;
-  readonly className?: string;
-  readonly children: ReactNode;
-}
-
-function CarouselButton({
-  onClick,
-  disabled,
-  label,
-  className,
-  children,
-}: CarouselButtonProps) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={label}
-      className={cn(
-        "inline-flex size-11 items-center justify-center rounded-full",
-        "border border-border-strong bg-surface/80 text-foreground",
-        "backdrop-blur-md shadow-lg shadow-black/30",
-        "transition-all duration-200",
-        "hover:border-accent/50 hover:bg-surface-elevated hover:text-accent",
-        "disabled:pointer-events-none disabled:opacity-35",
-        className,
-      )}
-    >
-      {children}
-    </button>
   );
 }
 
@@ -257,7 +121,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   const isPt = locale === "pt-br";
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -273,7 +137,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               alt={`${content.name} preview`}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30">
@@ -339,7 +203,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           ) : null}
         </div>
       </GlassCard>
-    </motion.div>
+    </m.div>
   );
 }
 

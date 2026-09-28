@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { m, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
@@ -24,7 +24,7 @@ export function GlassCard({
   ...rest
 }: GlassCardProps) {
   return (
-    <motion.div
+    <m.div
       whileHover={
         interactive
           ? { y: -4 }
@@ -33,7 +33,7 @@ export function GlassCard({
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={cn(
         "relative rounded-2xl",
-        "bg-card backdrop-blur-md",
+        "bg-card",
         "border border-border",
         "shadow-xl shadow-black/20",
         "transition-colors duration-300",
@@ -43,6 +43,6 @@ export function GlassCard({
       {...rest}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

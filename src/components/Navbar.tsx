@@ -1,34 +1,26 @@
 "use client";
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { m, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { profile } from "@/data/profile";
 import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
-import { useLocale } from "@/lib/useLocale";
+import { useLocale, type Locale } from "@/lib/useLocale";
 
 const navHrefs = ["#about", "#experience", "#projects", "#learning", "#skills", "#contact"] as const;
 
-type Locale = "en" | "pt-br";
-
 function LanguageToggle() {
-  const [locale, setLocale] = useState<Locale>("en");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("locale") as Locale | null;
-    if (saved) setLocale(saved);
-  }, []);
+  const locale = useLocale();
 
   const switchTo = (l: Locale) => {
-    setLocale(l);
     localStorage.setItem("locale", l);
     window.dispatchEvent(new CustomEvent("locale-change", { detail: l }));
   };
 
   return (
-    <div className="inline-flex items-center rounded-full border border-border bg-card backdrop-blur-md overflow-hidden">
+    <div className="inline-flex items-center rounded-full border border-border bg-card overflow-hidden">
       <button
         type="button"
         onClick={() => switchTo("en")}
@@ -76,7 +68,7 @@ export function Navbar() {
   const closeMobile = (): void => setMobileOpen(false);
 
   return (
-    <motion.header
+    <m.header
       initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -131,7 +123,7 @@ export function Navbar() {
             className={cn(
               "inline-flex items-center justify-center",
               "size-10 rounded-full",
-              "bg-card backdrop-blur-md border border-border",
+              "bg-card border border-border",
               "text-foreground",
             )}
           >
@@ -141,7 +133,7 @@ export function Navbar() {
       </nav>
 
       {mobileOpen ? (
-        <motion.div
+        <m.div
           id="mobile-nav"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -161,8 +153,8 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </m.div>
       ) : null}
-    </motion.header>
+    </m.header>
   );
 }

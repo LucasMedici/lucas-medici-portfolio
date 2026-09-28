@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ArrowRight,
   Github,
@@ -46,26 +46,26 @@ export function Hero() {
       className="relative isolate overflow-hidden"
     >
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-6 pt-24 pb-16 sm:gap-10 md:grid-cols-12 md:gap-12 md:pt-40 md:pb-28 items-center">
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="order-2 flex w-full flex-col gap-6 md:order-1 md:col-span-7 md:gap-8"
         >
-          <motion.span
+          <m.span
             variants={itemVariants}
             className={cn(
               "inline-flex items-center gap-2 self-start px-3 py-1 rounded-full",
               "text-xs font-medium tracking-widest uppercase",
-              "bg-card backdrop-blur-md border border-border",
+              "bg-card border border-border",
               "text-muted-foreground",
             )}
           >
             <Sparkles size={14} className="text-muted-foreground" />
             {texts.availability}
-          </motion.span>
+          </m.span>
 
-          <motion.h1
+          <m.h1
             id="hero-title"
             variants={itemVariants}
             className="text-[1.75rem] leading-[1.15] font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl md:leading-[1.1]"
@@ -80,20 +80,20 @@ export function Hero() {
               </span>
               <span className="hidden md:inline">{texts.tagline}</span>
             </span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             variants={itemVariants}
             className="max-w-2xl text-[0.9375rem] leading-relaxed text-muted-foreground sm:text-base md:text-lg"
           >
             {texts.summary}
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
-            <motion.a
+            <m.a
               whileTap={{ scale: 0.95 }}
               whileHover={{ y: -2 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -107,8 +107,8 @@ export function Hero() {
             >
               {texts.viewProjects}
               <ArrowRight size={16} />
-            </motion.a>
-            <motion.a
+            </m.a>
+            <m.a
               whileTap={{ scale: 0.95 }}
               whileHover={{ y: -2 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -116,15 +116,15 @@ export function Hero() {
               className={cn(
                 "inline-flex w-full items-center justify-center gap-2 px-5 py-3 rounded-full sm:w-auto sm:py-2.5",
                 "text-sm font-medium text-foreground",
-                "bg-card backdrop-blur-md border border-border",
+                "bg-card border border-border",
                 "hover:border-accent/50 transition-colors duration-300",
               )}
             >
               {texts.contactMe}
-            </motion.a>
-          </motion.div>
+            </m.a>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="grid grid-cols-1 gap-3 text-sm text-muted-foreground min-[420px]:grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3"
           >
@@ -157,21 +157,28 @@ export function Hero() {
               <Mail size={16} className="shrink-0" aria-hidden />
               <span className="truncate">{profile.socials.email.handle}</span>
             </a>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           className="relative order-1 flex w-full justify-center md:order-2 md:col-span-5 md:justify-end"
         >
           {/* Decorative Glow */}
-          <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent-indigo/20 via-accent/10 to-accent-teal/20 blur-2xl transition duration-1000" />
+          <div
+            aria-hidden
+            className="absolute -inset-12"
+            style={{
+              background:
+                "radial-gradient(closest-side at 35% 35%, hsl(var(--accent-indigo) / 0.2), transparent), radial-gradient(closest-side at 65% 65%, hsl(var(--accent-teal) / 0.2), transparent)",
+            }}
+          />
           
           {/* Glassmorphic Image Frame */}
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-2.5 backdrop-blur-md shadow-2xl sm:p-3">
-            <motion.div
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-2.5 shadow-2xl sm:p-3">
+            <m.div
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="relative aspect-square h-44 w-44 overflow-hidden rounded-2xl bg-muted sm:h-64 sm:w-64 md:h-80 md:w-80"
@@ -184,9 +191,9 @@ export function Hero() {
                 className="object-cover transition-all duration-500"
                 sizes="(max-width: 640px) 176px, (max-width: 768px) 256px, 320px"
               />
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
