@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FaJava } from "react-icons/fa";
 import {
   SiTypescript,
@@ -97,7 +97,7 @@ export function Skills() {
             </h3>
             <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3">
               {group.items.map((skill) => (
-                <motion.div
+                <m.div
                   key={skill.name}
                   variants={{
                     hidden: { opacity: 0, scale: 0.9 },
@@ -107,7 +107,7 @@ export function Skills() {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className={cn(
                     "flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-xl",
-                    "border border-border bg-card/50 backdrop-blur-md",
+                    "border border-border bg-card/50",
                     "cursor-default transition-colors duration-200",
                     "hover:border-accent/40 hover:bg-surface-elevated/80",
                   )}
@@ -121,7 +121,7 @@ export function Skills() {
                   <span className="text-[11px] font-medium text-foreground text-center leading-tight">
                     {skill.name}
                   </span>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>

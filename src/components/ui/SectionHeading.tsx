@@ -37,7 +37,7 @@ export function SectionHeading({
         className={cn(
           "inline-flex items-center gap-2 px-3 py-1 rounded-full",
           "text-xs font-medium tracking-widest uppercase",
-          "bg-card backdrop-blur-md border border-border",
+          "bg-card border border-border",
           "text-muted-foreground",
         )}
       >

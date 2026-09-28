@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import { cn } from "@/lib/cn";
 
@@ -193,13 +193,14 @@ function GamepadIcon({ className }: { className?: string }) {
 interface HobbyCardProps {
   readonly children: React.ReactNode;
   readonly className?: string;
-  readonly accentClass: string;
+  /** CSS custom property holding the glow's HSL triplet, e.g. `--accent-teal`. */
+  readonly accentVar: string;
   readonly delay?: number;
 }
 
-function HobbyCard({ children, className, accentClass, delay = 0 }: HobbyCardProps) {
+function HobbyCard({ children, className, accentVar, delay = 0 }: HobbyCardProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -208,27 +209,21 @@ function HobbyCard({ children, className, accentClass, delay = 0 }: HobbyCardPro
     >
       <div
         aria-hidden
-        className={cn(
-          "absolute -inset-4 rounded-3xl blur-2xl opacity-30",
-          accentClass,
-        )}
-      />
-      <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay,
+        className="absolute -inset-10"
+        style={{
+          background: `radial-gradient(closest-side, hsl(var(${accentVar}) / 0.1), transparent)`,
         }}
+      />
+      <div
         className={cn(
           "relative flex items-center justify-center rounded-2xl border border-border",
-          "bg-card/40 p-8 backdrop-blur-md shadow-xl",
+          "bg-card/90 p-8 shadow-xl animate-float",
         )}
+        style={{ animationDelay: `${delay}s` }}
       >
         {children}
-      </motion.div>
-    </motion.div>
+      </div>
+    </m.div>
   );
 }
 
@@ -238,10 +233,8 @@ export function AboutHobbiesVisual() {
       aria-hidden
       className="relative mx-auto flex h-full w-full max-w-sm items-center justify-center lg:max-w-none"
     >
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-teal/10 via-accent-purple/5 to-accent-indigo/10 blur-3xl" />
-
       <HobbyCard
-        accentClass="bg-accent-purple/20"
+        accentVar="--accent-purple"
         className="absolute left-1/2 top-[42%] z-10 -translate-x-1/2 -translate-y-1/2 rotate-12"
         delay={0.05}
       >
@@ -249,7 +242,7 @@ export function AboutHobbiesVisual() {
       </HobbyCard>
 
       <HobbyCard
-        accentClass="bg-accent-teal/20"
+        accentVar="--accent-teal"
         className="absolute right-0 top-0 rotate-6 md:right-2"
         delay={0.15}
       >
@@ -257,7 +250,7 @@ export function AboutHobbiesVisual() {
       </HobbyCard>
 
       <HobbyCard
-        accentClass="bg-accent-indigo/20"
+        accentVar="--accent-indigo"
         className="absolute bottom-0 left-0 -rotate-6 md:bottom-2 md:left-0"
         delay={0.3}
       >

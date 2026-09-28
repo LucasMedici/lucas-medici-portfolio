@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { MotionProvider } from "@/components/MotionProvider";
 import { profile } from "@/data/profile";
 
 import "./globals.css";
@@ -77,7 +78,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="relative min-h-full bg-background text-foreground font-sans selection:bg-accent-indigo/40">
-        {children}
+        <div
+          aria-hidden
+          className="page-backdrop pointer-events-none fixed inset-0 -z-10"
+        />
+        <MotionProvider>{children}</MotionProvider>
         <Analytics />
       </body>
     </html>

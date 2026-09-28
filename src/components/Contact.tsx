@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import type { ComponentType } from "react";
 
@@ -63,7 +63,7 @@ export function Contact() {
           {socialTiles.map((tile) => {
             const Icon = tile.icon;
             return (
-              <motion.a
+              <m.a
                 key={tile.key}
                 href={tile.link.href}
                 target={tile.external ? "_blank" : undefined}
@@ -73,7 +73,7 @@ export function Contact() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className={cn(
                   "group block rounded-2xl",
-                  "bg-card backdrop-blur-md border border-border",
+                  "bg-card border border-border",
                   "shadow-xl shadow-black/20",
                   "transition-colors duration-300 hover:border-accent/40",
                 )}
@@ -94,7 +94,7 @@ export function Contact() {
                     </span>
                   </div>
                 </div>
-              </motion.a>
+              </m.a>
             );
           })}
         </div>
@@ -117,7 +117,7 @@ export function Contact() {
             </a>
             {tr.cardDescriptionSuffix}
           </p>
-          <motion.a
+          <m.a
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -131,7 +131,7 @@ export function Contact() {
           >
             <Mail size={16} aria-hidden />
             {tr.sendEmail}
-          </motion.a>
+          </m.a>
         </GlassCard>
       </div>
     </section>
