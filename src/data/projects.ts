@@ -34,13 +34,8 @@ export const projects: readonly Project[] = [
     links: [
       {
         type: "repo",
-        label: "App",
-        href: "https://github.com/LucasMedici/finance-assistent-frontend",
-      },
-      {
-        type: "repo",
-        label: "Backend",
-        href: "https://github.com/LucasMedici/finance-assistent-backend",
+        label: "Source",
+        href: "https://github.com/LucasMedici/jorge-finance-assistant",
       },
     ],
     en: {
