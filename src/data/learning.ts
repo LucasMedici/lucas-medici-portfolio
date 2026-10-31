@@ -36,15 +36,15 @@ export const learningItems: readonly LearningItem[] = [
     status: "graduated",
     en: {
       title: "Multiplatform Software Development",
-      provider: "FATEC SÃO JOSÉ DOS CAMPOS",
-      period: "2022 – 2024",
+      provider: "FATEC São José dos Campos",
+      period: "2022 — 2024",
       description:
         "Foundations in software engineering, databases, mobile and web development, and systems architecture.",
     },
     "pt-br": {
       title: "Desenvolvimento de Software Multiplataforma",
-      provider: "FATEC SÃO JOSÉ DOS CAMPOS",
-      period: "2022 – 2024",
+      provider: "FATEC São José dos Campos",
+      period: "2022 — 2024",
       description:
         "Fundamentos em engenharia de software, bancos de dados, desenvolvimento mobile e web, e arquitetura de sistemas.",
     },
@@ -55,15 +55,15 @@ export const learningItems: readonly LearningItem[] = [
     status: "completed",
     en: {
       title: "Design Patterns",
-      provider: "FATEC SÃO JOSÉ DOS CAMPOS",
-      period: "240H",
+      provider: "FATEC São José dos Campos",
+      period: "240h",
       description:
         "Deepening my understanding of software architecture through classic design patterns and their practical application.",
     },
     "pt-br": {
       title: "Design Patterns",
-      provider: "FATEC SÃO JOSÉ DOS CAMPOS",
-      period: "240H",
+      provider: "FATEC São José dos Campos",
+      period: "240h",
       description:
         "Aprofundamento em arquitetura de software através dos padrões de projeto clássicos e sua aplicação prática.",
     },
@@ -74,15 +74,15 @@ export const learningItems: readonly LearningItem[] = [
     status: "completed",
     en: {
       title: "CyberSecurity",
-      provider: "PIT — PARQUE DE INOVAÇÃO TECNOLÓGICA DE SJC",
-      period: "58H",
+      provider: "PIT — Parque de Inovação Tecnológica de SJC",
+      period: "58h",
       description:
         "Core principles of cybersecurity applied to infrastructure and IoT systems I work with daily.",
     },
     "pt-br": {
       title: "CyberSecurity",
-      provider: "PIT — PARQUE DE INOVAÇÃO TECNOLÓGICA DE SJC",
-      period: "58H",
+      provider: "PIT — Parque de Inovação Tecnológica de SJC",
+      period: "58h",
       description:
         "Princípios fundamentais de segurança cibernética aplicados à infraestrutura e sistemas IoT com os quais trabalho no dia a dia.",
     },
@@ -93,15 +93,15 @@ export const learningItems: readonly LearningItem[] = [
     status: "completed",
     en: {
       title: "AI Integration with APIs",
-      provider: "ROCKETSEAT",
-      period: "6H",
+      provider: "Rocketseat",
+      period: "6h",
       description:
         "Practical patterns for integrating LLMs and AI capabilities into API-driven applications.",
     },
     "pt-br": {
       title: "IA na Integração com APIs",
-      provider: "ROCKETSEAT",
-      period: "6H",
+      provider: "Rocketseat",
+      period: "6h",
       description:
         "Padrões práticos para integração de LLMs e capacidades de IA em aplicações orientadas por APIs.",
     },

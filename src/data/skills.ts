@@ -1,8 +1,11 @@
 /**
  * Technical skills grouped by category.
  *
- * Each skill renders in groups with small subtitles in the Skills section.
+ * Group labels are localized in `translations.ts`. Brand names stay the same
+ * in every language; generic items carry a per-locale name.
  */
+
+import type { Locale } from "@/lib/useLocale";
 
 export type SkillCategory =
   | "LANGUAGES"
@@ -14,86 +17,84 @@ export type SkillCategory =
   | "MESSAGING & MEDIA PROCESSING";
 
 export interface Skill {
-  readonly name: string;
+  /** Stable identifier, also used to look up the icon. */
+  readonly id: string;
+  readonly name: string | Readonly<Record<Locale, string>>;
 }
 
 export interface SkillGroup {
   readonly category: SkillCategory;
-  readonly description: string;
   readonly items: readonly Skill[];
+}
+
+export function skillName(skill: Skill, locale: Locale): string {
+  return typeof skill.name === "string" ? skill.name : skill.name[locale];
 }
 
 export const skillGroups: readonly SkillGroup[] = [
   {
     category: "LANGUAGES",
-    description: "Core programming languages",
     items: [
-      { name: "Java" },
-      { name: "TypeScript" },
-      { name: "JavaScript" },
-      { name: "Python" },
-      { name: "SQL" },
+      { id: "java", name: "Java" },
+      { id: "typescript", name: "TypeScript" },
+      { id: "javascript", name: "JavaScript" },
+      { id: "python", name: "Python" },
+      { id: "sql", name: "SQL" },
     ],
   },
   {
     category: "BACKEND & APIs",
-    description: "Frameworks, server-side development and API design",
     items: [
-      { name: "Spring Boot" },
-      { name: "Node.js" },
-      { name: "Express" },
-      { name: "NestJS" },
-      { name: "Swagger / OpenAPI" },
+      { id: "spring-boot", name: "Spring Boot" },
+      { id: "nodejs", name: "Node.js" },
+      { id: "nestjs", name: "NestJS" },
+      { id: "express", name: "Express" },
+      { id: "swagger", name: "Swagger" },
     ],
   },
   {
     category: "FRONTEND & MOBILE",
-    description: "Interfaces, web and mobile development",
     items: [
-      { name: "React" },
-      { name: "Next.js" },
-      { name: "React Native" },
-      { name: "Tailwind CSS" },
+      { id: "react", name: "React" },
+      { id: "nextjs", name: "Next.js" },
+      { id: "react-native", name: "React Native" },
+      { id: "tailwind", name: "Tailwind" },
     ],
   },
   {
     category: "DATABASES & ORM",
-    description: "Data persistence, databases and ORMs",
     items: [
-      { name: "PostgreSQL" },
-      { name: "MySQL" },
-      { name: "MongoDB" },
-      { name: "Prisma" },
-      { name: "JPA / Hibernate" },
+      { id: "postgresql", name: "PostgreSQL" },
+      { id: "mysql", name: "MySQL" },
+      { id: "mongodb", name: "MongoDB" },
+      { id: "prisma", name: "Prisma" },
+      { id: "hibernate", name: "Hibernate" },
     ],
   },
   {
     category: "AI & MACHINE LEARNING",
-    description: "Artificial intelligence and computer vision",
     items: [
-      { name: "LLM APIs" },
-      { name: "AI Agents" },
-      { name: "YOLO" },
+      { id: "llm-apis", name: { en: "LLM APIs", "pt-br": "APIs de LLM" } },
+      { id: "ai-agents", name: { en: "AI agents", "pt-br": "Agentes" } },
+      { id: "yolo", name: "YOLO" },
     ],
   },
   {
     category: "CLOUD & INFRASTRUCTURE",
-    description: "Cloud platforms, containerization and tooling",
     items: [
-      { name: "AWS" },
-      { name: "Docker" },
-      { name: "Linux" },
-      { name: "Supabase" },
-      { name: "Vercel" },
-      { name: "GitHub Actions" },
+      { id: "aws", name: "AWS" },
+      { id: "docker", name: "Docker" },
+      { id: "linux", name: "Linux" },
+      { id: "supabase", name: "Supabase" },
+      { id: "vercel", name: "Vercel" },
+      { id: "github-actions", name: "GitHub Actions" },
     ],
   },
   {
     category: "MESSAGING & MEDIA PROCESSING",
-    description: "Message brokers and media processing",
     items: [
-      { name: "RabbitMQ" },
-      { name: "FFmpeg" },
+      { id: "rabbitmq", name: "RabbitMQ" },
+      { id: "ffmpeg", name: "FFmpeg" },
     ],
   },
 ];

@@ -1,168 +1,197 @@
 "use client";
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 import { profile } from "@/data/profile";
 import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
-import { useLocale } from "@/lib/useLocale";
+import { type Locale, setLocale, useLocale } from "@/lib/useLocale";
+import { setTheme, useTheme } from "@/lib/useTheme";
 
-const navHrefs = ["#about", "#experience", "#projects", "#learning", "#skills", "#contact"] as const;
+const navHrefs = [
+  "#experience",
+  "#projects",
+  "#learning",
+  "#skills",
+  "#about",
+  "#contact",
+] as const;
 
-type Locale = "en" | "pt-br";
+/** Language names stay in their own language, whatever the current locale. */
+const languages: readonly {
+  readonly locale: Locale;
+  readonly short: string;
+  readonly name: string;
+  readonly htmlLang: string;
+}[] = [
+  { locale: "pt-br", short: "PT", name: "Português", htmlLang: "pt-BR" },
+  { locale: "en", short: "EN", name: "English", htmlLang: "en" },
+];
 
-function LanguageToggle() {
-  const [locale, setLocale] = useState<Locale>("en");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("locale") as Locale | null;
-    if (saved) setLocale(saved);
-  }, []);
-
-  const switchTo = (l: Locale) => {
-    setLocale(l);
-    localStorage.setItem("locale", l);
-    window.dispatchEvent(new CustomEvent("locale-change", { detail: l }));
-  };
-
+function LanguageSwitch({ locale, label }: { readonly locale: Locale; readonly label: string }) {
   return (
-    <div className="inline-flex items-center rounded-full border border-border bg-card backdrop-blur-md overflow-hidden">
-      <button
-        type="button"
-        onClick={() => switchTo("en")}
-        className={cn(
-          "px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all duration-200",
-          locale === "en"
-            ? "bg-accent/15 text-foreground"
-            : "text-muted-foreground hover:text-foreground",
-        )}
-      >
-        EN
-      </button>
-      <span className="w-px h-4 bg-border" />
-      <button
-        type="button"
-        onClick={() => switchTo("pt-br")}
-        className={cn(
-          "px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all duration-200",
-          locale === "pt-br"
-            ? "bg-accent/15 text-foreground"
-            : "text-muted-foreground hover:text-foreground",
-        )}
-      >
-        PT
-      </button>
+    <div
+      role="group"
+      aria-label={label}
+      className="inline-flex items-center rounded-full border border-chip p-0.5"
+    >
+      {languages.map((language) => {
+        const active = language.locale === locale;
+
+        return (
+          <button
+            key={language.locale}
+            type="button"
+            lang={language.htmlLang}
+            aria-label={language.name}
+            aria-pressed={active}
+            onClick={() => setLocale(language.locale)}
+            className={cn(
+              "inline-flex h-10 min-w-10 items-center justify-center rounded-full px-2.5 font-mono text-xs md:h-8 md:min-w-8",
+              "transition-colors",
+              active
+                ? "bg-foreground text-background"
+                : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            {language.short}
+          </button>
+        );
+      })}
     </div>
   );
 }
 
-export function Navbar() {
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-  const { scrollY } = useScroll();
-  const locale = useLocale();
-  const labels = t(locale).nav;
-  const navItems = navHrefs.map((href) => ({
-    href,
-    label: labels[href.slice(1) as keyof typeof labels],
-  }));
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 24);
-  });
-
-  const closeMobile = (): void => setMobileOpen(false);
+function ThemeToggle({ toDark, toLight }: { readonly toDark: string; readonly toLight: string }) {
+  const theme = useTheme();
+  const isDark = theme === "dark";
 
   return (
-    <motion.header
-      initial={{ y: -32, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+    <button
+      type="button"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={isDark ? toLight : toDark}
       className={cn(
-        "fixed inset-x-0 top-0 z-50",
-        "transition-all duration-300",
-        scrolled
-          ? "border-b border-border bg-background/70 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent",
+        "group/theme inline-flex size-11 items-center justify-center rounded-full border border-chip md:size-9",
+        "text-muted-foreground transition-colors hover:text-foreground",
       )}
     >
-      <nav
-        aria-label="Primary"
-        className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6"
-      >
-        <a
-          href="#top"
-          className="text-2xl font-bold tracking-tight text-foreground"
-        >
+      {isDark ? (
+        <Sun
+          size={18}
+          aria-hidden
+          className="transition-transform duration-500 ease-soft group-hover/theme:rotate-45"
+        />
+      ) : (
+        <Moon
+          size={18}
+          aria-hidden
+          className="transition-transform duration-500 ease-soft group-hover/theme:-rotate-12"
+        />
+      )}
+    </button>
+  );
+}
+
+function subscribeToScroll(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  return () => window.removeEventListener("scroll", onChange);
+}
+
+export function Navbar() {
+  const locale = useLocale();
+  const texts = t(locale);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const scrolled = useSyncExternalStore(
+    subscribeToScroll,
+    () => window.scrollY > 8,
+    () => false,
+  );
+  const navItems = navHrefs.map((href) => ({
+    href,
+    label: texts.nav[href.slice(1) as keyof typeof texts.nav],
+  }));
+
+  useEffect(() => {
+    document.documentElement.lang = locale === "pt-br" ? "pt-BR" : "en";
+  }, [locale]);
+
+  const closeMenu = (): void => setMenuOpen(false);
+
+  return (
+    // Sticky with a solid background (no blur). It keeps a constant height so
+    // the page never jumps; only the bottom hairline appears once scrolled.
+    <header
+      className={cn(
+        "sticky top-0 z-40 -mx-5 border-b bg-background px-5 transition-colors duration-300",
+        scrolled || menuOpen ? "border-rule" : "border-transparent",
+      )}
+    >
+      <div className="mx-auto flex h-16 max-w-[720px] items-center justify-between gap-4">
+        <a href="#top" className="font-semibold">
           {profile.name}
         </a>
 
-        <ul className="hidden md:flex items-center gap-8">
-          {navItems.map((link) => (
-            <li key={link.href}>
+        <div className="flex items-center gap-2 md:gap-4">
+          <nav
+            aria-label={texts.menu.label}
+            className="hidden items-center gap-4 text-sm md:flex"
+          >
+            {navItems.map((link) => (
               <a
+                key={link.href}
                 href={link.href}
-                className={cn(
-                  "text-sm font-medium text-muted-foreground",
-                  "transition-colors duration-200",
-                  "hover:text-foreground",
-                )}
+                className="text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
               </a>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </nav>
 
-        <div className="hidden md:flex items-center">
-          <LanguageToggle />
-        </div>
+          <span aria-hidden className="hidden h-5 w-px bg-rule md:block" />
 
-        <div className="flex md:hidden items-center gap-2">
-          <LanguageToggle />
+          <LanguageSwitch locale={locale} label={texts.language.groupLabel} />
+          <ThemeToggle toDark={texts.theme.toDark} toLight={texts.theme.toLight} />
+
           <button
             type="button"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
+            aria-label={texts.menu.label}
+            aria-expanded={menuOpen}
             aria-controls="mobile-nav"
-            onClick={() => setMobileOpen((prev) => !prev)}
-            className={cn(
-              "inline-flex items-center justify-center",
-              "size-10 rounded-full",
-              "bg-card backdrop-blur-md border border-border",
-              "text-foreground",
-            )}
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="inline-flex size-11 items-center justify-center rounded-full border border-chip text-foreground md:hidden"
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            {menuOpen ? (
+              <X size={20} aria-hidden />
+            ) : (
+              <Menu size={20} aria-hidden />
+            )}
           </button>
         </div>
-      </nav>
+      </div>
 
-      {mobileOpen ? (
-        <motion.div
+      {menuOpen ? (
+        <nav
           id="mobile-nav"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-          className="md:hidden border-t border-border bg-background/90 backdrop-blur-xl"
+          aria-label={texts.menu.label}
+          className="mx-auto flex max-h-[calc(100dvh-4rem)] max-w-[720px] flex-col overflow-y-auto border-t border-rule pb-4 md:hidden"
         >
-          <ul className="flex flex-col px-6 py-4 gap-3">
-            {navItems.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={closeMobile}
-                  className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {navItems.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={closeMenu}
+              className="flex min-h-[52px] items-center justify-between border-b border-rule text-lg"
+            >
+              {link.label}
+              <span aria-hidden className="text-muted-foreground">
+                →
+              </span>
+            </a>
+          ))}
+        </nav>
       ) : null}
-    </motion.header>
+    </header>
   );
 }

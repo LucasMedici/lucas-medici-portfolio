@@ -1,139 +1,65 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
-import type { ComponentType } from "react";
-
-import { GlassCard } from "@/components/ui/GlassCard";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { profile, type SocialLink } from "@/data/profile";
+import { Arrow } from "@/components/ui/Arrow";
+import { Section } from "@/components/ui/Section";
+import { profile } from "@/data/profile";
 import { t } from "@/data/translations";
-import { cn } from "@/lib/cn";
+import { externalLinkProps, inlineLink } from "@/lib/styles";
 import { useLocale } from "@/lib/useLocale";
-
-type IconComponent = ComponentType<{ size?: number; className?: string }>;
-
-interface SocialTile {
-  readonly key: keyof typeof profile.socials;
-  readonly link: SocialLink;
-  readonly icon: IconComponent;
-  readonly external: boolean;
-}
-
-const socialTiles: readonly SocialTile[] = [
-  {
-    key: "email",
-    link: profile.socials.email,
-    icon: Mail,
-    external: false,
-  },
-  {
-    key: "linkedin",
-    link: profile.socials.linkedin,
-    icon: Linkedin,
-    external: true,
-  },
-  {
-    key: "github",
-    link: profile.socials.github,
-    icon: Github,
-    external: true,
-  },
-];
 
 export function Contact() {
   const locale = useLocale();
-  const tr = t(locale).contact;
+  const texts = t(locale).contact;
+  const { email, linkedin, github } = profile.socials;
+
+  const channels = [
+    { label: texts.emailLabel, link: email, external: false },
+    { label: linkedin.label, link: linkedin, external: true },
+    { label: github.label, link: github, external: true },
+  ];
 
   return (
-    <section
+    <Section
       id="contact"
-      aria-labelledby="contact-title"
-      className="relative scroll-mt-24 px-6 py-20 md:py-28"
+      title={texts.title}
+      description={texts.description}
+      className="gap-7 pb-8"
     >
-      <div className="mx-auto w-full max-w-6xl">
-        <SectionHeading
-          align="center"
-          eyebrow={tr.eyebrow}
-          title={<span id="contact-title">{tr.title}</span>}
-          description={tr.description}
-        />
-
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {socialTiles.map((tile) => {
-            const Icon = tile.icon;
-            return (
-              <motion.a
-                key={tile.key}
-                href={tile.link.href}
-                target={tile.external ? "_blank" : undefined}
-                rel={tile.external ? "noopener noreferrer" : undefined}
-                whileHover={{ y: -6, scale: 1.01 }}
-                whileTap={{ scale: 0.99 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className={cn(
-                  "group block rounded-2xl",
-                  "bg-card backdrop-blur-md border border-border",
-                  "shadow-xl shadow-black/20",
-                  "transition-colors duration-300 hover:border-accent/40",
-                )}
-              >
-                <div className="p-6 flex items-center gap-4">
-                  <div
-                    className="size-11 inline-flex items-center justify-center rounded-xl bg-surface-elevated text-foreground border border-border"
-                    aria-hidden
-                  >
-                    <Icon size={20} />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-mono uppercase tracking-widest text-subtle-foreground">
-                      {tile.link.label}
-                    </span>
-                    <span className="text-sm font-medium text-foreground group-hover:text-foreground transition-colors duration-200">
-                      {tile.link.handle}
-                    </span>
-                  </div>
-                </div>
-              </motion.a>
-            );
-          })}
-        </div>
-
-        <GlassCard
-          interactive={false}
-          className="mt-10 p-8 md:p-10 flex flex-col items-center text-center gap-5"
-        >
-          <Send size={24} className="text-foreground" aria-hidden />
-          <h3 className="text-2xl font-semibold tracking-tight text-foreground">
-            {tr.cardTitle}
-          </h3>
-          <p className="max-w-2xl text-sm md:text-base leading-relaxed text-muted-foreground">
-            {tr.cardDescriptionPrefix}
-            <a
-              href={profile.socials.email.href}
-              className="font-medium text-foreground underline underline-offset-4 decoration-accent/60 hover:decoration-accent"
-            >
+      <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5 rounded-xl bg-panel p-6">
+        <div className="flex min-w-0 flex-[999_1_320px] flex-col gap-1">
+          <p className="text-[17px] font-semibold">{texts.cardTitle}</p>
+          <p className="text-tertiary-foreground">
+            {texts.cardDescriptionPrefix}
+            <a href={email.href} className={inlineLink}>
               {profile.email}
             </a>
-            {tr.cardDescriptionSuffix}
+            {texts.cardDescriptionSuffix}
           </p>
-          <motion.a
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            href={profile.socials.email.href}
-            className={cn(
-              "inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
-              "text-sm font-medium text-background",
-              "bg-accent",
-              "shadow-lg shadow-accent/20",
-            )}
-          >
-            <Mail size={16} aria-hidden />
-            {tr.sendEmail}
-          </motion.a>
-        </GlassCard>
+        </div>
+        <a
+          href={email.href}
+          className="group/link inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-button px-5 font-medium text-button-foreground transition-opacity hover:opacity-90 sm:w-auto"
+        >
+          {texts.sendEmail} <Arrow direction="right" />
+        </a>
       </div>
-    </section>
+
+      <ul className="flex flex-col">
+        {channels.map((channel) => (
+          <li key={channel.link.href}>
+            <a
+              href={channel.link.href}
+              className="group/link flex justify-between gap-4 border-b border-rule py-3.5 transition-colors hover:border-card-hover-border"
+              {...(channel.external ? externalLinkProps : {})}
+            >
+              <span className="text-muted-foreground">{channel.label}</span>
+              <span className="min-w-0 truncate">
+                {channel.link.handle} <Arrow />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 }

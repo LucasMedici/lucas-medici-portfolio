@@ -12,7 +12,7 @@ This skill defines the technical rules and directory organization for coding age
   - Using state Hooks (`useState`, `useReducer`, `useRef`).
   - Using lifecycle or synchronization Hooks (`useEffect`, `useLayoutEffect`).
   - Listening to DOM events (e.g., button clicks, form submissions, cursor drags).
-  - Importing libraries that require client-side execution (e.g., `framer-motion`).
+  - Reading browser-only state, such as the visitor locale via `useLocale`.
 
 ### 2. Component Demarcation Strategy
 - Separate the interactive features from structural layout blocks. Keep leaf components interactive and stateful while keeping structural containers static.
