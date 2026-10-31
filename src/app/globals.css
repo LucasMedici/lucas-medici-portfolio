@@ -1,56 +1,89 @@
 @import "tailwindcss";
 
 /* -------------------------------------------------------------------------- */
-/* Dark palette with warmth and color accents                                 */
+/* Neutral palette — light by default, dark when <html data-theme="dark">.    */
+/* `data-theme` is set before paint from the saved choice or the OS setting   */
+/* (see src/lib/themeScript.ts).                                              */
 /* -------------------------------------------------------------------------- */
 
 :root {
-  /* Surfaces — slightly warm dark, not pure black */
-  --background: 225 15% 4%;
-  --surface: 225 12% 8%;
-  --surface-elevated: 225 10% 11%;
-  --border: 225 8% 16%;
-  --border-strong: 225 6% 26%;
+  color-scheme: light;
 
-  /* Text — warm white */
-  --foreground: 210 20% 98%;
-  --muted-foreground: 215 10% 65%;
-  --subtle-foreground: 215 8% 45%;
+  /* Surfaces */
+  --background: 0 0% 100%;
+  --panel: 60 10% 96.1%;
+  --media: 60 8.3% 95.3%;
+  --media-border: 60 5.1% 88.4%;
+  --card-hover: 60 9.1% 97.8%;
 
-  /* Brand accents — varied for visual richness */
-  --primary: 210 20% 98%;
-  --accent: 210 100% 66%;
-  --accent-teal: 172 66% 50%;
-  --accent-indigo: 234 89% 74%;
-  --accent-purple: 270 76% 70%;
+  /* Lines */
+  --rule: 0 0% 91.8%;
+  --chip: 0 0% 89.8%;
+  --card-hover-border: 0 0% 81.2%;
+  --underline: 0 0% 78.8%;
 
-  /* Semantic */
-  --ring: 210 100% 66%;
+  /* Text */
+  --foreground: 0 0% 6.7%;
+  --secondary-foreground: 0 0% 20%;
+  --tertiary-foreground: 0 0% 26.7%;
+  --muted-foreground: 0 0% 33.3%;
+
+  /* Actions */
+  --button: 0 0% 6.7%;
+  --button-foreground: 0 0% 100%;
+  --accent: 17 88.3% 40.4%;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: 0 0% 6.7%;
+  --panel: 0 0% 10.2%;
+  --media: 0 0% 10.2%;
+  --media-border: 0 0% 16.5%;
+  --card-hover: 0 0% 8.6%;
+
+  --rule: 0 0% 14.9%;
+  --chip: 0 0% 18%;
+  --card-hover-border: 0 0% 25.1%;
+  --underline: 0 0% 33.3%;
+
+  --foreground: 0 0% 92.9%;
+  --secondary-foreground: 0 0% 83.1%;
+  --tertiary-foreground: 0 0% 74.1%;
+  --muted-foreground: 0 0% 63.9%;
+
+  --button: 0 0% 92.9%;
+  --button-foreground: 0 0% 6.7%;
+  --accent: 27 96% 61%;
 }
 
 @theme inline {
   --color-background: hsl(var(--background));
-  --color-surface: hsl(var(--surface));
-  --color-surface-elevated: hsl(var(--surface-elevated));
-  --color-card: hsl(var(--surface));
-  --color-border: hsl(var(--border));
-  --color-border-soft: hsl(var(--border));
-  --color-border-strong: hsl(var(--border-strong));
+  --color-panel: hsl(var(--panel));
+  --color-media: hsl(var(--media));
+  --color-media-border: hsl(var(--media-border));
+  --color-card-hover: hsl(var(--card-hover));
+
+  --color-rule: hsl(var(--rule));
+  --color-chip: hsl(var(--chip));
+  --color-card-hover-border: hsl(var(--card-hover-border));
+  --color-underline: hsl(var(--underline));
 
   --color-foreground: hsl(var(--foreground));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-tertiary-foreground: hsl(var(--tertiary-foreground));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-subtle-foreground: hsl(var(--subtle-foreground));
 
-  --color-primary: hsl(var(--primary));
+  --color-button: hsl(var(--button));
+  --color-button-foreground: hsl(var(--button-foreground));
   --color-accent: hsl(var(--accent));
-  --color-accent-teal: hsl(var(--accent-teal));
-  --color-accent-indigo: hsl(var(--accent-indigo));
-  --color-accent-purple: hsl(var(--accent-purple));
 
-  --color-ring: hsl(var(--ring));
+  --font-sans: var(--font-inter-tight);
+  --font-mono: var(--font-jetbrains-mono);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Shared easing for hover motion: quick start, soft landing. */
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -59,7 +92,7 @@
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    border-color: hsl(var(--rule));
   }
 
   html {
@@ -74,55 +107,17 @@
     color: hsl(var(--foreground));
     font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
       "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-image:
-      radial-gradient(
-        ellipse 80% 50% at 10% 0%,
-        hsl(var(--accent-indigo) / 0.12) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        ellipse 60% 40% at 90% 10%,
-        hsl(var(--accent-teal) / 0.08) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        ellipse 50% 50% at 50% 100%,
-        hsl(var(--accent-purple) / 0.06) 0%,
-        transparent 50%
-      );
-    background-attachment: fixed;
   }
 
   ::selection {
-    background-color: hsl(var(--accent) / 0.35);
-    color: hsl(var(--foreground));
+    background-color: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
 
   :focus-visible {
-    outline: 2px solid hsl(var(--ring));
+    outline: 2px solid hsl(var(--foreground));
     outline-offset: 2px;
     border-radius: 4px;
-  }
-
-  /* Custom scrollbar (WebKit) */
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--border-strong));
-    border-radius: 9999px;
-    border: 2px solid hsl(var(--background));
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--accent) / 0.6);
-  }
-
-  p {
-    text-align: justify;
   }
 }
 

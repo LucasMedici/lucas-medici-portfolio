@@ -1,132 +1,145 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Code } from "lucide-react";
+import type { CSSProperties } from "react";
+import type { IconType } from "react-icons";
 import { FaJava } from "react-icons/fa";
 import {
-  SiTypescript,
-  SiJavascript,
-  SiPython,
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiPostgresql,
   SiAmazonaws,
   SiDocker,
-  SiVercel,
+  SiExpress,
+  SiFfmpeg,
   SiGithubactions,
+  SiHibernate,
+  SiJavascript,
   SiLinux,
   SiMongodb,
-  SiSpringboot,
-  SiNestjs,
-  SiSwagger,
   SiMysql,
-  SiPrisma,
-  SiSupabase,
-  SiRabbitmq,
+  SiNestjs,
+  SiNextdotjs,
+  SiNodedotjs,
   SiOpenai,
-  SiFfmpeg,
+  SiPostgresql,
+  SiPrisma,
+  SiPython,
+  SiRabbitmq,
+  SiReact,
+  SiSpringboot,
+  SiSupabase,
+  SiSwagger,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
 } from "react-icons/si";
-import { Database, Network, Bot, Cloud, MessageSquare, Film, Box, Server, Code } from "lucide-react";
 
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { skillGroups } from "@/data/skills";
+import { Section } from "@/components/ui/Section";
+import { skillGroups, skillName } from "@/data/skills";
 import { t } from "@/data/translations";
-import { cn } from "@/lib/cn";
 import { useLocale } from "@/lib/useLocale";
 
-const skillVisuals: Record<
-  string,
-  { icon: React.ReactNode; color: string }
-> = {
-  "Java": { icon: <FaJava size={28} />, color: "#007396" },
-  "TypeScript": { icon: <SiTypescript size={28} />, color: "#3178C6" },
-  "JavaScript": { icon: <SiJavascript size={28} />, color: "#F7DF1E" },
-  "Python": { icon: <SiPython size={28} />, color: "#3776AB" },
-  "SQL": { icon: <Database size={28} />, color: "#336791" },
-  "C": { icon: <Code size={28} />, color: "#A8B9CC" },
-  "Spring Boot": { icon: <SiSpringboot size={28} />, color: "#6DB33F" },
-  "Node.js": { icon: <SiNodedotjs size={28} />, color: "#339933" },
-  "Express": { icon: <Server size={28} />, color: "#FFFFFF" },
-  "NestJS": { icon: <SiNestjs size={28} />, color: "#E0234E" },
-  "Swagger / OpenAPI": { icon: <SiSwagger size={28} />, color: "#85EA2D" },
-  "React": { icon: <SiReact size={28} />, color: "#61DAFB" },
-  "Next.js": { icon: <SiNextdotjs size={28} />, color: "#FFFFFF" },
-  "React Native": { icon: <SiReact size={28} />, color: "#61DAFB" },
-  "Tailwind CSS": { icon: <SiTailwindcss size={28} />, color: "#06B6D4" },
-  "PostgreSQL": { icon: <SiPostgresql size={28} />, color: "#4169E1" },
-  "MySQL": { icon: <SiMysql size={28} />, color: "#4479A1" },
-  "MongoDB": { icon: <SiMongodb size={28} />, color: "#47A248" },
-  "Prisma": { icon: <SiPrisma size={28} />, color: "#2D3748" },
-  "JPA / Hibernate": { icon: <Database size={28} />, color: "#59666C" },
-  "AWS": { icon: <SiAmazonaws size={28} />, color: "#FF9900" },
-  "Docker": { icon: <SiDocker size={28} />, color: "#2496ED" },
-  "Linux": { icon: <SiLinux size={28} />, color: "#FCC624" },
-  "Supabase": { icon: <SiSupabase size={28} />, color: "#3ECF8E" },
-  "Vercel": { icon: <SiVercel size={28} />, color: "#FFFFFF" },
-  "GitHub Actions": { icon: <SiGithubactions size={28} />, color: "#2088FF" },
-  "RabbitMQ": { icon: <SiRabbitmq size={28} />, color: "#FF6600" },
-  "YOLO": { icon: <Box size={28} />, color: "#0088CC" },
-  "LLM APIs": { icon: <SiOpenai size={28} />, color: "#74AA9C" },
-  "AI Agents": { icon: <Bot size={28} />, color: "#A855F7" },
-  "FFmpeg": { icon: <SiFfmpeg size={28} />, color: "#007808" },
+/** Brand icons by skill id; skills without a brand mark fall back to a code glyph. */
+const skillIcons: Readonly<Record<string, IconType>> = {
+  java: FaJava,
+  typescript: SiTypescript,
+  javascript: SiJavascript,
+  python: SiPython,
+  "spring-boot": SiSpringboot,
+  nodejs: SiNodedotjs,
+  nestjs: SiNestjs,
+  express: SiExpress,
+  swagger: SiSwagger,
+  react: SiReact,
+  nextjs: SiNextdotjs,
+  "react-native": SiReact,
+  tailwind: SiTailwindcss,
+  postgresql: SiPostgresql,
+  mysql: SiMysql,
+  mongodb: SiMongodb,
+  prisma: SiPrisma,
+  hibernate: SiHibernate,
+  "llm-apis": SiOpenai,
+  aws: SiAmazonaws,
+  docker: SiDocker,
+  linux: SiLinux,
+  supabase: SiSupabase,
+  vercel: SiVercel,
+  "github-actions": SiGithubactions,
+  rabbitmq: SiRabbitmq,
+  ffmpeg: SiFfmpeg,
 };
+
+/**
+ * Brand colors revealed on hover. Black/white brands (Next.js, Vercel,
+ * Express, Prisma) and generic items are left out and keep the text color.
+ */
+const brandColors: Readonly<Record<string, string>> = {
+  java: "#007396",
+  typescript: "#3178C6",
+  javascript: "#F7DF1E",
+  python: "#3776AB",
+  "spring-boot": "#6DB33F",
+  nodejs: "#5FA04E",
+  nestjs: "#E0234E",
+  swagger: "#85EA2D",
+  react: "#61DAFB",
+  "react-native": "#61DAFB",
+  tailwind: "#06B6D4",
+  postgresql: "#4169E1",
+  mysql: "#4479A1",
+  mongodb: "#47A248",
+  hibernate: "#59666C",
+  "llm-apis": "#74AA9C",
+  aws: "#FF9900",
+  docker: "#2496ED",
+  linux: "#FCC624",
+  supabase: "#3ECF8E",
+  "github-actions": "#2088FF",
+  rabbitmq: "#FF6600",
+  ffmpeg: "#007808",
+};
+
+/** While its chip is hovered the icon grows and takes its brand color. */
+const chipIconMotion =
+  "transition-[transform,color] duration-300 ease-soft group-hover/chip:scale-[1.2] group-hover/chip:text-(--brand)";
 
 export function Skills() {
   const locale = useLocale();
-  const texts = t(locale);
-
-  const isPt = locale === "pt-br";
+  const texts = t(locale).skills;
 
   return (
-    <section
-      id="skills"
-      aria-labelledby="skills-title"
-      className="relative scroll-mt-24 px-6 py-20 md:py-28"
-    >
-      <div className="mx-auto w-full max-w-6xl">
-        <SectionHeading
-          eyebrow={texts.skills.title}
-          title={<span id="skills-title">{texts.skills.title}</span>}
-        />
-
+    <Section id="skills" title={texts.title}>
+      <div className="flex flex-col gap-5">
         {skillGroups.map((group) => (
-          <div key={group.category} className="mt-14">
-            <h3 className="text-sm font-semibold text-foreground/80 tracking-wider uppercase mb-6">
-              {isPt && group.category === "LANGUAGES" ? "LINGUAGENS" : group.category}
-            </h3>
-            <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3">
-              {group.items.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.9 },
-                    visible: { opacity: 1, scale: 1 },
-                  }}
-                  whileHover={{ y: -4, scale: 1.04 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className={cn(
-                    "flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-xl",
-                    "border border-border bg-card/50 backdrop-blur-md",
-                    "cursor-default transition-colors duration-200",
-                    "hover:border-accent/40 hover:bg-surface-elevated/80",
-                  )}
-                >
-                  <span
-                    className="transition-transform duration-200"
-                    style={{ color: skillVisuals[skill.name]?.color }}
+          <div
+            key={group.category}
+            className="grid gap-2 md:grid-cols-[128px_minmax(0,1fr)] md:gap-8"
+          >
+            <p className="text-[15px] text-muted-foreground md:pt-[7px]">
+              {texts.groups[group.category]}
+            </p>
+            <ul className="flex flex-wrap gap-2">
+              {group.items.map((skill) => {
+                const Icon = skillIcons[skill.id];
+
+                return (
+                  <li
+                    key={skill.id}
+                    style={{ "--brand": brandColors[skill.id] } as CSSProperties}
+                    className="group/chip inline-flex items-center gap-2 rounded-lg border border-chip px-3 py-1.5 text-[15px] transition-[transform,background-color,border-color] duration-300 ease-soft hover:scale-[1.05] hover:border-card-hover-border hover:bg-card-hover"
                   >
-                    {skillVisuals[skill.name]?.icon}
-                  </span>
-                  <span className="text-[11px] font-medium text-foreground text-center leading-tight">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+                    {Icon ? (
+                      <Icon size={17} aria-hidden className={chipIconMotion} />
+                    ) : (
+                      <Code size={17} aria-hidden className={chipIconMotion} />
+                    )}
+                    {skillName(skill, locale)}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

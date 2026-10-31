@@ -57,7 +57,7 @@ export const projects: readonly Project[] = [
     },
     "pt-br": {
       name: "Assistente Financeiro",
-      tagline: "Finanças pessoais, de forma simples como uma conversa.",
+      tagline: "Finanças pessoais, de forma simples como uma conversa. App offline-first com backend próprio e relatórios por categoria.",
       description:
         "Assistente mobile para controle de gastos conversacional e offline-first. Processa despesas, armazena dados financeiros e gera relatórios através de um backend próprio.",
       highlights: [
@@ -128,7 +128,7 @@ export const projects: readonly Project[] = [
     },
     "pt-br": {
       name: "Plataforma de Streaming de Vídeos",
-      tagline: "Plataforma de vídeo com foco em backend, segurança e processamento assíncrono.",
+      tagline: "Plataforma de vídeo com foco em backend, segurança e processamento assíncrono com RabbitMQ e FFmpeg.",
       description:
         "Plataforma de vídeos em Java 21 e Spring Boot com processamento assíncrono via RabbitMQ, transcodificação HLS com FFmpeg e armazenamento no Supabase.",
       highlights: [
@@ -165,7 +165,7 @@ export const projects: readonly Project[] = [
     },
     "pt-br": {
       name: "Monitoramento de Pragas com IA",
-      tagline: "Detecção e monitoramento de pragas agrícolas com inteligência artificial.",
+      tagline: "Detecção e monitoramento de pragas agrícolas com visão computacional (YOLO), GPS e dashboards.",
       description:
         "Projeto em equipe para monitoramento de pragas agrícolas em armadilhas com visão computacional (YOLO), geolocalização via GPS no app mobile e dashboards de análise.",
       highlights: [
@@ -202,7 +202,7 @@ export const projects: readonly Project[] = [
     },
     "pt-br": {
       name: "Estações Meteorológicas",
-      tagline: "Monitoramento ambiental e análise de dados meteorológicos.",
+      tagline: "Monitoramento ambiental com estações de baixo custo e plataforma de análise de dados meteorológicos.",
       description:
         "Projeto em equipe para criação de estações meteorológicas de baixo custo e plataforma para coleta e análise climática. Atuei como Scrum Master e no desenvolvimento de dashboards e APIs de alerta.",
       highlights: [
@@ -239,7 +239,7 @@ export const projects: readonly Project[] = [
     },
     "pt-br": {
       name: "Automação do Diário Oficial",
-      tagline: "Automação da identificação de processos e notificações de associados.",
+      tagline: "Automação da identificação de processos e notificações de associados a partir do Diário Oficial de SP.",
       description:
         "Projeto em equipe para automação da leitura do Diário Oficial do Estado de SP. O sistema processa publicações, cruza com a base de associados e gera dados para acompanhamento e notificações.",
       highlights: [

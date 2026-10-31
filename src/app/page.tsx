@@ -11,23 +11,23 @@ import { Skills } from "@/components/Skills";
 /**
  * Portfolio home page (Server Component).
  *
- * Composes static section blocks. Interactive concerns are isolated to client
- * components (Navbar, Hero, Experience, Skills, Projects, Learning, Contact).
+ * Composes the section blocks in reading order. Sections are client
+ * components only because their copy follows the visitor's locale.
  */
 export default function HomePage() {
   return (
-    <>
+    <div className="px-5">
       <Navbar />
-      <main id="main" className="relative">
+      <main id="main">
         <Hero />
-        <About />
         <ExperienceSection />
         <Projects />
         <Learning />
         <Skills />
+        <About />
         <Contact />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
