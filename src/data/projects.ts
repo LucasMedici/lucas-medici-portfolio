@@ -40,7 +40,7 @@ export const projects: readonly Project[] = [
     },
     "pt-br": {
       name: "Assistente Financeiro",
-      tagline: "Finanças pessoais, de forma simples como uma conversa. App offline-first com backend próprio e relatórios por categoria.",
+      tagline: "Finanças pessoais, simples como uma conversa. App offline-first com backend próprio e relatórios por categoria.",
     },
   },
   {
@@ -66,7 +66,7 @@ export const projects: readonly Project[] = [
   {
     id: "controle-de-pragas",
     image: "/controle_pragas.png",
-    stack: ["React Native", "JavaScript", "Nest.JS", "Firebase", "Python", "Yolo V8"],
+    stack: ["React Native", "JavaScript", "NestJS", "Firebase", "Python", "YOLOv8"],
     featured: true,
     links: [
       {
@@ -120,7 +120,7 @@ export const projects: readonly Project[] = [
     },
     "pt-br": {
       name: "Automação do Diário Oficial",
-      tagline: "Automação da identificação de processos e notificações de associados a partir do Diário Oficial de SP.",
+      tagline: "Automação da identificação de processos e da notificação aos associados a partir do Diário Oficial de SP.",
     },
   },
 ];
