@@ -149,7 +149,7 @@ const translations = {
     about: {
       title: "Sobre",
       paragraphs: [
-        "Meu interesse por tecnologia começou cedo, desenvolvendo plugins para Minecraft e pequenos jogos em Unity e Construct 2. Foi desenvolvendo e criando que descobri o gosto por programação — e, desde então, construir software deixou de ser só uma forma de aprender e virou uma das minhas principais formas de transformar ideias em algo real.",
+        "Meu interesse por tecnologia começou cedo, desenvolvendo plugins para Minecraft e pequenos jogos em Unity e Construct 2. Foi criando essas coisas que descobri o gosto por programação — e, desde então, construir software deixou de ser só um jeito de aprender e virou uma das minhas principais formas de transformar ideias em algo real.",
         "O que mais gosto no trabalho são os problemas que exigem entender o contexto antes de sair escrevendo código: pensar na melhor abordagem, tomar decisões técnicas e chegar a soluções simples, mesmo quando o problema não é.",
         "Fora do código, sou apaixonado por futebol — acompanho o que rola pelo mundo todo e também jogo. Curto games e tecnologia em geral, e de vez em quando transformo alguma ideia que surge por curiosidade em um pequeno projeto.",
       ],
@@ -167,9 +167,9 @@ const translations = {
             "integrações dos sistemas backend e web, e faço a gestão de dois projetos de redução " +
             "de perdas de água em cidades brasileiras.",
           highlights: [
-            "Liderei a migração de um legado em Visual Basic para uma plataforma web de mapeamento de redes de água.",
+            "Liderei a migração de um sistema legado em Visual Basic para uma plataforma web de mapeamento de redes de água.",
             "Arquitetei o sistema de ordens de serviço: APIs REST, fluxos de status e regras de negócio.",
-            "Participei da plataforma de monitoramento IoT, com serviços em Python e detecção de anomalias.",
+            "Participei do desenvolvimento da plataforma de monitoramento IoT, com serviços em Python e detecção de anomalias.",
             "Atuo diretamente com stakeholders no levantamento de requisitos.",
           ],
           stack: [
@@ -210,7 +210,7 @@ const translations = {
     contact: {
       title: "Quer construir algo?",
       description:
-        "As formas mais rápidas de me encontrar. Estou sempre disposto a bater um papo — seja sobre um projeto, uma vaga ou uma ideia que ainda está no papel.",
+        "As formas mais rápidas de falar comigo. Estou sempre disposto a bater um papo — seja sobre um projeto, uma vaga ou uma ideia que ainda está no papel.",
       cardTitle: "Tem um projeto em mente?",
       cardDescriptionPrefix: "Me manda uma mensagem em ",
       cardDescriptionSuffix: " e eu retorno o mais rápido possível.",
