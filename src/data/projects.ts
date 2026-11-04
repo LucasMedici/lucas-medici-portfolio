@@ -36,11 +36,11 @@ export const projects: readonly Project[] = [
     ],
     en: {
       name: "Finance Assistant",
-      tagline: "Personal finance, as simple as a conversation.",
+      tagline: "Personal finance, as simple as a conversation. An offline-first app with its own backend and spending reports by category.",
     },
     "pt-br": {
       name: "Assistente Financeiro",
-      tagline: "Finanças pessoais, de forma simples como uma conversa. App offline-first com backend próprio e relatórios por categoria.",
+      tagline: "Finanças pessoais, simples como uma conversa. App offline-first com backend próprio e relatórios por categoria.",
     },
   },
   {
@@ -56,7 +56,7 @@ export const projects: readonly Project[] = [
     ],
     en: {
       name: "Video Streaming Platform",
-      tagline: "Video platform focused on backend, security, and asynchronous processing.",
+      tagline: "A video platform focused on backend, security, and asynchronous processing with RabbitMQ and FFmpeg.",
     },
     "pt-br": {
       name: "Plataforma de Streaming de Vídeos",
@@ -66,7 +66,7 @@ export const projects: readonly Project[] = [
   {
     id: "controle-de-pragas",
     image: "/controle_pragas.png",
-    stack: ["React Native", "JavaScript", "Nest.JS", "Firebase", "Python", "Yolo V8"],
+    stack: ["React Native", "JavaScript", "NestJS", "Firebase", "Python", "YOLOv8"],
     featured: true,
     links: [
       {
@@ -75,8 +75,8 @@ export const projects: readonly Project[] = [
       },
     ],
     en: {
-      name: "AI-Powered Pest Monitoring",
-      tagline: "AI-powered detection and monitoring of agricultural pests.",
+      name: "AI Pest Monitoring",
+      tagline: "Detection and monitoring of crop pests with computer vision (YOLO), GPS, and dashboards.",
     },
     "pt-br": {
       name: "Monitoramento de Pragas com IA",
@@ -96,7 +96,7 @@ export const projects: readonly Project[] = [
     ],
     en: {
       name: "Weather Stations",
-      tagline: "Environmental monitoring and meteorological data analysis.",
+      tagline: "Environmental monitoring with low-cost stations and a platform for weather data analysis.",
     },
     "pt-br": {
       name: "Estações Meteorológicas",
@@ -116,11 +116,11 @@ export const projects: readonly Project[] = [
     ],
     en: {
       name: "Official Gazette Automation",
-      tagline: "Automating process identification and member notifications.",
+      tagline: "Automatically identifies cases in the São Paulo State Official Gazette and notifies the members involved.",
     },
     "pt-br": {
       name: "Automação do Diário Oficial",
-      tagline: "Automação da identificação de processos e notificações de associados a partir do Diário Oficial de SP.",
+      tagline: "Automação da identificação de processos e da notificação aos associados a partir do Diário Oficial de SP.",
     },
   },
 ];
