@@ -6,55 +6,58 @@
 /* (see src/lib/themeScript.ts).                                              */
 /* -------------------------------------------------------------------------- */
 
+/* Slightly warm neutrals (hue ~40): off-white #FAFAF7 and ink #1C1B19, so the
+   page doesn't feel clinical. Not cream — saturation stays very low. */
 :root {
   color-scheme: light;
 
   /* Surfaces */
-  --background: 0 0% 100%;
-  --panel: 60 10% 96.1%;
-  --media: 60 8.3% 95.3%;
-  --media-border: 60 5.1% 88.4%;
-  --card-hover: 60 9.1% 97.8%;
+  --background: 60 23.1% 97.5%; /* #FAFAF7 */
+  --panel: 45 14% 94.4%;
+  --media: 45 12% 93.8%;
+  --media-border: 40 8% 86.5%;
+  --card-hover: 48 33% 99%;
 
   /* Lines */
-  --rule: 0 0% 91.8%;
-  --chip: 0 0% 89.8%;
-  --card-hover-border: 0 0% 81.2%;
-  --underline: 0 0% 78.8%;
+  --rule: 40 10% 90%;
+  --chip: 40 8% 87.6%;
+  --card-hover-border: 40 6% 79%;
+  --underline: 40 6% 76.5%;
 
   /* Text */
-  --foreground: 0 0% 6.7%;
-  --secondary-foreground: 0 0% 20%;
-  --tertiary-foreground: 0 0% 26.7%;
-  --muted-foreground: 0 0% 33.3%;
+  --foreground: 40 5.7% 10.4%; /* #1C1B19 */
+  --secondary-foreground: 40 4.5% 19%;
+  --tertiary-foreground: 40 3.8% 26%;
+  --muted-foreground: 40 3.2% 33.5%;
 
   /* Actions */
-  --button: 0 0% 6.7%;
-  --button-foreground: 0 0% 100%;
+  --button: 40 5.7% 10.4%;
+  --button-foreground: 60 23.1% 97.5%;
   --accent: 17 88.3% 40.4%;
 }
 
+/* Same temperature as light mode: warm near-black #131211. */
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --background: 0 0% 6.7%;
-  --panel: 0 0% 10.2%;
-  --media: 0 0% 10.2%;
-  --media-border: 0 0% 16.5%;
-  --card-hover: 0 0% 8.6%;
+  --background: 30 5.6% 7.1%; /* #131211 */
+  --panel: 33 5% 10.4%;
+  --media: 33 5% 10.4%;
+  --media-border: 33 4.5% 16.5%;
+  --card-hover: 33 5% 8.8%;
 
-  --rule: 0 0% 14.9%;
-  --chip: 0 0% 18%;
-  --card-hover-border: 0 0% 25.1%;
-  --underline: 0 0% 33.3%;
+  --rule: 33 4.5% 15%;
+  --chip: 33 4% 18.2%;
+  --card-hover-border: 33 3.5% 25.3%;
+  --underline: 33 3% 33.5%;
 
-  --foreground: 0 0% 92.9%;
-  --secondary-foreground: 0 0% 83.1%;
-  --tertiary-foreground: 0 0% 74.1%;
-  --muted-foreground: 0 0% 63.9%;
+  --foreground: 45 9% 92.2%; /* #EDECE8 */
+  --secondary-foreground: 40 6% 83%;
+  --tertiary-foreground: 40 5% 74%;
+  --muted-foreground: 40 4% 64%;
 
-  --button: 0 0% 92.9%;
-  --button-foreground: 0 0% 6.7%;
+  --button: 45 9% 92.2%;
+  --button-foreground: 30 5.6% 7.1%;
   --accent: 27 96% 61%;
 }
 
