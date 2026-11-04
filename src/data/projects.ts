@@ -25,7 +25,7 @@ export interface Project {
 export const projects: readonly Project[] = [
   {
     id: "jorge-finance-assistant",
-    image: "/jorge_portfolio2.png",
+    image: "/jorge-v2.png",
     stack: ["React Native", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "OpenAI"],
     featured: true,
     links: [
