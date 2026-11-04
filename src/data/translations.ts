@@ -4,9 +4,7 @@ import type { Locale } from "@/lib/useLocale";
 /**
  * UI copy per locale.
  *
- * pt-br is the source of truth for the redesign. Strings marked
- * `TODO(i18n)` still carry the previous English copy (or a rough draft) and
- * need a proper translation of the new Portuguese text.
+ * pt-br is the source of truth; en is its translation, reviewed in issue #2.
  */
 const translations = {
   en: {
@@ -38,11 +36,10 @@ const translations = {
     },
     about: {
       title: "About",
-      // TODO(i18n): previous English copy, paragraph 2 dropped like in pt-br.
       paragraphs: [
-        "My interest in technology started early, developing Minecraft plugins and small games in Unity and Construct 2. It was through building and creating that I discovered my passion for programming, and since then, building software stopped being just a way to learn and became one of my main ways of turning ideas into something real.",
-        "What I enjoy most at work are problems that require understanding the context before jumping into code, thinking through the best approach, making technical decisions, and arriving at simple solutions, even when the problem isn't.",
-        "Outside of code, I'm passionate about football. I enjoy following what's happening across the football world and playing it myself. I also enjoy games and technology in general, and every now and then, I turn an idea that sparks my curiosity into a small project.",
+        "I got into technology early, writing Minecraft plugins and making small games in Unity and Construct 2. That's how I found out I enjoyed programming — and since then, building software has gone from just a way to learn to one of the main ways I turn ideas into something real.",
+        "What I enjoy most at work are the problems that make you understand the context before jumping into code: figuring out the best approach, making technical decisions, and landing on simple solutions, even when the problem isn't.",
+        "Outside of code, I'm passionate about football — I follow it around the world and play it too. I'm into games and tech in general, and every now and then I turn an idea that comes from pure curiosity into a small project.",
       ],
     },
     experience: {
@@ -91,7 +88,7 @@ const translations = {
       groups: {
         LANGUAGES: "Languages",
         "BACKEND & APIs": "Backend",
-        "FRONTEND & MOBILE": "Front-end & mobile",
+        "FRONTEND & MOBILE": "Frontend & mobile",
         "DATABASES & ORM": "Data",
         "AI & MACHINE LEARNING": "AI",
         "CLOUD & INFRASTRUCTURE": "Infra",
@@ -99,10 +96,9 @@ const translations = {
       } satisfies Record<SkillCategory, string>,
     },
     contact: {
-      title: "Let's build something",
-      // TODO(i18n): pt-br gained "— seja sobre um projeto, uma vaga ou uma ideia…".
+      title: "Want to build something?",
       description:
-        "The fastest ways to reach me. I'm always glad to discuss interesting problems.",
+        "The fastest ways to reach me. I'm always up for a chat — whether it's about a project, a role, or an idea that's still on the drawing board.",
       cardTitle: "Have a project in mind?",
       cardDescriptionPrefix: "Drop me a line at ",
       cardDescriptionSuffix: " and I'll get back to you as soon as possible.",
