@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 
 import { profile } from "@/data/profile";
+import { localeScript } from "@/lib/localeScript";
 import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
 import { themeScript } from "@/lib/themeScript";
 
@@ -71,8 +72,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-    { media: "(prefers-color-scheme: dark)", color: "#111111" },
+    { media: "(prefers-color-scheme: light)", color: "#FAFAF7" },
+    { media: "(prefers-color-scheme: dark)", color: "#131211" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -93,6 +94,7 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: localeScript }} />
       </head>
       <body className="min-h-full bg-background font-sans text-base leading-[1.65] text-foreground">
         {children}
