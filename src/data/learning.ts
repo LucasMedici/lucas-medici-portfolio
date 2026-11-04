@@ -20,12 +20,12 @@ export const learningItems: readonly LearningItem[] = [
     en: {
       title: "Multiplatform Software Development",
       provider: "FATEC São José dos Campos",
-      period: "2022 — 2024",
+      period: "2022 - 2024",
     },
     "pt-br": {
       title: "Desenvolvimento de Software Multiplataforma",
       provider: "FATEC São José dos Campos",
-      period: "2022 — 2024",
+      period: "2022 - 2024",
     },
   },
   {
@@ -45,12 +45,12 @@ export const learningItems: readonly LearningItem[] = [
     id: "cybersecurity",
     en: {
       title: "Cybersecurity",
-      provider: "PIT — Parque de Inovação Tecnológica de SJC",
+      provider: "Parque de Inovação Tecnológica de SJC (PIT)",
       period: "58h",
     },
     "pt-br": {
       title: "Cybersecurity",
-      provider: "PIT — Parque de Inovação Tecnológica de SJC",
+      provider: "Parque de Inovação Tecnológica de SJC (PIT)",
       period: "58h",
     },
   },

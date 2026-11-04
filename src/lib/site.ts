@@ -17,7 +17,7 @@ export const siteUrl = new URL(
 const ptBr = t("pt-br");
 
 // Approved by the owner (issue #5): name + role.
-export const siteTitle = `${profile.name} — ${ptBr.hero.role}`;
+export const siteTitle = `${profile.name} · ${ptBr.hero.role}`;
 
 // Approved by the owner (issue #2): name, role and main technologies, for
 // search results and link previews.
