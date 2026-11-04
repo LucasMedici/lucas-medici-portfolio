@@ -1,30 +1,15 @@
 /**
- * Continuous learning items (courses, certifications, books, talks).
+ * Education entries (degree and courses) listed in the Education section.
  */
-
-export type LearningKind =
-  | "course"
-  | "certification"
-  | "book"
-  | "talk"
-  | "degree"
-  | "code"
-  | "shield"
-  | "sparkles";
-
-export type LearningStatus = "in-progress" | "completed" | "planned" | "graduated";
 
 export interface LearningItemLocalized {
   readonly title: string;
   readonly provider: string;
   readonly period: string;
-  readonly description: string;
 }
 
 export interface LearningItem {
   readonly id: string;
-  readonly kind: LearningKind;
-  readonly status: LearningStatus;
   readonly en: LearningItemLocalized;
   readonly "pt-br": LearningItemLocalized;
 }
@@ -32,59 +17,41 @@ export interface LearningItem {
 export const learningItems: readonly LearningItem[] = [
   {
     id: "multiplatform-software-development",
-    kind: "degree",
-    status: "graduated",
     en: {
       title: "Multiplatform Software Development",
       provider: "FATEC São José dos Campos",
       period: "2022 — 2024",
-      description:
-        "Foundations in software engineering, databases, mobile and web development, and systems architecture.",
     },
     "pt-br": {
       title: "Desenvolvimento de Software Multiplataforma",
       provider: "FATEC São José dos Campos",
       period: "2022 — 2024",
-      description:
-        "Fundamentos em engenharia de software, bancos de dados, desenvolvimento mobile e web, e arquitetura de sistemas.",
     },
   },
   {
     id: "design-patterns",
-    kind: "code",
-    status: "completed",
     en: {
       title: "Design Patterns",
       provider: "FATEC São José dos Campos",
       period: "240h",
-      description:
-        "Deepening my understanding of software architecture through classic design patterns and their practical application.",
     },
     "pt-br": {
       title: "Design Patterns",
       provider: "FATEC São José dos Campos",
       period: "240h",
-      description:
-        "Aprofundamento em arquitetura de software através dos padrões de projeto clássicos e sua aplicação prática.",
     },
   },
   {
     id: "cybersecurity",
-    kind: "shield",
-    status: "completed",
     en: {
       title: "Cybersecurity",
       provider: "PIT — Parque de Inovação Tecnológica de SJC",
       period: "58h",
-      description:
-        "Core principles of cybersecurity applied to infrastructure and IoT systems I work with daily.",
     },
     "pt-br": {
       title: "Cybersecurity",
       provider: "PIT — Parque de Inovação Tecnológica de SJC",
       period: "58h",
-      description:
-        "Princípios fundamentais de segurança cibernética aplicados à infraestrutura e sistemas IoT com os quais trabalho no dia a dia.",
     },
   },
 ];

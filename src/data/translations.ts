@@ -54,7 +54,6 @@ const translations = {
           id: "nexus-geoengenharia",
           company: "Nexus GeoEngenharia",
           role: "Lead Developer & Project Manager",
-          location: "Brazil",
           period: "2024 — Present",
           // TODO(i18n): previous English copy, pt-br was shortened.
           summary:
@@ -162,7 +161,6 @@ const translations = {
           id: "nexus-geoengenharia",
           company: "Nexus GeoEngenharia",
           role: "Desenvolvedor Líder & Gestor de Projetos",
-          location: "Brasil",
           period: "2024 — hoje",
           summary:
             "De estagiário a líder técnico: cuido da arquitetura de APIs, regras de negócio e " +
