@@ -2,9 +2,8 @@
 
 import { useSyncExternalStore } from "react";
 
-import { THEME_STORAGE_KEY, type Theme } from "@/lib/themeScript";
+import { THEME_CHANGE_EVENT, THEME_STORAGE_KEY, type Theme } from "@/lib/themeScript";
 
-const CHANGE_EVENT = "theme-change";
 const DARK_QUERY = "(prefers-color-scheme: dark)";
 
 function getTheme(): Theme {
@@ -17,7 +16,7 @@ function getServerTheme(): Theme {
 
 function applyTheme(theme: Theme): void {
   document.documentElement.dataset.theme = theme;
-  window.dispatchEvent(new Event(CHANGE_EVENT));
+  window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
 }
 
 /**
@@ -30,10 +29,10 @@ function subscribe(onChange: () => void) {
     applyTheme(event.matches ? "dark" : "light");
   };
 
-  window.addEventListener(CHANGE_EVENT, onChange);
+  window.addEventListener(THEME_CHANGE_EVENT, onChange);
   media.addEventListener("change", onSystemChange);
   return () => {
-    window.removeEventListener(CHANGE_EVENT, onChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, onChange);
     media.removeEventListener("change", onSystemChange);
   };
 }
