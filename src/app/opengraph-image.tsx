@@ -19,11 +19,11 @@ export const contentType = "image/png";
 
 /** Light-theme tokens from globals.css, as hex for Satori. */
 const colors = {
-  background: "#ffffff", // --background
-  foreground: "#111111", // --foreground
-  tertiary: "#444444", // --tertiary-foreground
-  muted: "#555555", // --muted-foreground
-  rule: "#eaeaea", // --rule
+  background: "#fafaf7", // --background
+  foreground: "#1c1b19", // --foreground
+  tertiary: "#454340", // --tertiary-foreground
+  muted: "#585653", // --muted-foreground
+  rule: "#e8e6e3", // --rule
   accent: "#c2400c", // --accent, hsl(17 88.3% 40.4%)
 } as const;
 
