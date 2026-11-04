@@ -7,27 +7,32 @@ import { Learning } from "@/components/Learning";
 import { Navbar } from "@/components/Navbar";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
+import { personJsonLd, serializeJsonLd } from "@/lib/site";
 
 /**
  * Portfolio home page (Server Component).
  *
- * Composes static section blocks. Interactive concerns are isolated to client
- * components (Navbar, Hero, Experience, Skills, Projects, Learning, Contact).
+ * Composes the section blocks in reading order. Sections are client
+ * components only because their copy follows the visitor's locale.
  */
 export default function HomePage() {
   return (
-    <>
+    <div className="px-5">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd()) }}
+      />
       <Navbar />
-      <main id="main" className="relative">
+      <main id="main">
         <Hero />
-        <About />
         <ExperienceSection />
         <Projects />
         <Learning />
         <Skills />
+        <About />
         <Contact />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

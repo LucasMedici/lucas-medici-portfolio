@@ -1,35 +1,35 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 
-import { MotionProvider } from "@/components/MotionProvider";
 import { profile } from "@/data/profile";
+import { localeScript } from "@/lib/localeScript";
+import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
+import { themeScript } from "@/lib/themeScript";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
-
-const siteTitle = `${profile.name}`;
-const siteDescription = profile.summary;
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: {
     default: siteTitle,
     template: `%s — ${profile.name}`,
   },
   description: siteDescription,
-  applicationName: `${profile.name} Portfolio`,
-  authors: [{ name: profile.name, url: profile.socials.github.href }],
+  applicationName: profile.name,
+  authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   keywords: [
     profile.name,
@@ -40,12 +40,18 @@ export const metadata: Metadata = {
     "Node.js",
     "Portfolio",
   ],
+  // One URL for both languages: pt-BR is server-rendered and EN is a
+  // client-side switch, so there are no per-language alternates to declare.
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    type: "website",
+    type: "profile",
+    url: "/",
     title: siteTitle,
     description: siteDescription,
-    siteName: `${profile.name} Portfolio`,
-    locale: "en_US",
+    siteName: profile.name,
+    locale: "pt_BR",
   },
   twitter: {
     card: "summary_large_image",
@@ -55,15 +61,24 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FAFAF7" },
+    { media: "(prefers-color-scheme: dark)", color: "#131211" },
+  ],
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  colorScheme: "dark",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -73,16 +88,16 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="pt-BR"
+      className={`${interTight.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="relative min-h-full bg-background text-foreground font-sans selection:bg-accent-indigo/40">
-        <div
-          aria-hidden
-          className="page-backdrop pointer-events-none fixed inset-0 -z-10"
-        />
-        <MotionProvider>{children}</MotionProvider>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: localeScript }} />
+      </head>
+      <body className="min-h-full bg-background font-sans text-base leading-[1.65] text-foreground">
+        {children}
         <Analytics />
       </body>
     </html>
