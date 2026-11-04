@@ -124,6 +124,15 @@
   }
 }
 
+/*
+ * The static HTML is in pt-br. For visitors in another locale, keep the
+ * content hidden until React renders their copy (src/lib/localeScript.ts).
+ * The page background stays painted, so there is no flash of white.
+ */
+:root[data-locale-pending] body > * {
+  visibility: hidden;
+}
+
 /* Respect users who prefer reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   *,
