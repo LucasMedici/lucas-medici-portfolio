@@ -4,6 +4,7 @@ import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 
 import { profile } from "@/data/profile";
 import { localeScript } from "@/lib/localeScript";
+import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
 import { themeScript } from "@/lib/themeScript";
 
 import "./globals.css";
@@ -20,17 +21,15 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteTitle = `${profile.name}`;
-const siteDescription = profile.summary;
-
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: {
     default: siteTitle,
     template: `%s — ${profile.name}`,
   },
   description: siteDescription,
-  applicationName: `${profile.name} Portfolio`,
-  authors: [{ name: profile.name, url: profile.socials.github.href }],
+  applicationName: profile.name,
+  authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   keywords: [
     profile.name,
@@ -41,12 +40,18 @@ export const metadata: Metadata = {
     "Node.js",
     "Portfolio",
   ],
+  // One URL for both languages: pt-BR is server-rendered and EN is a
+  // client-side switch, so there are no per-language alternates to declare.
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    type: "website",
+    type: "profile",
+    url: "/",
     title: siteTitle,
     description: siteDescription,
-    siteName: `${profile.name} Portfolio`,
-    locale: "en_US",
+    siteName: profile.name,
+    locale: "pt_BR",
   },
   twitter: {
     card: "summary_large_image",
@@ -56,6 +61,12 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
