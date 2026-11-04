@@ -30,16 +30,16 @@ const translations = {
       role: "Software Engineer",
       location: "Brazil",
       summary:
-        "I build systems end to end — from gathering requirements and designing the architecture to shipping to production.",
+        "I build systems end to end, from gathering requirements and designing the architecture to shipping to production.",
       currentRolePrefix: "I currently lead backend and web development at",
       photoAlt: "Photo of Lucas Medici",
     },
     about: {
       title: "About",
       paragraphs: [
-        "I got into technology early, writing Minecraft plugins and making small games in Unity and Construct 2. That's how I found out I enjoyed programming — and since then, building software has gone from just a way to learn to one of the main ways I turn ideas into something real.",
+        "I got into technology early, writing Minecraft plugins and making small games in Unity and Construct 2. That's how I found out I enjoyed programming. Since then, building software has gone from just a way to learn to one of the main ways I turn ideas into something real.",
         "What I enjoy most at work are the problems that make you understand the context before jumping into code: figuring out the best approach, making technical decisions, and landing on simple solutions, even when the problem isn't.",
-        "Outside of code, I'm passionate about football — I follow it around the world and play it too. I'm into games and tech in general, and every now and then I turn an idea that comes from pure curiosity into a small project.",
+        "Outside of code, I'm passionate about football: I follow it around the world and play it too. I'm into games and tech in general, and every now and then I turn an idea that comes from pure curiosity into a small project.",
       ],
     },
     experience: {
@@ -49,7 +49,7 @@ const translations = {
           id: "nexus-geoengenharia",
           company: "Nexus GeoEngenharia",
           role: "Lead Developer & Project Manager",
-          period: "2024 — Present",
+          period: "2024 - Present",
           summary:
             "From intern to tech lead: I'm responsible for API architecture, business rules, and " +
             "integrations across the backend and web systems, and I manage two projects focused on " +
@@ -98,7 +98,7 @@ const translations = {
     contact: {
       title: "Want to build something?",
       description:
-        "The fastest ways to reach me. I'm always up for a chat — whether it's about a project, a role, or an idea that's still on the drawing board.",
+        "The fastest ways to reach me. I'm always up for a chat, whether it's about a project, a role, or an idea that's still on the drawing board.",
       cardTitle: "Have a project in mind?",
       cardDescriptionPrefix: "Drop me a line at ",
       cardDescriptionSuffix: " and I'll get back to you as soon as possible.",
@@ -133,16 +133,16 @@ const translations = {
       role: "Engenheiro de Software",
       location: "Brasil",
       summary:
-        "Construo sistemas de ponta a ponta — do levantamento de requisitos e da arquitetura até a entrega em produção.",
+        "Construo sistemas de ponta a ponta, do levantamento de requisitos e da arquitetura até a entrega em produção.",
       currentRolePrefix: "Hoje lidero o desenvolvimento backend e web na",
       photoAlt: "Foto de Lucas Medici",
     },
     about: {
       title: "Sobre",
       paragraphs: [
-        "Meu interesse por tecnologia começou cedo, desenvolvendo plugins para Minecraft e pequenos jogos em Unity e Construct 2. Foi criando essas coisas que descobri o gosto por programação — e, desde então, construir software deixou de ser só um jeito de aprender e virou uma das minhas principais formas de transformar ideias em algo real.",
+        "Meu interesse por tecnologia começou cedo, desenvolvendo plugins para Minecraft e pequenos jogos em Unity e Construct 2. Foi criando essas coisas que descobri o gosto por programação. Desde então, construir software deixou de ser só um jeito de aprender e virou uma das minhas principais formas de transformar ideias em algo real.",
         "O que mais gosto no trabalho são os problemas que exigem entender o contexto antes de sair escrevendo código: pensar na melhor abordagem, tomar decisões técnicas e chegar a soluções simples, mesmo quando o problema não é.",
-        "Fora do código, sou apaixonado por futebol — acompanho o que rola pelo mundo todo e também jogo. Curto games e tecnologia em geral, e de vez em quando transformo alguma ideia que surge por curiosidade em um pequeno projeto.",
+        "Fora do código, sou apaixonado por futebol: acompanho o que rola pelo mundo todo e também jogo. Curto games e tecnologia em geral, e de vez em quando transformo alguma ideia que surge por curiosidade em um pequeno projeto.",
       ],
     },
     experience: {
@@ -152,7 +152,7 @@ const translations = {
           id: "nexus-geoengenharia",
           company: "Nexus GeoEngenharia",
           role: "Desenvolvedor Líder & Gestor de Projetos",
-          period: "2024 — hoje",
+          period: "2024 - hoje",
           summary:
             "De estagiário a líder técnico: cuido da arquitetura de APIs, regras de negócio e " +
             "integrações dos sistemas backend e web, e faço a gestão de dois projetos de redução " +
@@ -201,7 +201,7 @@ const translations = {
     contact: {
       title: "Quer construir algo?",
       description:
-        "As formas mais rápidas de falar comigo. Estou sempre disposto a bater um papo — seja sobre um projeto, uma vaga ou uma ideia que ainda está no papel.",
+        "As formas mais rápidas de falar comigo. Estou sempre disposto a bater um papo, seja sobre um projeto, uma vaga ou uma ideia que ainda está no papel.",
       cardTitle: "Tem um projeto em mente?",
       cardDescriptionPrefix: "Me manda uma mensagem em ",
       cardDescriptionSuffix: " e eu retorno o mais rápido possível.",
