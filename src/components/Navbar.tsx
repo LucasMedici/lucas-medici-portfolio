@@ -1,12 +1,12 @@
 "use client";
 
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 import { profile } from "@/data/profile";
 import { t } from "@/data/translations";
 import { cn } from "@/lib/cn";
-import { type Locale, setLocale, useLocale } from "@/lib/useLocale";
+import { type Locale, setLocale, useDocumentLocale, useLocale } from "@/lib/useLocale";
 import { setTheme, useTheme } from "@/lib/useTheme";
 
 const navHrefs = [
@@ -113,9 +113,7 @@ export function Navbar() {
     label: texts.nav[href.slice(1) as keyof typeof texts.nav],
   }));
 
-  useEffect(() => {
-    document.documentElement.lang = locale === "pt-br" ? "pt-BR" : "en";
-  }, [locale]);
+  useDocumentLocale(locale);
 
   const closeMenu = (): void => setMenuOpen(false);
 
