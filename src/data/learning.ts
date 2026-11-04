@@ -44,27 +44,14 @@ export const learningItems: readonly LearningItem[] = [
   {
     id: "cybersecurity",
     en: {
-      title: "CyberSecurity",
+      title: "Cybersecurity",
       provider: "PIT — Parque de Inovação Tecnológica de SJC",
       period: "58h",
     },
     "pt-br": {
-      title: "CyberSecurity",
+      title: "Cybersecurity",
       provider: "PIT — Parque de Inovação Tecnológica de SJC",
       period: "58h",
-    },
-  },
-  {
-    id: "ai-api-integration",
-    en: {
-      title: "AI Integration with APIs",
-      provider: "Rocketseat",
-      period: "6h",
-    },
-    "pt-br": {
-      title: "IA na Integração com APIs",
-      provider: "Rocketseat",
-      period: "6h",
     },
   },
 ];

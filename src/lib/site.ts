@@ -16,13 +16,13 @@ export const siteUrl = new URL(
 
 const ptBr = t("pt-br");
 
-// COPY(owner): composed from approved copy (profile.name + hero.role).
-// Pending the owner's approval for the meta/OG title — see issue #5.
+// Approved by the owner (issue #5): name + role.
 export const siteTitle = `${profile.name} — ${ptBr.hero.role}`;
 
-// COPY(owner): reuses the approved pt-BR hero.summary as the meta/OG
-// description. Pending the owner's approval — see issue #5.
-export const siteDescription = ptBr.hero.summary;
+// Approved by the owner (issue #2): name, role and main technologies, for
+// search results and link previews.
+export const siteDescription =
+  "Lucas Medici, engenheiro de software. Construo sistemas de ponta a ponta com Java, Spring Boot, Node.js e TypeScript, do levantamento de requisitos até a entrega em produção.";
 
 export const siteRole = ptBr.hero.role;
 export const siteLocation = ptBr.hero.location;
