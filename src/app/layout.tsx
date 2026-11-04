@@ -68,6 +68,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Google Search Console ownership (URL-prefix property, HTML tag method).
+  verification: {
+    google: "CA3PNvBN8FZaM_oS80XfrMlqZ_NWUf72K7qOPgjLe1k",
+  },
 };
 
 export const viewport: Viewport = {
