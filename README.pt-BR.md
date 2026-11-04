@@ -1,4 +1,4 @@
-# Lucas Medici — Portfólio
+# Lucas Medici · Portfólio
 
 **Português** · [English](README.md)
 
