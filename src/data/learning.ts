@@ -73,37 +73,18 @@ export const learningItems: readonly LearningItem[] = [
     kind: "shield",
     status: "completed",
     en: {
-      title: "CyberSecurity",
+      title: "Cybersecurity",
       provider: "PIT — Parque de Inovação Tecnológica de SJC",
       period: "58h",
       description:
         "Core principles of cybersecurity applied to infrastructure and IoT systems I work with daily.",
     },
     "pt-br": {
-      title: "CyberSecurity",
+      title: "Cybersecurity",
       provider: "PIT — Parque de Inovação Tecnológica de SJC",
       period: "58h",
       description:
         "Princípios fundamentais de segurança cibernética aplicados à infraestrutura e sistemas IoT com os quais trabalho no dia a dia.",
-    },
-  },
-  {
-    id: "ai-api-integration",
-    kind: "sparkles",
-    status: "completed",
-    en: {
-      title: "AI Integration with APIs",
-      provider: "Rocketseat",
-      period: "6h",
-      description:
-        "Practical patterns for integrating LLMs and AI capabilities into API-driven applications.",
-    },
-    "pt-br": {
-      title: "IA na Integração com APIs",
-      provider: "Rocketseat",
-      period: "6h",
-      description:
-        "Padrões práticos para integração de LLMs e capacidades de IA em aplicações orientadas por APIs.",
     },
   },
 ];
