@@ -4,15 +4,15 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 import { profile } from "@/data/profile";
+import { t } from "@/data/translations";
 import {
-  siteDescription,
   siteLocation,
   siteRole,
   siteTitle,
   siteUrl,
 } from "@/lib/site";
 
-// COPY(owner): alt text reuses the meta title — pending approval (issue #5).
+// Approved by the owner (issue #5): alt text reuses the meta title.
 export const alt = siteTitle;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -93,7 +93,7 @@ export default async function OpengraphImage() {
               color: colors.tertiary,
             }}
           >
-            {siteDescription}
+            {t("pt-br").hero.summary}
           </div>
         </div>
 
