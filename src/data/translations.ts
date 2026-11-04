@@ -31,11 +31,9 @@ const translations = {
     hero: {
       role: "Software Engineer",
       location: "Brazil",
-      // TODO(i18n)
       summary:
-        "I build software systems end to end — from requirements and architecture to delivery in production.",
-      // TODO(i18n)
-      currentRolePrefix: "Today I lead backend and web development at",
+        "I build systems end to end — from gathering requirements and designing the architecture to shipping to production.",
+      currentRolePrefix: "I currently lead backend and web development at",
       photoAlt: "Photo of Lucas Medici",
     },
     about: {
@@ -55,18 +53,15 @@ const translations = {
           company: "Nexus GeoEngenharia",
           role: "Lead Developer & Project Manager",
           period: "2024 — Present",
-          // TODO(i18n): previous English copy, pt-br was shortened.
           summary:
-            "I joined the company as an intern and now I lead the development of backend systems " +
-            "and web applications, working on API architecture, business rule modeling, " +
-            "integrations, and technical decisions. I also manage two strategic projects focused on " +
-            "reducing water losses for some Brazilian cities.",
-          // TODO(i18n): previous English copy, pt-br was shortened.
+            "From intern to tech lead: I'm responsible for API architecture, business rules, and " +
+            "integrations across the backend and web systems, and I manage two projects focused on " +
+            "reducing water loss in Brazilian cities.",
           highlights: [
-            "Led the migration of a legacy Visual Basic system to a modern web platform for water network mapping, with interactive maps, advanced search, reports, and geolocated documents.",
-            "Architected and led development of a work order management system with REST APIs, status flows, business rules, and data persistence.",
-            "Contributed to an IoT monitoring platform involving sensors, Python services, Linux infrastructure, and automatic anomaly detection.",
-            "Work directly with stakeholders on requirements gathering.",
+            "Led the migration of a legacy Visual Basic system to a web platform for mapping water networks.",
+            "Designed the architecture of the work order system: REST APIs, status workflows, and business rules.",
+            "Contributed to the IoT monitoring platform, with Python services and anomaly detection.",
+            "Work directly with stakeholders to gather requirements.",
           ],
           stack: [
             "Next.js",
@@ -86,7 +81,7 @@ const translations = {
     projects: {
       title: "Projects",
       description:
-        "Some of the projects I've built to explore ideas, solve problems, and put software into practice.",
+        "Some of the projects I've built to explore ideas, solve problems, and put things into practice.",
     },
     learning: {
       title: "Education",
