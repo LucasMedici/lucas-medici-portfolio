@@ -7,6 +7,7 @@ import { Learning } from "@/components/Learning";
 import { Navbar } from "@/components/Navbar";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
+import { personJsonLd, serializeJsonLd } from "@/lib/site";
 
 /**
  * Portfolio home page (Server Component).
@@ -17,6 +18,10 @@ import { Skills } from "@/components/Skills";
 export default function HomePage() {
   return (
     <div className="px-5">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd()) }}
+      />
       <Navbar />
       <main id="main">
         <Hero />
