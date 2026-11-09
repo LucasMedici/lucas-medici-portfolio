@@ -54,4 +54,17 @@ export const learningItems: readonly LearningItem[] = [
       period: "58h",
     },
   },
+  {
+    id: "java-artificial-intelligence",
+    en: {
+      title: "Java with Artificial Intelligence",
+      provider: "Itaú",
+      period: "45h",
+    },
+    "pt-br": {
+      title: "Java com Inteligência Artificial",
+      provider: "Itaú",
+      period: "45h",
+    },
+  },
 ];
